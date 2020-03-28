@@ -1,0 +1,25 @@
+{
+  "navigationContent": [
+    {
+        "name": "Bestellungen",
+        "route": "/",
+        "icon": "shopping-basket",
+        "exact": true
+      },
+      {
+        "name": "Bestand",
+        "route": "/",
+        "icon": "archive"
+      },
+      {
+        "name": "Unternehmen",
+        "route": "/",
+        "icon": "store-alt"
+      },
+            {
+        "name": "Profil",
+        "route": "/",
+        "icon": "user"
+      }
+  ]
+}
