@@ -1,22 +1,22 @@
 <template>
   <div class="container mx-auto">
     <div class="mb-3">
-      <categories :categories="findDataInStore" :loading="isDataLoading" />
+      <articles :articles="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import categories from '~/components/elements/stock/categories'
+import articles from '~/components/elements/stock/articles'
 export default {
   components: {
-    categories
+    articles
   },
   data: () => ({}),
   computed: {
-    ...mapState({ isDataLoading: (state) => state.categories.isGetPending }),
-    ...mapGetters({ findDataInStore: 'categories/list' }),
+    ...mapState({ isDataLoading: (state) => state.articles.isGetPending }),
+    ...mapGetters({ findDataInStore: 'articles/list' }),
     noContentFound() {
       return this.findDataInStore.count === 0
     }
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getData: 'categories/getAll'
+      getData: 'articles/getAll'
     })
   }
 }

@@ -19,9 +19,14 @@
             :to="nav.route"
             :exact="nav.exact"
           >
-            <span class="align-middle text-primary">
-              <unicon :name="nav.icon" fill="currentColor" width="20"
-            /></span>
+            <span class="text-primary">
+              <eva-icons
+                :name="isActive(nav.route) ? nav.icon : `${nav.icon}-outline`"
+                :fill="isActive(nav.route) ? 'currentColor' : 'currentColor'"
+                width="20"
+                class="mb-1"
+              />
+            </span>
             <span class="hidden sm:inline-block select-none">{{
               nav.name
             }}</span>
@@ -46,7 +51,12 @@ import avatar from '@/components/elements/avatar'
 
 export default {
   components: { avatar },
-  data: () => ({ ...desktopPoints })
+  data: () => ({ ...desktopPoints }),
+  methods: {
+    isActive(route) {
+      return this.$route.path === route
+    }
+  }
 }
 </script>
 

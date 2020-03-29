@@ -3,17 +3,17 @@
     {
         "name": "Bestellungen",
         "route": "/",
-        "icon": "shopping-basket"
+        "icon": "shopping-cart"
       },
       {
         "name": "Bestand",
-        "route": "/",
+        "route": "/stock",
         "icon": "archive"
       },
       {
         "name": "Unternehmen",
-        "route": "/",
-        "icon": "store-alt"
+        "route": "/company",
+        "icon": "home"
       }
   ],
   "rightNavigationContent": [

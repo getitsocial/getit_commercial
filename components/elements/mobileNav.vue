@@ -12,11 +12,12 @@
             :to="nav.route"
             :exact="nav.exact"
           >
-            <span class="text-primary">
-              <unicon :name="nav.icon" fill="currentColor" width="20"
-            /></span>
+            <eva-icons
+              :name="isActive(nav.route) ? nav.icon : `${nav.icon}-outline`"
+              :fill="isActive(nav.route) ? 'currentColor' : 'currentColor'"
+            />
             <div
-              class="-my-2 text-xs font-bold"
+              class="-my-2 py-2 text-xs font-bold"
               :class="isActive(nav.route) ? '' : 'text-light'"
             >
               {{ nav.name }}

@@ -1,7 +1,7 @@
 export default {
   mode: 'universal',
-  /*
-   ** Headers of the page
+  /**
+   * Headers of the page
    */
   head: {
     title: process.env.npm_package_name || '',
@@ -20,8 +20,8 @@ export default {
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
   },
-  /*
-   ** Vue configuration
+  /**
+   * Vue configuration
    */
   vue: {
     config: {
@@ -29,12 +29,12 @@ export default {
       devtools: true
     }
   },
-  /*
-   ** Customize the progress-bar color
+  /**
+   * Customize the progress-bar color
    */
   loading: { color: '#fff' },
-  /*
-   ** PWA configuration
+  /**
+   * PWA configuration
    */
 
   pwa: {
@@ -42,21 +42,20 @@ export default {
       theme_color: '#fff7ab'
     }
   },
-  /*
-   ** Global CSS
+  /**
+   * Global CSS
    */
   css: ['~/assets/css/custom.scss', '~/assets/css/animations.scss'],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/vue-unicons', ssr: false },
     { src: '@/plugins/vue-timeago.js', ssr: false },
     { src: '@/plugins/map', ssr: false },
     { src: '@/plugins/mixins/components.js' }
   ],
-  /*
-   ** Nuxt.js dev-modules
+  /**
+   * Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
@@ -70,16 +69,16 @@ export default {
     // Doc: https://github.com/microcipcip/cookie-universal/tree/master/packages/cookie-universal-nuxt
     'cookie-universal-nuxt'
   ],
-  /*
-   ** Webfontloader
+  /**
+   * Webfontloader
    */
   webfontloader: {
     google: {
       families: ['Nunito:300,400,700']
     }
   },
-  /*
-   ** Nuxt.js modules
+  /**
+   * Nuxt.js modules
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
@@ -90,16 +89,22 @@ export default {
     // Doc: https://github.com/nuxt-community/device-module#readme
     '@nuxtjs/device'
   ],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
+  /**
+   * Axios module configuration
+   * See https://axios.nuxtjs.org/options
    */
   axios: {},
-  /*
-   ** Build configuration
+
+  /**
+   ** Server Middleware configuration
+   */
+  serverMiddleware: ['~/api/index.js'],
+
+  /**
+   * Build configuration
    */
   build: {
-    /*
+    /**
      ** You can extend webpack config here
      */
     extend(config, ctx) {}

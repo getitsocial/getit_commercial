@@ -74,9 +74,9 @@
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
                 <button class="bordered">
-                  <unicon
+                  <eva-icons
                     class="h-5 h-5 inline-block align-middle"
-                    name="facebook-f"
+                    name="facebook"
                     fill="currentColor"
                   />
                 </button>
@@ -86,7 +86,11 @@
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
                 <button class="bordered">
-                  <unicon class="h-5 h-5" name="google" fill="currentColor" />
+                  <eva-icons
+                    class="h-5 h-5 inline-block align-middle"
+                    name="google"
+                    fill="currentColor"
+                  />
                 </button>
               </span>
             </div>

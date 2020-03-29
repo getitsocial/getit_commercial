@@ -1,0 +1,34 @@
+[
+  {
+    "id": "ab12",
+    "name": "Coca Cola",
+    "stock": 200,
+    "price": 1.5,
+    "size": "1L",
+    "currency": "Flasche"
+  },
+  {
+    "id": "ab13",
+    "name": "Fanta",
+    "stock": 200,
+    "price": 1.5,
+    "size": "1L",
+    "currency": "Flasche"
+  },
+  {
+    "id": "ab14",
+    "name": "Sprite",
+    "stock": 300,
+    "price": 1.5,
+    "size": "1L",
+    "currency": "Flasche"
+  },
+  {
+    "id": "ab15",
+    "name": "Bad Harzburger Mineralbrunnen",
+    "stock": 620,
+    "price": 0.69,
+    "size": "1L",
+    "currency": "Flasche"
+  }
+]

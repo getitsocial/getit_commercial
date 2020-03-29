@@ -5,7 +5,10 @@
         <h3 class="text-lg leading-6 font-medium text-primary">
           Aktuelle Bestellungen
         </h3>
-        <p class="mt-1 max-w-2xl text-sm leading-5 text-light">
+        <p
+          class="mt-1 max-w-2xl text-sm leading-5 text-light"
+          :class="{ 'spinner-dark spinner-left': loading }"
+        >
           24 Bestellungen heute
         </p>
       </div>
@@ -13,7 +16,7 @@
         <button class="px-0">
           <span class="hidden sm:block"> Neue Bestellung </span>
           <span class="block sm:hidden"
-            ><unicon name="plus" fill="currentColor" width="20"
+            ><eva-icons name="plus" fill="currentColor"
           /></span>
         </button>
       </div>
@@ -86,88 +89,17 @@
 <script>
 export default {
   name: 'Preview',
-  data: () => ({
-    orders: [
-      {
-        id: 'ab12',
-        user: {
-          name: 'Simon Peters',
-          picture: 'https://randomuser.me/api/portraits/men/61.jpg'
-        },
-        createdAt: 'Vor 2 Stunden',
-        items: {
-          amount: 4,
-          totalPrice: '12,49'
-        },
-        status: 'pending'
-      },
-      {
-        id: 'ab13',
-        user: {
-          name: 'Nathalie Ringel',
-          picture: 'https://randomuser.me/api/portraits/women/31.jpg'
-        },
-        createdAt: 'Vor 3 Stunden',
-        items: {
-          amount: 2,
-          totalPrice: '14,49'
-        },
-        status: 'pending'
-      },
-      {
-        id: 'ab14',
-        user: {
-          name: 'Maren Steinert',
-          picture: 'https://randomuser.me/api/portraits/women/19.jpg'
-        },
-        createdAt: 'Vor 5 Stunden',
-        items: {
-          amount: 5,
-          totalPrice: '14,49'
-        },
-        status: 'shipped'
-      },
-      {
-        id: 'ab15',
-        user: {
-          name: 'Jonas Braden',
-          picture: 'https://randomuser.me/api/portraits/men/19.jpg'
-        },
-        createdAt: 'Vor 7 Stunden',
-        items: {
-          amount: 2,
-          totalPrice: '2,49'
-        },
-        status: 'done'
-      },
-      {
-        id: 'ab16',
-        user: {
-          name: 'Julia Duesterhelm',
-          picture: 'https://randomuser.me/api/portraits/women/18.jpg'
-        },
-        createdAt: 'Vor 9 Stunden',
-        items: {
-          amount: 4,
-          totalPrice: '1,49'
-        },
-        status: 'done'
-      },
-      {
-        id: 'ab17',
-        user: {
-          name: 'Mustafa Yilmaz',
-          picture: 'https://randomuser.me/api/portraits/men/12.jpg'
-        },
-        createdAt: 'Gestern',
-        items: {
-          amount: 7,
-          totalPrice: '10,49'
-        },
-        status: 'canceled'
-      }
-    ]
-  }),
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    orders: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data: () => ({}),
   methods: {
     goToDetail() {
       this.$router.push('/order/detail')

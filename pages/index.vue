@@ -1,17 +1,38 @@
 <template>
   <div class="container mx-auto">
     <div class="mb-3">
-      <preview />
+      <orders :orders="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
 </template>
 
 <script>
-import preview from '~/components/elements/order/preview'
+import { mapActions, mapGetters, mapState } from 'vuex'
+import orders from '~/components/elements/order/orders'
+
 export default {
   components: {
-    preview
+    orders
   },
-  data: () => ({})
+  data: () => ({}),
+  computed: {
+    ...mapState({ isDataLoading: (state) => state.orders.isGetPending }),
+    ...mapGetters({ findDataInStore: 'orders/list' }),
+    noContentFound() {
+      return this.findDataInStore.count === 0
+    }
+  },
+  async mounted() {
+    try {
+      await this.getData({})
+    } catch (e) {
+      console.log(e.message)
+    }
+  },
+  methods: {
+    ...mapActions({
+      getData: 'orders/getAll'
+    })
+  }
 }
 </script>
