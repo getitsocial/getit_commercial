@@ -5,6 +5,7 @@
 <script>
 export default {
   name: 'Index',
+  pageTitle: 'Dein Laden',
   data: () => ({})
 }
 </script>

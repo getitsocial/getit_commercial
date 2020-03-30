@@ -1,7 +1,7 @@
 {
   "navigationContent": [
     {
-        "name": "Bestellungen",
+        "name": "Vorgänge",
         "route": "/",
         "icon": "shopping-cart",
         "exact": true
@@ -12,7 +12,7 @@
         "icon": "archive"
       },
       {
-        "name": "Unternehmen",
+        "name": "Laden",
         "route": "/company",
         "icon": "home"
       },

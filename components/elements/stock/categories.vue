@@ -1,31 +1,10 @@
 <template>
-  <div class="bg-white overflow-hidden shadow rounded-lg">
-    <div class="border-b px-6 py-3 flex justify-between">
-      <div class="my-auto">
-        <h3 class="text-lg leading-6 font-medium text-primary">
-          Kategorien
-        </h3>
-        <p
-          class="mt-1 max-w-2xl text-sm leading-5 text-light"
-          :class="{ 'spinner-dark spinner-left': loading }"
-        >
-          6 Kateogrien
-        </p>
-      </div>
-      <div>
-        <button class="px-0">
-          <span class="hidden sm:block"> Neue Kategorie </span>
-          <span class="block sm:hidden"
-            ><eva-icons name="plus" fill="currentColor"
-          /></span>
-        </button>
-      </div>
-    </div>
+  <card>
     <ul>
       <li
         v-for="category in categories"
         :key="category.id"
-        class="bcategory-b cursor-pointer hover:bg-grey transition ease-in-out duration-150"
+        class="list-element hovered"
         @click="goToArticleList()"
       >
         <div class="p-3 md:p-6 grid grid-cols-2 gap-2">
@@ -49,7 +28,7 @@
         </div>
       </li>
     </ul>
-  </div>
+  </card>
 </template>
 
 <script>

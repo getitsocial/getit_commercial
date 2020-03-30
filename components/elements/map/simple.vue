@@ -38,6 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .vue-map-container {
+  @apply relative z-30;
   height: 450px;
   width: 100%;
 }

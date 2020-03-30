@@ -1,8 +1,10 @@
 button, .button {
     @apply w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-primary transition duration-150 ease-in-out tracking-widest;
+    
     &:hover {
         @apply text-light no-underline;
     }
+
     &:focus {
         @apply outline-none no-underline;
     }
@@ -21,48 +23,159 @@ button, .button {
             @apply bg-light text-white;
         }
     }
+
+    &.link {
+      @apply p-0 text-tertiary text-base tracking-wider;
+      &:hover {
+        @apply text-secondary bg-transparent;
+      }
+    }
 }
 
 a {
     @apply font-medium text-tertiary transition ease-in-out duration-150;
+
     &:hover {
         @apply text-secondary;
     }
+
     &:focus {
         @apply text-secondary outline-none underline;
     }
 }
 
-.spinner {
-  position: relative;
-  color: transparent !important;
-  pointer-events: none;
+
+.error {
+  &-message {
+    @apply text-danger text-xs;
+  }
+
+  input, .input-icon {
+    @apply border-danger;
+  }
+
 }
 
-.spinner::after {
-  content: '';
-  position: absolute !important;
-  top: calc(50% - (1em / 2));
-  left: calc(50% - (1em / 2));
-  display: block;
-  width: 1em;
-  height: 1em;
-  border: 2px solid currentColor;
-  border-radius: 9999px;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  animation: spinAround 500ms infinite linear;
+h1 {
+  font-size: 2.3em;
 }
 
-.spinner {
-  &-left {
-    &::after {
-      left: 0;
+h2 {
+  font-size: 1.9em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+// List element
+
+.list {
+  &-element {
+    @apply border-b transition ease-in-out duration-150 select-none;
+    &.hovered {
+      &:hover {
+        @apply cursor-pointer bg-grey;
+      }
     }
   }
+  &-menu {
+    li {
+      @apply py-1 tracking-wider;
+
+      a, button {
+        @apply text-black;
+      }
+
+    }
+
+    &-light {
+      li {
+        @apply py-1 tracking-wider;
+
+        a, button {
+          @apply text-tertiary;
+
+          &:hover {
+            @apply text-secondary;
+          }
+
+          &.link-active {
+            @apply text-secondary;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  &-icon {
+    height: 1.75rem;
+    vertical-align: middle;
+    @apply pr-2;
+  }
+
 }
 
-@keyframes spinAround {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+// Forms
+
+.form {
+  &-content {
+    @apply py-1;
+  }
+
+  &-icon {
+    &-placeholder {
+      @apply flex items-center;
+    }
+    &-r {
+      @apply flex;
+
+      input {
+        @apply rounded-r-none;
+      }
+
+      .input {
+        &-icon {
+          @apply pointer-events-none inset-y-0 right-0 flex items-center px-2 border border-l-0 rounded-r;
+        }
+
+      }
+
+    }
+
+    &-l {
+      @apply flex;
+
+      input {
+        @apply rounded-l-none;
+      }
+
+      .input {
+        &-icon {
+          @apply pointer-events-none inset-y-0 right-0 flex items-center px-2 border border-r-0 rounded-l;
+        }
+
+      }
+
+    }
+
+  }
+
+  &-label {
+    @apply block mb-1 text-sm;
+
+    input:checked + svg {
+      display: block !important;
+    }
+
+  }
+
+  &-has-danger {
+    @apply border-danger;
+  }
+
 }

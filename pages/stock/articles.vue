@@ -13,6 +13,15 @@ export default {
   components: {
     articles
   },
+  pageTitle: 'Getränke',
+  subNavigation: {
+    rightNavigationContent: [
+      {
+        name: 'Neuer Artikel',
+        route: '/'
+      }
+    ]
+  },
   data: () => ({}),
   computed: {
     ...mapState({ isDataLoading: (state) => state.articles.isGetPending }),

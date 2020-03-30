@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-white overflow-hidden shadow rounded-lg">
+  <card>
     <ul>
       <li
         v-for="(item, index) in items"
         :key="index"
-        class="bitem-b cursor-pointer hover:bg-grey transition ease-in-out duration-150"
+        class="list-element hovered"
         @click="check(index)"
       >
         <div class="p-3 md:p-6 grid grid-cols-3 gap-4">
@@ -39,7 +39,7 @@
         </div>
       </li>
     </ul>
-  </div>
+  </card>
 </template>
 
 <script>

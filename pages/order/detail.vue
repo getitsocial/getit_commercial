@@ -1,17 +1,15 @@
 <template>
   <div class="container mx-auto">
-    <div class="mb-3">
+    <div class="my-3">
       <meta-information />
       <article-list :items="items" class="mt-3" />
-      <card class="mt-3">
-        <div class="flex justify-end">
-          <div>
-            <button class="primary">
-              Fahrer anfordern
-            </button>
-          </div>
+      <div class="mt-3 flex justify-end">
+        <div class="w-full px-1 md:w-auto px-0">
+          <button class="primary">
+            Fahrer anfordern
+          </button>
         </div>
-      </card>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +21,15 @@ export default {
   components: {
     metaInformation,
     articleList
+  },
+  pageTitle: 'Bestellung 224521',
+  subNavigation: {
+    rightNavigationContent: [
+      {
+        emit: 'showMap',
+        icon: 'map'
+      }
+    ]
   },
   data: () => ({
     items: [

@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="mb-3">
+    <div class="my-3">
       <orders :orders="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
@@ -15,6 +15,15 @@ export default {
     orders
   },
   data: () => ({}),
+  pageTitle: 'Bestellungen',
+  subNavigation: {
+    rightNavigationContent: [
+      {
+        name: 'Neue Bestellung',
+        route: '/'
+      }
+    ]
+  },
   computed: {
     ...mapState({ isDataLoading: (state) => state.orders.isGetPending }),
     ...mapGetters({ findDataInStore: 'orders/list' }),

@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white p-1 border-t z-40">
-    <div class="max-w-sm w-full">
+  <div class="flex flex-wrap bg-white p-1 border-t border-gray z-40">
+    <div class="max-w-sm w-full mx-auto">
       <ul class="flex justify-between">
         <li
           v-for="(nav, index) in navigationContent"
@@ -8,17 +8,17 @@
           class="text-center"
         >
           <nuxt-link
-            class="mobileNav-button animated py-2"
+            class="mobileNav-button animated"
             :to="nav.route"
             :exact="nav.exact"
           >
             <eva-icons
               :name="isActive(nav.route) ? nav.icon : `${nav.icon}-outline`"
-              :fill="isActive(nav.route) ? 'currentColor' : 'currentColor'"
+              fill="currentColor"
             />
             <div
-              class="-my-2 py-2 text-xs font-bold"
-              :class="isActive(nav.route) ? '' : 'text-light'"
+              class="-my-1 py-1 text-xs font-bold"
+              :class="isActive(nav.route) ? '' : 'text-primary-light'"
             >
               {{ nav.name }}
             </div>
@@ -41,23 +41,21 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .mobileNav {
-  &-button,
-  a {
-    @apply text-primary inline-block px-2;
+  &-button {
+    @apply text-primary inline-block pt-2 px-4;
 
     &:hover {
       @apply text-primary;
     }
 
     &:focus {
-      @apply text-primary no-underline;
+      @apply no-underline;
     }
 
     &.link-active {
-      @apply text-primary no-underline;
+      @apply text-primary;
     }
   }
 }

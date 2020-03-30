@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+    class="min-h-screen bg-gray-50 flex flex-col justify-center sm:px-6 lg:px-8"
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <div class="mx-auto w-auto text-gray-400">
@@ -11,21 +11,20 @@
         />
       </div>
 
-      <h2
-        class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900"
-      >
-        Melde dich an
+      <h2 class="text-center text-3xl leading-9 font-extrabold text-secondary">
+        habbr.
       </h2>
-      <p class="mt-2 text-center leading-5 text-gray-600 max-w">
-        oder
-        <a href="#">
-          registriere dein Unternehmen!
-        </a>
+      <p class="mt-2 text-center leading-5 text-light max-w">
+        Auf der Entwicklungsplattform anmelden.
       </p>
     </div>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <card class="transition-shadow duration-700 ease-in-out" :class="shadow">
+      <card
+        class="transition-shadow duration-700 ease-in-out"
+        :class="shadow"
+        padded
+      >
         <form @submit.prevent="submit">
           <label class="block">
             <span class="text-gray-700">E-Mail</span>
@@ -53,6 +52,13 @@
             <span class="block w-full">
               <button class="primary" type="submit">
                 Anmelden
+              </button>
+            </span>
+          </div>
+          <div class="mt-3">
+            <span class="block w-full">
+              <button type="submit" class="border">
+                Laden registrieren
               </button>
             </span>
           </div>

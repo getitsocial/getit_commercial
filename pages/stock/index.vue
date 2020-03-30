@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="mb-3">
+    <div class="my-3">
       <categories :categories="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
@@ -14,6 +14,15 @@ export default {
     categories
   },
   data: () => ({}),
+  pageTitle: 'Kategorien',
+  subNavigation: {
+    rightNavigationContent: [
+      {
+        name: 'Neue Kategorie',
+        route: '/'
+      }
+    ]
+  },
   computed: {
     ...mapState({ isDataLoading: (state) => state.categories.isGetPending }),
     ...mapGetters({ findDataInStore: 'categories/list' }),

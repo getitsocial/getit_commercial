@@ -52,7 +52,8 @@ export default {
   plugins: [
     { src: '@/plugins/vue-timeago.js', ssr: false },
     { src: '@/plugins/map', ssr: false },
-    { src: '@/plugins/mixins/components.js' }
+    { src: '@/plugins/mixins/components.js' },
+    { src: '@/plugins/utils.js' }
   ],
   /**
    * Nuxt.js dev-modules
