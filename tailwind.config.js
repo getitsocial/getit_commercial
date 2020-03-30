@@ -29,7 +29,15 @@ module.exports = {
     extend: {
       borderColor: (theme) => ({
         default: theme('colors.dark', 'currentColor')
-      })
+      }),
+      maxHeight: {
+        '0': '0',
+        '1': '1rem',
+        '5': '5rem',
+        '8': '8rem',
+        '10': '10rem',
+        '20': '20rem'
+      }
     },
     customForms: (theme) => ({
       default: {
