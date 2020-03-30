@@ -3,7 +3,7 @@
 ## orders
 
 [
-  '{{repeat(5, 20)}}',
+  '{{repeat(20, 50)}}',
   {
     id: '{{objectId()}}',
     user: {
@@ -13,7 +13,7 @@
       email: '{{email()}}',
       phone: '+1 {{phone()}}',
       address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
-        picture: 'http://placehold.it/32x32',
+        picture: 'https://randomuser.me/api/portraits/{{random(["men"], ["women"])}}/{{integer(1, 99)}}.jpg',
     latitude: '{{floating(-90.000001, 90)}}',
     longitude: '{{floating(-180.000001, 180)}}'
     },

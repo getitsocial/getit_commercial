@@ -3,23 +3,16 @@
     class="min-h-screen bg-gray-50 flex flex-col justify-center sm:px-6 lg:px-8"
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="mx-auto w-auto text-gray-400">
-        <img
-          class="h-24 w-24 mx-auto"
-          src="~assets/img/logo_primary.svg"
-          alt="GetIt!"
-        />
+      <div class="mx-auto w-auto mb-1 flex">
+        <img class="h-24 w-24 mx-auto" src="/img/logo.svg" alt="habbr." />
       </div>
 
       <h2 class="text-center text-3xl leading-9 font-extrabold text-secondary">
         habbr.
       </h2>
-      <p class="mt-2 text-center leading-5 text-light max-w">
-        Auf der Entwicklungsplattform anmelden.
-      </p>
     </div>
 
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md mt-2">
       <card
         class="transition-shadow duration-700 ease-in-out"
         :class="shadow"

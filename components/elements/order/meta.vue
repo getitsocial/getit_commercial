@@ -21,7 +21,7 @@
                   <div>
                     <img
                       class="inline-block h-9 w-9 rounded-full"
-                      src="https://randomuser.me/api/portraits/women/19.jpg"
+                      src="https://randomuser.me/api/portraits/women/11.jpg"
                       alt=""
                     />
                   </div>

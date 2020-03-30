@@ -1,6 +1,9 @@
 <template>
   <card>
     <ul>
+      <li v-if="loading" class="p-4 text-center">
+        <i class="spinner-dark"></i>
+      </li>
       <li
         v-for="article in articles"
         :key="article.id"

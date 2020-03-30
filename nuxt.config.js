@@ -99,6 +99,17 @@ export default {
   },
 
   /**
+   ** PurgeCSS configuration
+   */
+  purgeCSS: {
+    whitelistPatterns: [
+      /-(leave|enter|appear)(|-(to|from|active))$/,
+      /^(?!(|.*?:)cursor-move).+-move$/,
+      /^nuxt-link(|-exact)-active$/
+    ]
+  },
+
+  /**
    ** Server Middleware configuration
    */
   serverMiddleware: ['~/api/index.js'],

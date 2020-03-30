@@ -18,8 +18,8 @@
                 <div class="w-full flex justify-center">
                   <div class="relative">
                     <img
-                      alt="Nicole"
-                      src="https://source.unsplash.com/PY1109c58Fk/500x500"
+                      alt="Maren"
+                      src="https://randomuser.me/api/portraits/women/11.jpg"
                       class="rounded-full h-auto align-middle border-white border-2 -mt-10"
                       style="max-width: 120px;"
                     />
@@ -40,7 +40,7 @@
               <div class="w-full">
                 <hr class="my-8 max-w-lg m-auto" />
               </div>
-              <div v-scroll-reveal.reset="{ delay: 250 }" class="text-center">
+              <div class="text-center">
                 <div class="flex flex-wrap justify-center">
                   <div class="w-full max-w-3xl px-2 md:px-4">
                     <p class="mb-4 text-lg">

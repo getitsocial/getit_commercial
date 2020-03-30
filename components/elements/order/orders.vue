@@ -1,6 +1,9 @@
 <template>
   <card :padded="false">
     <ul>
+      <li v-if="loading" class="p-4 text-center">
+        <i class="spinner-dark"></i>
+      </li>
       <li
         v-for="order in orders"
         :key="order.id"
