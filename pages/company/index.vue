@@ -26,7 +26,7 @@
                 </h3>
                 <div class="text-sm">
                   <span class="text-light">Textilwaren</span>
-                  <div class="font-medium mt-1">
+                  <div class="font-medium mt-1 leading-tight">
                     Sesamstrasse 24 <br />
                     38100 Braunschweig <br />
                     <a href="tel:+49 531 2015511">+49 531 2015511</a>

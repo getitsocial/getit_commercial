@@ -41,16 +41,13 @@ module.exports = {
     },
     customForms: (theme) => ({
       default: {
-        input: {
+        'input, textarea, multiselect, select': {
+          borderRadius: theme('borderRadius.md'),
           borderColor: theme('colors.dark'),
           '&:focus': {
             boxShadow: undefined,
             borderColor: theme('colors.tertiary')
           }
-        },
-        select: {
-          borderRadius: theme('borderRadius.lg'),
-          boxShadow: undefined
         },
         checkbox: {
           width: theme('spacing.6'),

@@ -124,7 +124,7 @@ h3 {
 
 .form {
   &-content {
-    @apply py-1;
+    @apply py-1 text-left;
   }
 
   &-icon {
@@ -166,7 +166,7 @@ h3 {
   }
 
   &-label {
-    @apply block mb-1 text-sm;
+    @apply block text-sm text-light;
 
     input:checked + svg {
       display: block !important;
