@@ -4,11 +4,11 @@
   >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <div class="mx-auto w-auto mb-1 flex">
-        <img class="h-24 w-24 mx-auto" src="/img/logo.svg" alt="habbr." />
+        <img class="h-24 w-24 mx-auto" src="/img/logo.svg" alt="get it!" />
       </div>
 
       <h2 class="text-center text-3xl leading-9 font-extrabold text-secondary">
-        habbr.
+        get it!
       </h2>
     </div>
 
