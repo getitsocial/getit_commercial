@@ -116,7 +116,7 @@ export default {
     submit() {
       this.shadow = 'shadow-0'
       setTimeout(() => {
-        this.$router.push('/')
+        this.$router.push('/onboarding')
       }, 700)
     }
   }

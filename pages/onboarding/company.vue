@@ -44,9 +44,7 @@
     </ValidationProvider>
     <div class="grid grid-cols-2 gap-4 max-w-md mx-auto">
       <nuxt-link to="/onboarding" class="button border my-10">Zurück</nuxt-link>
-      <nuxt-link to="/onboarding/company" class="button border my-10"
-        >Weiter</nuxt-link
-      >
+      <nuxt-link to="/" class="button border my-10">Weiter</nuxt-link>
     </div>
   </div>
 </template>
