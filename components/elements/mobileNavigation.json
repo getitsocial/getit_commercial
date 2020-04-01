@@ -8,7 +8,7 @@
       },
       {
         "name": "Bestand",
-        "route": "/stock",
+        "route": "/category",
         "icon": "archive"
       },
       {

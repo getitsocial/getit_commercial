@@ -1,17 +1,20 @@
 <template>
   <div class="container mx-auto">
     <div class="my-3">
-      <categories :categories="findDataInStore" :loading="isDataLoading" />
+      <category-overview
+        :categories="findDataInStore"
+        :loading="isDataLoading"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import categories from '~/components/elements/stock/categories'
+import categoryOverview from '~/components/elements/category/overview'
 export default {
   components: {
-    categories
+    categoryOverview
   },
   data: () => ({}),
   pageTitle: 'Kategorien',

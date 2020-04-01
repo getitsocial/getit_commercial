@@ -1,18 +1,18 @@
 <template>
   <div class="container mx-auto">
     <div class="my-3">
-      <orders :orders="findDataInStore" :loading="isDataLoading" />
+      <order-overview :orders="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import orders from '~/components/elements/order/orders'
+import orderOverview from '~/components/elements/order/overview'
 
 export default {
   components: {
-    orders
+    orderOverview
   },
   data: () => ({}),
   pageTitle: 'Bestellungen',

@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  name: 'List',
+  name: 'UserOverview',
   props: {
     items: {
       type: Array,

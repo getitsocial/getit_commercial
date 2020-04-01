@@ -1,17 +1,17 @@
 <template>
   <div class="container mx-auto">
     <div class="mb-3">
-      <articles :articles="findDataInStore" :loading="isDataLoading" />
+      <article-oveview :articles="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
-import articles from '~/components/elements/stock/articles'
+import articleOveview from '~/components/elements/article/overview'
 export default {
   components: {
-    articles
+    articleOveview
   },
   pageTitle: 'Getränke',
   subNavigation: {

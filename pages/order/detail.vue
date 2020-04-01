@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <div class="my-3">
       <meta-information />
-      <article-list :items="items" class="mt-3" />
+      <user-overview :items="items" class="mt-3" />
       <div class="mt-3 flex justify-end">
         <div class="w-full px-1 md:w-auto px-0">
           <button class="primary">
@@ -16,11 +16,11 @@
 
 <script>
 import metaInformation from '~/components/elements/order/meta'
-import articleList from '~/components/elements/order/articles'
+import userOverview from '~/components/elements/article/userOverview'
 export default {
   components: {
     metaInformation,
-    articleList
+    userOverview
   },
   pageTitle: 'Bestellung 224521',
   subNavigation: {

@@ -80,7 +80,7 @@
 import simpleMap from '~/components/elements/map/simple'
 
 export default {
-  name: 'Meta',
+  name: 'OrderMeta',
   components: {
     simpleMap
   },

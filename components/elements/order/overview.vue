@@ -70,7 +70,7 @@
 
 <script>
 export default {
-  name: 'Preview',
+  name: 'OrderOverview',
   props: {
     loading: {
       type: Boolean,

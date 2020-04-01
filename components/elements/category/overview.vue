@@ -5,24 +5,27 @@
         <i class="spinner-dark"></i>
       </li>
       <li
-        v-for="article in articles"
-        :key="article.id"
+        v-for="category in categories"
+        :key="category.id"
         class="list-element hovered"
+        @click="goToArticleList()"
       >
-        <div class="p-3 md:p-6 grid grid-cols-3 gap-4">
-          <div class="flex items-center">
+        <div class="p-3 md:p-6 grid grid-cols-2 gap-2">
+          <div class="flex item-center">
             <div class="ml-3">
               <p class="text-sm leading-5 font-bold">
-                {{ article.name }}
+                {{ category.name }}
               </p>
             </div>
           </div>
-          <div class="flex items-center">
+          <div class="flex item-center">
             <div class="ml-3">
               <p class="text-sm leading-5 font-bold">
-                {{ article.stock }} im Lager
+                {{ category.articles.amount }} Artikel
               </p>
-              <p class="text-xs leading-4">{{ article.price }} € Stk.</p>
+              <p class="text-xs leading-4">
+                {{ category.articles.stock }} auf lager
+              </p>
             </div>
           </div>
         </div>
@@ -33,18 +36,23 @@
 
 <script>
 export default {
-  name: 'Articles',
+  name: 'CategoryOverview',
   props: {
     loading: {
       type: Boolean,
       default: false
     },
-    articles: {
+    categories: {
       type: Array,
       default: () => []
     }
   },
-  data: () => ({})
+  data: () => ({}),
+  methods: {
+    goToArticleList() {
+      this.$router.push('/article')
+    }
+  }
 }
 </script>
 
