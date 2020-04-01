@@ -19,7 +19,7 @@ export default {
 
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-    VUE_APP_UPLOADCARE_PUB_KEY: process.env.VUE_APP_UPLOADCARE_PUB_KEY
+    VUE_APP_FILESTACK_API_KEY: process.env.VUE_APP_FILESTACK_API_KEY
   },
   /**
    * Vue configuration
