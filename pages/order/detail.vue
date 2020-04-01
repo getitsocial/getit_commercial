@@ -3,13 +3,11 @@
     <div class="my-3">
       <meta-information />
       <user-overview :items="items" class="mt-3" />
-      <div class="mt-3 flex justify-end">
-        <div class="w-full px-1 md:w-auto px-0">
-          <button class="primary">
-            Fahrer anfordern
-          </button>
-        </div>
-      </div>
+      <bottom-area>
+        <button class="primary">
+          Fahrer anfordern
+        </button></bottom-area
+      >
     </div>
   </div>
 </template>
@@ -17,10 +15,13 @@
 <script>
 import metaInformation from '~/components/elements/order/meta'
 import userOverview from '~/components/elements/article/userOverview'
+import bottomArea from '~/components/layout/bottomarea'
+
 export default {
   components: {
     metaInformation,
-    userOverview
+    userOverview,
+    bottomArea
   },
   pageTitle: 'Bestellung 224521',
   subNavigation: {

@@ -22,7 +22,7 @@ export default {
     rightNavigationContent: [
       {
         name: 'Neue Kategorie',
-        route: '/'
+        route: '/category/new'
       }
     ]
   },

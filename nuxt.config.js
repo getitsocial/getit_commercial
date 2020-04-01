@@ -18,7 +18,8 @@ export default {
   },
 
   env: {
-    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
+    VUE_APP_UPLOADCARE_PUB_KEY: process.env.VUE_APP_UPLOADCARE_PUB_KEY
   },
   /**
    * Vue configuration
@@ -32,14 +33,14 @@ export default {
   /**
    * Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#3fe19b' },
   /**
    * PWA configuration
    */
 
   pwa: {
     meta: {
-      theme_color: '#fff7ab'
+      theme_color: '#01374c'
     }
   },
   /**
@@ -89,7 +90,8 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/device-module#readme
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    ['vue-currency-input/nuxt', { globalOptions: { currency: 'EUR' } }]
   ],
   /**
    * Axios module configuration

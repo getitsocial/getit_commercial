@@ -1,4 +1,6 @@
-import { extend } from 'vee-validate'
+import { extend, localize } from 'vee-validate'
+import de from 'vee-validate/dist/locale/de.json'
+
 /* eslint-disable camelcase */
 import {
   required,
@@ -11,8 +13,12 @@ import {
   alpha_num,
   numeric,
   min_value,
-  max_value
+  max_value,
+  ext
 } from 'vee-validate/dist/rules'
+
+// Install and Activate the German locale.
+localize('de', de)
 
 extend('verify_password', {
   message:
@@ -25,12 +31,36 @@ extend('verify_password', {
   }
 })
 
-extend('required', {
-  ...required,
-  message: 'This field is required'
+extend('decimal', {
+  validate: (value, { decimals = '*', separator = '.' } = {}) => {
+    if (value === null || value === undefined || value === '') {
+      return {
+        valid: false
+      }
+    }
+    if (Number(decimals) === 0) {
+      return {
+        valid: /^-?\d*$/.test(value)
+      }
+    }
+    const regexPart = decimals === '*' ? '+' : `{1,${decimals}}`
+    const regex = new RegExp(
+      `^[-+]?\\d*(\\${separator}\\d${regexPart})?([eE]{1}[-]?\\d+)?$`
+    )
+    return {
+      valid: regex.test(value),
+      data: {
+        serverMessage: 'Nur Dezimalzahlen sind erlaubt'
+      }
+    }
+  },
+  message: `{serverMessage}`
 })
 
 extend('min', min)
+extend('required', required)
+extend('email', email)
+extend('alpha', alpha)
 extend('max', max)
 extend('digits', digits)
 extend('oneOf', oneOf)
@@ -38,22 +68,12 @@ extend('alphaNum', alpha_num)
 extend('numeric', numeric)
 extend('min_value', min_value)
 extend('max_value', max_value)
-
-extend('alpha', {
-  ...alpha,
-  message: 'This field must only contain alphabetic characters'
-})
-
-extend('email', {
-  ...required,
-  ...email,
-  message: 'This field is required a valid email address'
-})
+extend('ext', ext)
 
 extend('password', {
   params: ['target'],
   validate(value, { target }) {
     return value === target
   },
-  message: 'Password confirmation does not match'
+  message: 'Password bestätigung stimmt nicht überein'
 })

@@ -18,7 +18,7 @@ export default {
     rightNavigationContent: [
       {
         name: 'Neuer Artikel',
-        route: '/'
+        route: '/article/new'
       }
     ]
   },
