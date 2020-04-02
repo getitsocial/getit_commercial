@@ -10,6 +10,11 @@
       <h2 class="text-center text-3xl leading-9 font-extrabold text-secondary">
         get it!
       </h2>
+      <div
+        class="text-sm text-warning font-bold border-t border-b p-3 my-3 text-center"
+      >
+        Aktuell ist unsere Anwendung nur für Beta-User verfügbar.
+      </div>
     </div>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md mt-2">
@@ -116,7 +121,7 @@ export default {
     submit() {
       this.shadow = 'shadow-0'
       setTimeout(() => {
-        this.$router.push('/onboarding')
+        // this.$router.push('/onboarding')
       }, 700)
     }
   }
