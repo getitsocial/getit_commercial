@@ -1,11 +1,7 @@
 const endPoint = `articles`
 
 export const state = () => ({
-  list: [],
-  isGetPending: false,
-  isCreatePending: false,
-  isUpdatePending: false,
-  isDeletePending: false
+  list: []
 })
 
 export const mutations = {
@@ -14,30 +10,6 @@ export const mutations = {
   },
   setMyData: (state, data) => {
     state.listMy = data
-  },
-  setGetPending: (state) => {
-    state.isGetPending = true
-  },
-  unsetGetPending: (state) => {
-    state.isGetPending = false
-  },
-  setCreatePending: (state) => {
-    state.isCreatePending = true
-  },
-  unsetCreatePending: (state) => {
-    state.isCreatePending = false
-  },
-  setUpdatePending: (state) => {
-    state.isUpdatePending = true
-  },
-  unsetUpdatePending: (state) => {
-    state.isUpdatePending = false
-  },
-  setDeletePending: (state) => {
-    state.isDeletePending = true
-  },
-  unsetDeletePending: (state) => {
-    state.isDeletePending = false
   }
 }
 
@@ -45,15 +17,15 @@ export const actions = {
   // Get All
   async getAll({ commit, state }, params) {
     try {
-      commit('setGetPending')
+      commit('setRootLoading', true, { root: true })
       const data = await this.$axios.$get(
         `/api/${endPoint}`,
         params ? { params } : null
       )
       commit('setData', data)
-      commit('unsetGetPending')
+      commit('setRootLoading', false, { root: true })
     } catch (error) {
-      commit('unsetGetPending')
+      commit('setRootLoading', false, { root: true })
     }
   },
 
@@ -67,23 +39,23 @@ export const actions = {
 
   // Post
   async create({ dispatch, commit, state }, data) {
-    commit('setCreatePending')
+    commit('setRootLoading', true, { root: true })
     await this.$axios.post(`/api/${endPoint}`, data)
-    commit('unsetCreatePending')
+    commit('setRootLoading', false, { root: true })
   },
 
   // Put
   async update({ dispatch, commit, state }, data) {
-    commit('setUpdatePending')
+    commit('setRootLoading', true, { root: true })
     await this.$axios.put(`/api/${endPoint}/${data.id}`, data)
-    commit('unsetUpdatePending')
+    commit('setRootLoading', false, { root: true })
   },
 
   // Delete
   async delete({ dispatch, commit }, data) {
-    commit('setDeletePending')
+    commit('setRootLoading', true, { root: true })
     await this.$axios.delete(`/api/${endPoint}/${data.id}`)
-    commit('unsetDeletePending')
+    commit('setRootLoading', false, { root: true })
   }
 }
 

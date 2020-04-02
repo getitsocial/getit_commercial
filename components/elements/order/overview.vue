@@ -1,13 +1,10 @@
 <template>
   <card :padded="false">
     <ul>
-      <li v-if="loading" class="p-4 text-center">
-        <i class="spinner-dark"></i>
-      </li>
       <li
         v-for="order in orders"
         :key="order.id"
-        class="list-element hovered"
+        class="list-element hovered z-20"
         @click="goToDetail()"
       >
         <div class="p-3 md:p-6 grid grid-cols-3 gap-4">
@@ -72,10 +69,6 @@
 export default {
   name: 'OrderOverview',
   props: {
-    loading: {
-      type: Boolean,
-      default: false
-    },
     orders: {
       type: Array,
       default: () => []

@@ -5,7 +5,7 @@ export const state = () => {
     isMobile: false,
     online: true,
     isLoginPending: false,
-    isResetPending: false
+    isRootLoading: false
   }
 }
 export const mutations = {
@@ -21,8 +21,8 @@ export const mutations = {
   setLoginPending(state, status) {
     state.isLoginPending = status
   },
-  setResetPending(state, status) {
-    state.isResetPending = status
+  setRootLoading(state, status) {
+    state.isRootLoading = status
   }
 }
 export const actions = {
@@ -97,9 +97,7 @@ export const actions = {
     })
   },
   async passwordReset({ dispatch, commit }, { token, password }) {
-    commit('setResetPending', true)
     await this.$axios.patch(`/api/password-resets/${token}`, { password })
-    commit('setResetPending', false)
   },
   async verifyToken({ dispatch }, { token }) {
     const { data } = await this.$axios.get(`/api/password-resets/${token}`)
@@ -133,5 +131,6 @@ export const actions = {
 
 export const getters = {
   user: (state) => state.user,
-  alerts: (state) => state.alerts
+  alerts: (state) => state.alerts,
+  isRootLoading: (state) => state.isRootLoading
 }

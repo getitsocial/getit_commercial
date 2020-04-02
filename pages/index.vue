@@ -1,13 +1,13 @@
 <template>
   <div class="container mx-auto">
     <div class="my-3">
-      <order-overview :orders="findDataInStore" :loading="isDataLoading" />
+      <order-overview :orders="findDataInStore" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import orderOverview from '~/components/elements/order/overview'
 
 export default {
@@ -25,7 +25,6 @@ export default {
     ]
   },
   computed: {
-    ...mapState({ isDataLoading: (state) => state.orders.isGetPending }),
     ...mapGetters({ findDataInStore: 'orders/list' }),
     noContentFound() {
       return this.findDataInStore.count === 0

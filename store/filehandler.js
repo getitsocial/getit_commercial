@@ -1,9 +1,7 @@
-import * as filestack from 'filestack-js'
-const client = filestack.init(process.env.VUE_APP_FILESTACK_API_KEY)
+/* eslint camelcase: ["error", {"properties": "never", ignoreDestructuring: true}] */
 
 // const endPoint = `categories`
 export const state = () => ({
-  file: null,
   isUploadPending: false
 })
 
@@ -21,10 +19,27 @@ export const mutations = {
 
 export const actions = {
   // Post
-  async imageUpload({ dispatch, commit, state }, file) {
-    commit('setUploadPending')
-    const res = await client.upload(file)
-    console.log(res)
-    commit('unsetUploadPending')
+  async imageUpload({ dispatch, commit, state }, { formData, folder }) {
+    try {
+      commit('setUploadPending')
+      const { data } = await this.$axios.post(
+        `/api/image/upload/${folder}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      )
+      commit('unsetUploadPending')
+      return data
+    } catch (e) {
+      commit('unsetUploadPending')
+    }
+  },
+
+  // Delete
+  async imageRemove({ dispatch, commit, state }, image) {
+    await this.$axios.delete(`/api/image/delete`, { data: image })
   }
 }

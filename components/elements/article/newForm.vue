@@ -7,11 +7,23 @@
       rules="ext:jpg,png,jpeg"
     >
       <!-- articlePicture FILE -->
-      <div class="animated dropbox">
+      <div v-if="article.image">
+        <img :src="article.image.secure_url" alt="" class="rounded-lg" />
+        <button class="w-auto ml-auto" @click="removeImageAction">
+          Entfernen
+        </button>
+      </div>
+      <div v-else class="animated dropbox">
         <div class="dropbox-content">
           <div>
-            <eva-icons name="image-outline" fill="currentColor" />
-            <p>Artikelbild auswählen</p>
+            <eva-icons
+              v-if="!isUploading"
+              name="image-outline"
+              fill="currentColor"
+            />
+            <p :class="{ 'spinner-dark': isUploading }">
+              Artikelbild auswählen
+            </p>
           </div>
           <span class="error-message">{{ errors[0] }}</span>
         </div>
@@ -85,11 +97,12 @@
         Artikel anlegen
       </button></bottom-area
     >
+    <!-- <pre>{{ article }}</pre> -->
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { ValidationProvider } from 'vee-validate'
 import bottomArea from '~/components/layout/bottomarea'
 
@@ -100,25 +113,38 @@ export default {
     bottomArea
   },
   data: () => ({
-    article: {}
+    article: {
+      image: null
+    },
+    file: null
   }),
+  computed: {
+    ...mapState({ isUploading: (state) => state.filehandler.isUploadPending })
+  },
   methods: {
     ...mapActions({
-      upload: 'filehandler/imageUpload'
+      uploadImage: 'filehandler/imageUpload',
+      removeImage: 'filehandler/imageRemove'
     }),
     async handleFileChange(e) {
+      this.file = this.$refs.articleImage.files[0]
       const formData = new FormData()
+      formData.append('file', this.file)
       try {
-        const { valid } = await this.$refs.provider.validate(e)
-        if (valid) {
-          formData.append('file', this.$refs.articleImage.files[0])
-          console.log(formData)
-          await this.upload(this.$refs.articleImage.files[0])
-          console.log('Uploaded the file...')
-        }
+        await this.$refs.provider.validate(e)
+        this.article.image = await this.uploadImage({
+          formData,
+          folder: 'article'
+        })
       } catch (e) {
         console.log(e)
       }
+    },
+    async removeImageAction() {
+      console.log(this.article.image)
+      if (!this.article.image) return
+      await this.removeImage(this.article.image)
+      this.article.image = null
     }
   }
 }

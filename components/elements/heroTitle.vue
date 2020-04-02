@@ -1,16 +1,21 @@
 <template>
   <div class="bg-info text-white w-full z-50 shadow-sm">
     <div class="container mx-auto px-3">
-      <transition name="slide-fade">
-        <div v-if="show">
-          <h1
-            class="tracking-wider leading-none py-5 md:py-7 select-none"
-            :class="[$store.state.isMobile ? 'text-xl' : 'text-3xl']"
-          >
-            {{ topTitle }}
-          </h1>
+      <div class="flex flex-wrap">
+        <transition name="slide-fade">
+          <div v-if="show">
+            <h1
+              class="tracking-wider leading-none py-5 md:py-7 select-none"
+              :class="[$store.state.isMobile ? 'text-xl' : 'text-3xl']"
+            >
+              <span>{{ topTitle }}</span>
+            </h1>
+          </div>
+        </transition>
+        <div v-show="isRootLoading" class="ml-auto my-auto">
+          <i class="spinner-light"></i>
         </div>
-      </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -20,6 +25,8 @@
  * Scroll Effect
  * https://tahazsh.com/hide-navbar-on-scroll-down-in-vue
  */
+import { mapState } from 'vuex'
+
 export default {
   name: 'HeroTitle',
   props: {
@@ -31,8 +38,12 @@ export default {
   },
   data: () => ({
     show: true,
+    isLoading: false,
     transitionName: 'slide-left'
   }),
+  computed: {
+    ...mapState({ isRootLoading: (state) => state.isRootLoading })
+  },
   watch: {
     async $route(to, from) {
       this.show = false
@@ -40,8 +51,11 @@ export default {
       this.show = true
     }
   },
-  mounted() {
+  created() {
     this.show = true
+    this.$root.$on('dataLoading', (loading) => {
+      this.isLoading = loading
+    })
   }
 }
 </script>

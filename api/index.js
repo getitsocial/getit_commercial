@@ -1,9 +1,27 @@
+/* eslint camelcase: ["error", {"properties": "never", ignoreDestructuring: true}] */
+
 import express from 'express'
+import bodyParser from 'body-parser'
+import helmet from 'helmet'
+import cloudinary from 'cloudinary'
+import multipart from 'connect-multiparty'
 import orders from './orders.json'
 import categories from './categories.json'
 import articles from './articles.json'
+import {} from 'dotenv/config'
+
+const multipartMiddleware = multipart()
+
+cloudinary.config({
+  cloud_name: process.env.VUE_APP_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.VUE_APP_CLOUDINARY_API_KEY,
+  api_secret: process.env.VUE_APP_CLOUDINARY_API_SECRET
+})
 
 const app = express()
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
+app.use(bodyParser.json({ limit: '10mb', extended: false }))
+app.use(helmet())
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -27,6 +45,43 @@ app.get('/categories', async (req, res) => {
 app.get('/articles', async (req, res) => {
   await delay(delayTime)
   res.json(articles)
+})
+
+app.post(
+  '/image/upload/:folder',
+  multipartMiddleware,
+  async ({ files: { file }, params }, res, next) => {
+    if (!file) {
+      return next()
+    }
+    try {
+      const {
+        public_id,
+        etag,
+        format,
+        secure_url
+      } = await cloudinary.v2.uploader.upload(file.path, {
+        tags: ['bucket', 'temporary'],
+        folder: params.folder,
+        use_filename: false,
+        crop: 'lfill',
+        width: 800,
+        height: 400
+      })
+      res.status(201).json({ public_id, etag, format, secure_url })
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
+app.delete('/image/delete', async ({ body: { public_id } }, res, next) => {
+  try {
+    await cloudinary.v2.uploader.destroy(public_id)
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
+  }
 })
 
 export default {
