@@ -1,42 +1,6 @@
 <template>
   <div>
-    <ValidationProvider
-      v-slot="{ errors }"
-      ref="provider"
-      name="Artikelbild"
-      rules="ext:jpg,png,jpeg"
-    >
-      <!-- articlePicture FILE -->
-      <div v-if="article.image">
-        <img :src="article.image.secure_url" alt="" class="rounded-lg" />
-        <button class="w-auto ml-auto" @click="removeImageAction">
-          Entfernen
-        </button>
-      </div>
-      <div v-else class="animated dropbox">
-        <div class="dropbox-content">
-          <div>
-            <eva-icons
-              v-if="!isUploading"
-              name="image-outline"
-              fill="currentColor"
-            />
-            <p :class="{ 'spinner-dark': isUploading }">
-              Artikelbild auswählen
-            </p>
-          </div>
-          <span class="error-message">{{ errors[0] }}</span>
-        </div>
-        <input
-          ref="articleImage"
-          type="file"
-          multiple
-          accept="image/*"
-          class="input-file"
-          @change="handleFileChange"
-        />
-      </div>
-    </ValidationProvider>
+    <image-upload folder="test" @target="setImage" />
     <ValidationProvider v-slot="{ errors }" name="Artikelname" rules="required">
       <!-- articleName INPUT -->
       <div class="form-content my-3" :class="{ error: errors[0] }">
@@ -92,59 +56,73 @@
         </label>
       </div>
     </ValidationProvider>
+    <ValidationProvider v-slot="{ errors }" name="Artikelbeschreibung">
+      <!-- articleName INPUT -->
+      <div class="form-content my-3" :class="{ error: errors[0] }">
+        <label class="form-label w-full" for="articleDescription">
+          <span class="text-info">Artikelbeschreibung</span>
+          <client-only>
+            <editor-content
+              id="articleDescription"
+              class="form-input"
+              name="articleDescription"
+              :editor="editor"
+            />
+          </client-only>
+          <span class="error-message">{{ errors[0] }}</span>
+        </label>
+      </div>
+    </ValidationProvider>
+    <!-- <pre>{{ article }}</pre> -->
     <bottom-area>
       <button class="primary">
         Artikel anlegen
       </button></bottom-area
     >
-    <!-- <pre>{{ article }}</pre> -->
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
 import { ValidationProvider } from 'vee-validate'
+import { Editor, EditorContent } from 'tiptap'
+import { Bold, Italic, Link, HardBreak, Heading } from 'tiptap-extensions'
+
 import bottomArea from '~/components/layout/bottomarea'
+import imageUpload from '~/components/elements/utils/imageUpload'
 
 export default {
   name: 'NewArticleForm',
   components: {
     ValidationProvider,
-    bottomArea
+    bottomArea,
+    imageUpload,
+    EditorContent
   },
   data: () => ({
     article: {
-      image: null
+      image: null,
+      description: null
     },
-    file: null
+    editor: null
   }),
-  computed: {
-    ...mapState({ isUploading: (state) => state.filehandler.isUploadPending })
+  mounted() {
+    this.editor = new Editor({
+      content: '<p>Artikelbeschreibung hier...</p>',
+      extensions: [
+        new Bold(),
+        new Italic(),
+        new Link(),
+        new HardBreak(),
+        new Heading()
+      ]
+    })
+  },
+  beforeDestroy() {
+    this.editor.destroy()
   },
   methods: {
-    ...mapActions({
-      uploadImage: 'filehandler/imageUpload',
-      removeImage: 'filehandler/imageRemove'
-    }),
-    async handleFileChange(e) {
-      this.file = this.$refs.articleImage.files[0]
-      const formData = new FormData()
-      formData.append('file', this.file)
-      try {
-        await this.$refs.provider.validate(e)
-        this.article.image = await this.uploadImage({
-          formData,
-          folder: 'article'
-        })
-      } catch (e) {
-        console.log(e)
-      }
-    },
-    async removeImageAction() {
-      console.log(this.article.image)
-      if (!this.article.image) return
-      await this.removeImage(this.article.image)
-      this.article.image = null
+    setImage(img) {
+      this.article.image = img
     }
   }
 }
