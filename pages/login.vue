@@ -13,7 +13,7 @@
       <div
         class="text-sm text-warning font-bold border-t border-b p-3 my-3 text-center"
       >
-        Aktuell ist unsere Anwendung nur für Beta-User verfügbar.
+        Diese Anwendung dient lediglich zur <b>Demonstration</b>
       </div>
     </div>
 
@@ -121,7 +121,7 @@ export default {
     submit() {
       this.shadow = 'shadow-0'
       setTimeout(() => {
-        // this.$router.push('/onboarding')
+        this.$router.push('/onboarding')
       }, 700)
     }
   }

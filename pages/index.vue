@@ -16,7 +16,7 @@ export default {
   },
   data: () => ({}),
   pageTitle: 'Bestellungen',
-  middleware: ['authenticated'],
+  // middleware: ['authenticated'],
   subNavigation: {
     rightNavigationContent: [
       {
