@@ -5,7 +5,7 @@
       <div class="hidden sm:block">
         <nuxt-link to="/" class="no-underline focus:no-underline">
           <span class="align-middle text-secondary font-bold text-2xl"
-            >get it!</span
+            >DEMOAPP</span
           >
         </nuxt-link>
       </div>
