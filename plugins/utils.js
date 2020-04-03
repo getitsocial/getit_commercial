@@ -9,7 +9,7 @@ Vue.mixin({
     },
     user() {
       return this.$store.state?.user
-    }
+    },
   },
   methods: {
     isEmpty(someObject) {
@@ -18,8 +18,8 @@ Vue.mixin({
         someObject.constructor === Object
       )
     },
-    promiseTimeout: (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-  }
+    promiseTimeout: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+  },
 })
 
 // Injects
@@ -31,7 +31,7 @@ export default ({ app, store, error }, inject) => {
       toastType,
       toastId: new Date().valueOf(),
       pill,
-      dontHide
+      dontHide,
     })
   )
 }

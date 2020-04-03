@@ -37,14 +37,14 @@ export default {
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     articles: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  data: () => ({})
+  data: () => ({}),
 }
 </script>
 

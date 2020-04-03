@@ -12,7 +12,7 @@ import orderOverview from '~/components/elements/order/overview'
 
 export default {
   components: {
-    orderOverview
+    orderOverview,
   },
   data: () => ({}),
   pageTitle: 'Bestellungen',
@@ -21,15 +21,15 @@ export default {
     rightNavigationContent: [
       {
         name: 'Neue Bestellung',
-        route: '/'
-      }
-    ]
+        route: '/',
+      },
+    ],
   },
   computed: {
     ...mapGetters({ findDataInStore: 'orders/list' }),
     noContentFound() {
       return this.findDataInStore.count === 0
-    }
+    },
   },
   async mounted() {
     try {
@@ -40,8 +40,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getData: 'orders/getAll'
-    })
-  }
+      getData: 'orders/getAll',
+    }),
+  },
 }
 </script>

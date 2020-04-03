@@ -45,26 +45,26 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'ImageUpload',
   components: {
-    ValidationProvider
+    ValidationProvider,
   },
   props: {
     folder: {
       type: String,
       default: null,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
     file: null,
-    image: null
+    image: null,
   }),
   computed: {
-    ...mapState({ isUploading: (state) => state.filehandler.isUploadPending })
+    ...mapState({ isUploading: (state) => state.filehandler.isUploadPending }),
   },
   methods: {
     ...mapActions({
       uploadImage: 'filehandler/imageUpload',
-      removeImage: 'filehandler/imageRemove'
+      removeImage: 'filehandler/imageRemove',
     }),
     async handleFileChange(e) {
       this.file = this.$refs[this.folder].files[0]
@@ -74,7 +74,7 @@ export default {
         await this.$refs.provider.validate(e)
         this.image = await this.uploadImage({
           formData,
-          folder: this.folder
+          folder: this.folder,
         })
         this.$emit('target', this.image)
       } catch (e) {
@@ -85,8 +85,8 @@ export default {
       if (!this.image) return
       await this.removeImage(this.image)
       this.image = null
-    }
-  }
+    },
+  },
 }
 </script>
 

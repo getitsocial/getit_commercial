@@ -1,7 +1,7 @@
 const endPoint = `categories`
 
 export const state = () => ({
-  list: []
+  list: [],
 })
 
 export const mutations = {
@@ -10,7 +10,7 @@ export const mutations = {
   },
   setMyData: (state, data) => {
     state.listMy = data
-  }
+  },
 }
 
 export const actions = {
@@ -60,10 +60,10 @@ export const actions = {
     commit('setRootLoading', true, { root: true })
     await this.$axios.delete(`/api/${endPoint}/${data.id}`)
     commit('setRootLoading', false, { root: true })
-  }
+  },
 }
 
 // List getter
 export const getters = {
-  list: (state) => state.list
+  list: (state) => state.list,
 }

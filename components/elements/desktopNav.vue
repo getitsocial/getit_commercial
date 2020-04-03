@@ -50,8 +50,8 @@ export default {
   methods: {
     isActive(route) {
       return this.$route.path === route
-    }
-  }
+    },
+  },
 }
 </script>
 

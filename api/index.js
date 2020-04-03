@@ -5,9 +5,6 @@ import bodyParser from 'body-parser'
 import helmet from 'helmet'
 import cloudinary from 'cloudinary'
 import multipart from 'connect-multiparty'
-import orders from './orders.json'
-import categories from './categories.json'
-import articles from './articles.json'
 import {} from 'dotenv/config'
 
 const multipartMiddleware = multipart()
@@ -15,7 +12,7 @@ const multipartMiddleware = multipart()
 cloudinary.config({
   cloud_name: process.env.VUE_APP_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.VUE_APP_CLOUDINARY_API_KEY,
-  api_secret: process.env.VUE_APP_CLOUDINARY_API_SECRET
+  api_secret: process.env.VUE_APP_CLOUDINARY_API_SECRET,
 })
 
 const app = express()
@@ -23,28 +20,8 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 app.use(bodyParser.json({ limit: '10mb', extended: false }))
 app.use(helmet())
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
-// Mock delaytime between 1 Seconds and 200 Milliseconds
-const delayTime = Math.floor(Math.random() * 1000) + 200
-
 app.get('/', (req, res) => {
   res.json({ it: 'works!' })
-})
-
-app.get('/orders', async (req, res) => {
-  await delay(delayTime)
-  res.json(orders)
-})
-
-app.get('/categories', async (req, res) => {
-  await delay(delayTime)
-  res.json(categories)
-})
-
-app.get('/articles', async (req, res) => {
-  await delay(delayTime)
-  res.json(articles)
 })
 
 app.post(
@@ -59,14 +36,14 @@ app.post(
         public_id,
         etag,
         format,
-        secure_url
+        secure_url,
       } = await cloudinary.v2.uploader.upload(file.path, {
         tags: ['bucket', 'temporary'],
         folder: params.folder,
         use_filename: false,
         crop: 'lfill',
         width: 800,
-        height: 400
+        height: 400,
       })
       res.status(201).json({ public_id, etag, format, secure_url })
     } catch (error) {
@@ -85,6 +62,6 @@ app.delete('/image/delete', async ({ body: { public_id } }, res, next) => {
 })
 
 export default {
-  path: '/api',
-  handler: app
+  path: '/clientapi',
+  handler: app,
 }

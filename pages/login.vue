@@ -23,44 +23,67 @@
         :class="shadow"
         padded
       >
-        <form @submit.prevent="submit">
-          <label class="block">
-            <span class="text-gray-700">E-Mail</span>
-            <input class="form-input mt-1 block w-full" placeholder="" />
-          </label>
+        <ValidationObserver v-slot="{ handleSubmit }" slim>
+          <form @submit.prevent="handleSubmit(submit)">
+            <label class="block">
+              <span class="text-info">E-Mail</span>
+              <validation-provider
+                v-slot="{ errors }"
+                mode="lazy"
+                name="email"
+                rules="email|required"
+              >
+                <input
+                  v-model="guest.email"
+                  class="form-input mt-1 block w-full"
+                  placeholder="john@bar.com"
+                />
+                <span class="error-message">{{ errors[0] }}</span>
+              </validation-provider>
+            </label>
 
-          <label class="block mt-3">
-            <span class="text-gray-700">Passwort</span>
-            <input
-              class="form-input mt-1 block w-full"
-              type="password"
-              placeholder=""
-            />
-          </label>
+            <label class="block mt-3">
+              <span class="text-info">Passwort</span>
+              <validation-provider
+                v-slot="{ errors }"
+                name="password"
+                mode="lazy"
+                rules="required|verify_password"
+              >
+                <input
+                  v-model="guest.password"
+                  class="form-input mt-1 block w-full"
+                  type="password"
+                  placeholder="******************"
+                />
+                <span class="error-message">{{ errors[0] }}</span>
+              </validation-provider>
+            </label>
 
-          <div class="mt-3 flex items-center justify-end">
-            <div class="leading-5">
-              <a href="#">
-                Hilfe bei der Anmeldung?
-              </a>
+            <div class="mt-3 flex items-center justify-end">
+              <div class="leading-5">
+                <a href="#">
+                  Hilfe bei der Anmeldung?
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div class="mt-3">
-            <span class="block w-full">
-              <button class="primary" type="submit">
-                Anmelden
-              </button>
-            </span>
-          </div>
-          <div class="mt-3">
-            <span class="block w-full">
-              <button type="submit" class="border">
-                Laden registrieren
-              </button>
-            </span>
-          </div>
-        </form>
+            <div class="mt-3">
+              <span class="block w-full">
+                <button class="primary" type="submit">
+                  Anmelden
+                </button>
+              </span>
+            </div>
+            <div class="mt-3">
+              <span class="block w-full">
+                <button type="submit" class="border">
+                  Laden registrieren
+                </button>
+              </span>
+            </div>
+          </form>
+        </ValidationObserver>
 
         <div class="mt-6">
           <div class="relative">
@@ -77,7 +100,11 @@
           <div class="mt-6 grid grid-cols-2 gap-3">
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <button class="bordered">
+                <button
+                  class="bordered"
+                  :class="{ 'spinner-dark': isLoading === 'facebook' }"
+                  @click="socialLogin('facebook')"
+                >
                   <eva-icons
                     class="h-5 h-5 inline-block align-middle"
                     name="facebook"
@@ -89,7 +116,11 @@
 
             <div>
               <span class="w-full inline-flex rounded-md shadow-sm">
-                <button class="bordered">
+                <button
+                  class="bordered"
+                  :class="{ 'spinner-dark': isLoading === 'google' }"
+                  @click="socialLogin('google')"
+                >
                   <eva-icons
                     class="h-5 h-5 inline-block align-middle"
                     name="google"
@@ -106,25 +137,61 @@
 </template>
 
 <script>
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { mapActions } from 'vuex'
 import { debounce } from 'lodash'
 
 export default {
   name: 'Login',
   layout: 'blank',
+  middleware: 'notAuthenticated',
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+  },
   data: () => ({
-    shadow: 'shadow-0'
+    isLoading: null,
+    shadow: 'shadow-0',
+    guest: {
+      email: '',
+      password: '',
+      accessToken: process.env.VUE_APP_MASTER_KEY,
+    },
   }),
-  mounted: debounce(function() {
+  mounted: debounce(function () {
     this.shadow = 'shadow-xl'
   }, 200),
   methods: {
-    submit() {
-      this.shadow = 'shadow-0'
-      setTimeout(() => {
-        // this.$router.push('/onboarding')
-      }, 700)
-    }
-  }
+    ...mapActions(['loginWithSocial', 'loginWithEmail']),
+    async submit(e) {
+      try {
+        this.haveError = {}
+        await this.loginWithEmail(this.guest)
+        await this.$router.push('/')
+      } catch (e) {
+        this.$store.commit('setLoginPending', false)
+        this.haveError = {
+          message: `E-Mail or Password wrong!`,
+        }
+      }
+    },
+    async socialLogin(provider) {
+      try {
+        this.haveError = {}
+        this.isLoading = provider
+        const { authResponse } = await this.$socialLoginService(provider)
+        await this.loginWithSocial({
+          accessToken: authResponse.access_token,
+          provider,
+        })
+        await this.$router.push('/')
+      } catch (e) {
+        console.log(e)
+        this.isLoading = false
+        this.haveError = e?.error
+      }
+    },
+  },
 }
 </script>
 

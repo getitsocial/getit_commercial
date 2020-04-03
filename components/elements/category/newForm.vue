@@ -33,11 +33,11 @@ export default {
   name: 'NewCategoryForm',
   components: {
     ValidationProvider,
-    bottomArea
+    bottomArea,
   },
   data: () => ({
-    category: {}
-  })
+    category: {},
+  }),
 }
 </script>
 

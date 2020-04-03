@@ -21,16 +21,16 @@ export default {
   components: {
     metaInformation,
     userOverview,
-    bottomArea
+    bottomArea,
   },
   pageTitle: 'Bestellung 224521',
   subNavigation: {
     rightNavigationContent: [
       {
         emit: 'showMap',
-        icon: 'map'
-      }
-    ]
+        icon: 'map',
+      },
+    ],
   },
   data: () => ({
     items: [
@@ -41,7 +41,7 @@ export default {
         currency: 'Kilo',
         unitPrice: 1,
         totalPrice: 4,
-        packed: false
+        packed: false,
       },
       {
         id: 'ab13',
@@ -50,7 +50,7 @@ export default {
         currency: 'Pakete',
         unitPrice: 2,
         totalPrice: 4,
-        packed: false
+        packed: false,
       },
       {
         id: 'ab14',
@@ -59,7 +59,7 @@ export default {
         currency: 'Paket',
         unitPrice: 2.5,
         totalPrice: 2.5,
-        packed: false
+        packed: false,
       },
       {
         id: 'ab15',
@@ -68,7 +68,7 @@ export default {
         currency: 'Paket',
         unitPrice: 0.99,
         totalPrice: 0.99,
-        packed: false
+        packed: false,
       },
       {
         id: 'ab16',
@@ -77,10 +77,10 @@ export default {
         currency: 'Paket',
         unitPrice: 2.99,
         totalPrice: 2.99,
-        packed: false
-      }
-    ]
-  })
+        packed: false,
+      },
+    ],
+  }),
 }
 </script>
 <style lang="scss"></style>

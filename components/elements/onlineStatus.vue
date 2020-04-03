@@ -4,15 +4,15 @@
 <script>
 export default {
   data: () => ({
-    online: true
+    online: true,
   }),
   watch: {
     online(val) {
       this.$addToast({
         message: this.online ? 'You are online' : 'You are offline',
-        toastType: this.online ? 'primary' : 'warning'
+        toastType: this.online ? 'primary' : 'warning',
       })
-    }
+    },
   },
   mounted() {
     if (!window.navigator) {
@@ -30,7 +30,7 @@ export default {
   methods: {
     _toggleNetworkStatus({ type }) {
       this.online = type === 'online'
-    }
-  }
+    },
+  },
 }
 </script>

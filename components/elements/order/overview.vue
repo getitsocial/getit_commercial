@@ -71,15 +71,15 @@ export default {
   props: {
     orders: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data: () => ({}),
   methods: {
     goToDetail() {
       this.$router.push('/order/detail')
-    }
-  }
+    },
+  },
 }
 </script>
 

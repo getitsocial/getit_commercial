@@ -14,7 +14,7 @@ import {
   numeric,
   min_value,
   max_value,
-  ext
+  ext,
 } from 'vee-validate/dist/rules'
 
 // Install and Activate the German locale.
@@ -28,19 +28,19 @@ extend('verify_password', {
       '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
     )
     return strongRegex.test(value)
-  }
+  },
 })
 
 extend('decimal', {
   validate: (value, { decimals = '*', separator = '.' } = {}) => {
     if (value === null || value === undefined || value === '') {
       return {
-        valid: false
+        valid: false,
       }
     }
     if (Number(decimals) === 0) {
       return {
-        valid: /^-?\d*$/.test(value)
+        valid: /^-?\d*$/.test(value),
       }
     }
     const regexPart = decimals === '*' ? '+' : `{1,${decimals}}`
@@ -50,11 +50,11 @@ extend('decimal', {
     return {
       valid: regex.test(value),
       data: {
-        serverMessage: 'Nur Dezimalzahlen sind erlaubt'
-      }
+        serverMessage: 'Nur Dezimalzahlen sind erlaubt',
+      },
     }
   },
-  message: `{serverMessage}`
+  message: `{serverMessage}`,
 })
 
 extend('min', min)
@@ -75,5 +75,5 @@ extend('password', {
   validate(value, { target }) {
     return value === target
   },
-  message: 'Password bestätigung stimmt nicht überein'
+  message: 'Password bestätigung stimmt nicht überein',
 })

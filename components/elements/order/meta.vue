@@ -82,16 +82,16 @@ import simpleMap from '~/components/elements/map/simple'
 export default {
   name: 'OrderMeta',
   components: {
-    simpleMap
+    simpleMap,
   },
   data: () => ({
-    showMap: false
+    showMap: false,
   }),
   mounted() {
     this.$root.$on('showMap', (obj) => {
       this.showMap = !this.showMap
     })
-  }
+  },
 }
 </script>
 

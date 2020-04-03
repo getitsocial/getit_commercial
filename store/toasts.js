@@ -1,13 +1,13 @@
 const dismissInterval = 4000
 
 export const state = () => ({
-  toasts: []
+  toasts: [],
 })
 
 export const getters = {
   list(state) {
     return state.toasts
-  }
+  },
 }
 
 export const mutations = {
@@ -23,7 +23,7 @@ export const mutations = {
   },
   removeLastToast(state, toastId) {
     state.toasts.pop()
-  }
+  },
 }
 
 export const actions = {
@@ -41,5 +41,5 @@ export const actions = {
   },
   remove({ state, commit }, { toastId }) {
     commit('removeToast', toastId)
-  }
+  },
 }

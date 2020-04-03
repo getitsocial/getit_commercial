@@ -72,10 +72,10 @@ import { Heading, Bold, Italic, Link, Underline } from 'tiptap-extensions'
 export default {
   components: {
     EditorContent,
-    EditorMenuBar
+    EditorMenuBar,
   },
   data: () => ({
-    editor: null
+    editor: null,
   }),
   mounted() {
     this.editor = new Editor({
@@ -84,7 +84,7 @@ export default {
         new Link(),
         new Bold(),
         new Italic(),
-        new Underline()
+        new Underline(),
       ],
       content: `
           <h3>
@@ -96,13 +96,13 @@ export default {
         `,
       onUpdate: ({ getHTML }) => {
         this.$emit('content', getHTML())
-      }
+      },
     })
   },
   beforeDestroy() {
     if (!this.editor) return
     this.editor.destroy()
-  }
+  },
 }
 </script>
 <style lang="scss">

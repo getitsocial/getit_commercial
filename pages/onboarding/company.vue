@@ -7,7 +7,7 @@
       Ipsum, hinaus zu gehen in die weite Grammatik. Der große Oxmox riet ihr
       davon ab.
     </p>
-    <ValidationProvider v-slot="{ errors }" rules="required">
+    <ValidationProvider v-slot="{ errors }" rules="required" name="unternehmen">
       <!-- Name INPUT -->
       <div class="form-content my-3" :class="{ error: errors[0] }">
         <label class="form-label w-full" for="companyName">
@@ -24,7 +24,11 @@
       </div>
     </ValidationProvider>
 
-    <ValidationProvider v-slot="{ errors }" rules="required">
+    <ValidationProvider
+      v-slot="{ errors }"
+      rules="required"
+      name="mitarbeiterzahl"
+    >
       <!-- Size INPUT -->
       <div class="form-content my-3" :class="{ error: errors[0] }">
         <label class="form-label w-full" for="companySize">
@@ -56,11 +60,11 @@ export default {
   name: 'Personal',
   layout: 'onboarding',
   components: {
-    ValidationProvider
+    ValidationProvider,
   },
   data: () => ({
-    company: {}
-  })
+    company: {},
+  }),
 }
 </script>
 

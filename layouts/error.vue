@@ -43,8 +43,8 @@ export default {
       default() {
         return {}
       },
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>

@@ -19,16 +19,16 @@
                   <div class="relative">
                     <img
                       alt="Maren"
-                      src="https://randomuser.me/api/portraits/women/11.jpg"
-                      class="rounded-full h-auto align-middle border-white border-2 -mt-10"
-                      style="max-width: 120px;"
+                      :src="user.picture"
+                      class="rounded-full h-auto align-middle border-white border-2 -mt-12"
+                      width="110"
                     />
                   </div>
                 </div>
               </div>
               <div class="text-center mt-2 font-bold text-info">
                 <h3 class="text-4xl leading-normal">
-                  Maren Steinert
+                  {{ user.name }}
                 </h3>
                 <div class="text-sm leading-normal uppercase">
                   Braunschweig, Deutschland
@@ -51,7 +51,7 @@
                       artist of considerable range.
                     </p>
                     <div class="pb-2">
-                      <a href="#pablo">Show more</a>
+                      <button @click="logoutUser">Logout</button>
                     </div>
                   </div>
                 </div>
@@ -65,9 +65,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Profile',
-  data: () => ({})
+  middleware: ['authenticated'],
+  data: () => ({}),
+  methods: {
+    ...mapActions(['logout']),
+    async logoutUser() {
+      await this.logout()
+      await this.$router.push('/login')
+    },
+  },
 }
 </script>
 

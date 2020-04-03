@@ -9,7 +9,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   theme: {
     fontFamily: {
-      sans: ['Nunito', ...defaultTheme.fontFamily.sans]
+      sans: ['Nunito', ...defaultTheme.fontFamily.sans],
     },
     colors: {
       transparent: 'transparent',
@@ -24,11 +24,11 @@ module.exports = {
       danger: '#f8444f',
       warning: '#D8AA00',
       success: '#5ed16a',
-      info: '#012c3d'
+      info: '#012c3d',
     },
     extend: {
       borderColor: (theme) => ({
-        default: theme('colors.dark', 'currentColor')
+        default: theme('colors.dark', 'currentColor'),
       }),
       maxHeight: {
         '0': '0',
@@ -36,8 +36,8 @@ module.exports = {
         '5': '5rem',
         '8': '8rem',
         '10': '10rem',
-        '20': '20rem'
-      }
+        '20': '20rem',
+      },
     },
     customForms: (theme) => ({
       default: {
@@ -46,37 +46,37 @@ module.exports = {
           borderColor: theme('colors.dark'),
           '&:focus': {
             boxShadow: undefined,
-            borderColor: theme('colors.tertiary')
-          }
+            borderColor: theme('colors.tertiary'),
+          },
         },
         checkbox: {
           width: theme('spacing.6'),
-          height: theme('spacing.6')
-        }
-      }
+          height: theme('spacing.6'),
+        },
+      },
     }),
     variants: {
-      spinner: ['responsive']
+      spinner: ['responsive'],
     },
     spinner: (theme) => ({
       dark: {
         color: theme('colors.primary', 'currentColor'), // color you want to make the spinner
         size: '1em', // size of the spinner (used for both width and height)
         border: '2px', // border-width of the spinner (shouldn't be bigger than half the spinner's size)
-        speed: '500ms' // the speed at which the spinner should rotate
+        speed: '500ms', // the speed at which the spinner should rotate
       },
       light: {
         color: theme('colors.white', 'currentColor'), // color you want to make the spinner
         size: '1em', // size of the spinner (used for both width and height)
         border: '2px', // border-width of the spinner (shouldn't be bigger than half the spinner's size)
-        speed: '500ms' // the speed at which the spinner should rotate
-      }
-    })
+        speed: '500ms', // the speed at which the spinner should rotate
+      },
+    }),
   },
   variants: {},
   plugins: [
     require('@tailwindcss/ui'),
     require('@tailwindcss/custom-forms'),
-    require('tailwindcss-spinner')()
-  ]
+    require('tailwindcss-spinner')(),
+  ],
 }

@@ -52,7 +52,7 @@
                 class="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2 my-5"
               >
                 <div class="sm:col-span-1">
-                  <dt class="leading-5 font-medium text-light ">
+                  <dt class="leading-5 font-medium text-light">
                     Store Manager
                   </dt>
                   <dd class="mt-2 leading-5">
@@ -101,7 +101,8 @@
 <script>
 export default {
   name: 'Ompany',
-  data: () => ({})
+  middleware: ['authenticated'],
+  data: () => ({}),
 }
 </script>
 

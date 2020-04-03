@@ -24,35 +24,35 @@ export default {
     // Name of the icon
     name: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     // Width of the icon
     width: {
       type: [String, Number],
-      default: 24
+      default: 24,
     },
     // Height of the icon
     height: {
       type: [String, Number],
-      default: 24
+      default: 24,
     },
     // Animation of the icon
     animation: {
       type: String,
-      default: undefined
+      default: undefined,
     },
     // Fill color of the Icon like #ff0000
     fill: {
       type: String,
-      default: 'inherit'
-    }
+      default: 'inherit',
+    },
   },
   computed: {
     icon() {
       // Computed icon name
       // @arg The argument is a string value representing the name of the icon
       return this.getEvaIcon(this.name)
-    }
+    },
   },
   methods: {
     // @vuese
@@ -65,8 +65,8 @@ export default {
           // Todo: Bind error handler
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss">

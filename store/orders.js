@@ -5,7 +5,7 @@ export const state = () => ({
   isGetPending: false,
   isCreatePending: false,
   isUpdatePending: false,
-  isDeletePending: false
+  isDeletePending: false,
 })
 
 export const mutations = {
@@ -38,7 +38,7 @@ export const mutations = {
   },
   unsetDeletePending: (state) => {
     state.isDeletePending = false
-  }
+  },
 }
 
 export const actions = {
@@ -84,10 +84,10 @@ export const actions = {
     commit('setDeletePending')
     await this.$axios.delete(`/api/${endPoint}/${data.id}`)
     commit('unsetDeletePending')
-  }
+  },
 }
 
 // List getter
 export const getters = {
-  list: (state) => state.list
+  list: (state) => state.list,
 }

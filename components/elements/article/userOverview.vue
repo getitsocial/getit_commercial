@@ -48,15 +48,15 @@ export default {
   props: {
     items: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data: () => ({}),
   methods: {
     check(index) {
       this.items[index].packed = !this.items[index].packed
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -40,19 +40,19 @@ export default {
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     categories: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data: () => ({}),
   methods: {
     goToArticleList() {
       this.$router.push('/article')
-    }
-  }
+    },
+  },
 }
 </script>
 

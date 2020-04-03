@@ -14,24 +14,25 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 import categoryOverview from '~/components/elements/category/overview'
 export default {
   components: {
-    categoryOverview
+    categoryOverview,
   },
   data: () => ({}),
   pageTitle: 'Kategorien',
+  middleware: ['authenticated'],
   subNavigation: {
     rightNavigationContent: [
       {
         name: 'Neue Kategorie',
-        route: '/category/new'
-      }
-    ]
+        route: '/category/new',
+      },
+    ],
   },
   computed: {
     ...mapState({ isDataLoading: (state) => state.categories.isGetPending }),
     ...mapGetters({ findDataInStore: 'categories/list' }),
     noContentFound() {
       return this.findDataInStore.count === 0
-    }
+    },
   },
   async mounted() {
     try {
@@ -42,8 +43,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getData: 'categories/getAll'
-    })
-  }
+      getData: 'categories/getAll',
+    }),
+  },
 }
 </script>

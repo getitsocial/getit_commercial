@@ -7,10 +7,11 @@ import newForm from '~/components/elements/article/newForm'
 export default {
   name: 'NewCategory',
   layout: 'fullview',
+  middleware: ['authenticated'],
   components: {
-    newForm
+    newForm,
   },
-  data: () => ({})
+  data: () => ({}),
 }
 </script>
 

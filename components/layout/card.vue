@@ -16,7 +16,7 @@
     <div
       v-if="hasFooterSlot"
       :class="{ 'px-4 py-4 sm:px-6': padded }"
-      class="border-t border-gray-200 "
+      class="border-t border-gray-200"
     >
       <!-- Content goes here -->
       <!-- We use less vertical padding on card footers at all sizes than on headers or body sections -->
@@ -31,8 +31,8 @@ export default {
   props: {
     padded: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   computed: {
@@ -41,8 +41,8 @@ export default {
     },
     hasHeaderSlot() {
       return !!this.$slots.header
-    }
-  }
+    },
+  },
 }
 </script>
 

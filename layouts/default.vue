@@ -44,7 +44,7 @@ export default {
     footerNav,
     onlineStatus,
     subMenu,
-    heroTitle
+    heroTitle,
   },
   data: () => ({}),
   computed: {
@@ -64,7 +64,7 @@ export default {
     },
     getUser() {
       return this.$store.getters.user
-    }
+    },
   },
   destroyed() {
     // window.removeEventListener('scroll')
@@ -72,7 +72,7 @@ export default {
   methods: {
     hideWelcomePopup() {
       this.showWelcomePopup = false
-    }
-  }
+    },
+  },
 }
 </script>

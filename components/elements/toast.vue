@@ -30,7 +30,7 @@ export default {
   computed: {
     toasts() {
       return this.$store.getters['toasts/list']
-    }
+    },
   },
   mounted() {
     this.$root.$on(
@@ -44,8 +44,8 @@ export default {
     ...mapActions(['removeAlert']),
     toastColor(color) {
       return color ? `toast-${color}` : 'toast-primary'
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

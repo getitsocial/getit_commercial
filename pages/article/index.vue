@@ -10,17 +10,18 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 import articleOveview from '~/components/elements/article/overview'
 export default {
+  middleware: ['authenticated'],
   components: {
-    articleOveview
+    articleOveview,
   },
   pageTitle: 'Getränke',
   subNavigation: {
     rightNavigationContent: [
       {
         name: 'Neuer Artikel',
-        route: '/article/new'
-      }
-    ]
+        route: '/article/new',
+      },
+    ],
   },
   data: () => ({}),
   computed: {
@@ -28,7 +29,7 @@ export default {
     ...mapGetters({ findDataInStore: 'articles/list' }),
     noContentFound() {
       return this.findDataInStore.count === 0
-    }
+    },
   },
   async mounted() {
     try {
@@ -39,8 +40,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getData: 'articles/getAll'
-    })
-  }
+      getData: 'articles/getAll',
+    }),
+  },
 }
 </script>

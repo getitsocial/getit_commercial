@@ -88,19 +88,19 @@ export default {
     ValidationProvider,
     bottomArea,
     imageUpload,
-    wysiwyg
+    wysiwyg,
   },
   data: () => ({
     article: {
       image: null,
-      description: null
-    }
+      description: null,
+    },
   }),
   methods: {
     setImage(img) {
       this.article.image = img
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -11,7 +11,7 @@
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,
-        disableDefaultUi: false
+        disableDefaultUi: false,
       }"
     >
       <gmap-marker
@@ -30,9 +30,9 @@ export default {
     return {
       center: { lat: 52.2688736, lng: 10.5267696 },
       mapTypeId: 'terrain',
-      markers: [{ position: { lat: 52.2688736, lng: 10.5267696 } }]
+      markers: [{ position: { lat: 52.2688736, lng: 10.5267696 } }],
     }
-  }
+  },
 }
 </script>
 

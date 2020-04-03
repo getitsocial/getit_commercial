@@ -20,7 +20,7 @@
 export default {
   name: 'Personal',
   layout: 'onboarding',
-  data: () => ({})
+  data: () => ({}),
 }
 </script>
 

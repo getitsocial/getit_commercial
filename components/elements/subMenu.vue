@@ -53,18 +53,18 @@ export default {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
     alternate: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   methods: {
     emitAction(action) {
       this.$root.$emit(action)
-    }
-  }
+    },
+  },
 }
 </script>
 

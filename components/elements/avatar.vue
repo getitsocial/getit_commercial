@@ -20,24 +20,24 @@ export default {
   props: {
     imgSrc: {
       type: String,
-      default: '../img/defaultUserpic.gif'
+      default: '../img/defaultUserpic.gif',
     },
     imgLink: {
       type: String,
-      default: null
+      default: null,
     },
     left: {
       type: Boolean,
-      default: false
+      default: false,
     },
     custom: {
       type: String,
-      default: null
+      default: null,
     },
     bordered: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({}),
   methods: {
@@ -46,8 +46,8 @@ export default {
         console.log(this.imgLink)
         this.$router.push(this.imgLink)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

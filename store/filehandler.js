@@ -2,7 +2,7 @@
 
 // const endPoint = `categories`
 export const state = () => ({
-  isUploadPending: false
+  isUploadPending: false,
 })
 
 export const mutations = {
@@ -14,7 +14,7 @@ export const mutations = {
   },
   unsetUploadPending: (state) => {
     state.isUploadPending = false
-  }
+  },
 }
 
 export const actions = {
@@ -23,12 +23,12 @@ export const actions = {
     try {
       commit('setUploadPending')
       const { data } = await this.$axios.post(
-        `/api/image/upload/${folder}`,
+        `/clientapi/image/upload/${folder}`,
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data'
-          }
+            'Content-Type': 'multipart/form-data',
+          },
         }
       )
       commit('unsetUploadPending')
@@ -40,6 +40,6 @@ export const actions = {
 
   // Delete
   async imageRemove({ dispatch, commit, state }, image) {
-    await this.$axios.delete(`/api/image/delete`, { data: image })
-  }
+    await this.$axios.delete(`/clientapi/image/delete`, { data: image })
+  },
 }

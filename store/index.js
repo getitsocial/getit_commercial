@@ -5,7 +5,7 @@ export const state = () => {
     isMobile: false,
     online: true,
     isLoginPending: false,
-    isRootLoading: false
+    isRootLoading: false,
   }
 }
 export const mutations = {
@@ -23,7 +23,7 @@ export const mutations = {
   },
   setRootLoading(state, status) {
     state.isRootLoading = status
-  }
+  },
 }
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, { app }) {
@@ -48,7 +48,7 @@ export const actions = {
   },
   async loginWithSocial({ dispatch }, { accessToken, provider }) {
     const { data } = await this.$axios.post(`/api/auth/${provider}`, {
-      token: accessToken
+      token: accessToken,
     })
     dispatch('setLocalUser', data)
     dispatch('getMe')
@@ -58,7 +58,7 @@ export const actions = {
     const { data } = await this.$axios.post(`/api/auth`, {
       token: accessToken,
       email,
-      password
+      password,
     })
     dispatch('setLocalUser', data)
     dispatch('getMe')
@@ -69,7 +69,7 @@ export const actions = {
     await this.$axios.setToken(token, 'Bearer')
     await this.$cookies.set('getit', token, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 7
+      maxAge: 60 * 60 * 24 * 7,
     })
     commit('setToken', token)
     commit('setUser', user)
@@ -79,13 +79,13 @@ export const actions = {
       name,
       email,
       password,
-      token: accessToken
+      token: accessToken,
     })
   },
   async updateUserRole({ commit, state, dispatch }, role) {
     await this.$axios.patch(`/api/users/${state.user.id}`, {
       role,
-      token: state.accessToken
+      token: state.accessToken,
     })
     await dispatch('getMe')
   },
@@ -93,7 +93,7 @@ export const actions = {
     await this.$axios.post(`/api/password-resets`, {
       email,
       link,
-      token: accessToken
+      token: accessToken,
     })
   },
   async passwordReset({ dispatch, commit }, { token, password }) {
@@ -116,21 +116,10 @@ export const actions = {
       await dispatch('logout')
     }
   },
-  // Other Settings
-  async hideWelcomePopup({ commit, dispatch, state }) {
-    try {
-      const { data } = await this.$axios.patch(`/api/users/${state.user.id}`, {
-        userSettings: { hideWelcomePopup: true }
-      })
-      commit('setUser', data)
-    } catch (error) {
-      await dispatch('logout')
-    }
-  }
 }
 
 export const getters = {
   user: (state) => state.user,
   alerts: (state) => state.alerts,
-  isRootLoading: (state) => state.isRootLoading
+  isRootLoading: (state) => state.isRootLoading,
 }

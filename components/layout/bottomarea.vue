@@ -10,7 +10,7 @@
 export default {
   name: 'BottomArea',
 
-  data: () => ({})
+  data: () => ({}),
 }
 </script>
 

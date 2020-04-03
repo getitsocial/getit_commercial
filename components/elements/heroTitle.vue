@@ -33,30 +33,30 @@ export default {
     // Name of the icon
     topTitle: {
       type: String,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   data: () => ({
     show: true,
     isLoading: false,
-    transitionName: 'slide-left'
+    transitionName: 'slide-left',
   }),
   computed: {
-    ...mapState({ isRootLoading: (state) => state.isRootLoading })
+    ...mapState({ isRootLoading: (state) => state.isRootLoading }),
   },
   watch: {
     async $route(to, from) {
       this.show = false
       await this.promiseTimeout(300)
       this.show = true
-    }
+    },
   },
   created() {
     this.show = true
     this.$root.$on('dataLoading', (loading) => {
       this.isLoading = loading
     })
-  }
+  },
 }
 </script>
 <style lang="scss">
