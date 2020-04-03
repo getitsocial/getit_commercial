@@ -23,7 +23,7 @@ export default {
     userOverview,
     bottomArea
   },
-  pageTitle: 'Bestellung 224521',
+  pageTitle: 'Beispielbestellung 224521',
   subNavigation: {
     rightNavigationContent: [
       {

@@ -22,7 +22,7 @@
               </div>
               <div class="mt-2 text-info">
                 <h3 class="text-xl leading-none font-bold">
-                  Tim & Struppi
+                  Tim & Struppi (Demo)
                 </h3>
                 <div class="text-sm">
                   <span class="text-light">Textilwaren</span>

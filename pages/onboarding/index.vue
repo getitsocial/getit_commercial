@@ -1,7 +1,7 @@
 <template>
   <div>
     <img src="/img/party.svg" alt="" width="200" class="mx-auto" />
-    <h2 class="my-5 text-info">Herzlich Willkommen</h2>
+    <h2 class="my-5 text-info">Herzlich Willkommen (Demo)</h2>
     <p class="text-light">
       Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und
       Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in

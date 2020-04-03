@@ -17,7 +17,7 @@ export default {
     categoryOverview
   },
   data: () => ({}),
-  pageTitle: 'Kategorien',
+  pageTitle: 'Kategorien (Demo)',
   subNavigation: {
     rightNavigationContent: [
       {

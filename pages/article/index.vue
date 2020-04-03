@@ -13,7 +13,7 @@ export default {
   components: {
     articleOveview
   },
-  pageTitle: 'Getränke',
+  pageTitle: 'Getränke (Demo)',
   subNavigation: {
     rightNavigationContent: [
       {
