@@ -17,7 +17,11 @@
             v-for="(item, index) in items.rightNavigationContent"
             :key="index"
           >
-            <nuxt-link v-if="!item.emit" :to="item.route" exact>
+            <nuxt-link
+              v-if="!item.emit"
+              :to="{ path: item.route, params: item.params }"
+              exact
+            >
               {{ item.name }}
               <eva-icons
                 v-if="item.icon"

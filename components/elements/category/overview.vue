@@ -8,24 +8,19 @@
         v-for="category in categories"
         :key="category.id"
         class="list-element hovered"
-        @click="goToArticleList()"
+        @click="goToArticleList(category.id)"
       >
-        <div class="p-3 md:p-6 grid grid-cols-2 gap-2">
+        <div class="p-3 md:p-6 grid grid-cols-2 gap-2 text-primary">
           <div class="flex item-center">
             <div class="ml-3">
-              <p class="text-sm leading-5 font-bold">
+              <p class="font-bold">
                 {{ category.name }}
               </p>
             </div>
           </div>
-          <div class="flex item-center">
+          <div class="flex item-center justify-end">
             <div class="ml-3">
-              <p class="text-sm leading-5 font-bold">
-                {{ category.articles.amount }} Artikel
-              </p>
-              <p class="text-xs leading-4">
-                {{ category.articles.stock }} auf lager
-              </p>
+              <eva-icons name="chevron-right-outline" fill="currentColor" />
             </div>
           </div>
         </div>
@@ -49,8 +44,8 @@ export default {
   },
   data: () => ({}),
   methods: {
-    goToArticleList() {
-      this.$router.push('/article')
+    goToArticleList(articleId) {
+      this.$router.push(`/category/${articleId}`)
     },
   },
 }

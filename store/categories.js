@@ -1,15 +1,22 @@
+import { assign } from 'lodash'
+
 const endPoint = `categories`
 
 export const state = () => ({
   list: [],
+  loading: {
+    create: false,
+    update: false,
+    delete: false,
+  },
 })
 
 export const mutations = {
   setData: (state, data) => {
     state.list = data
   },
-  setMyData: (state, data) => {
-    state.listMy = data
+  setLoading: (state, data) => {
+    state.loading = assign(state.loading, data)
   },
 }
 
@@ -43,9 +50,9 @@ export const actions = {
 
   // Post
   async create({ dispatch, commit, state }, data) {
-    commit('setRootLoading', true, { root: true })
+    commit('setLoading', { create: true })
     await this.$axios.post(`/api/${endPoint}`, data)
-    commit('setRootLoading', false, { root: true })
+    commit('setLoading', { create: false })
   },
 
   // Put
