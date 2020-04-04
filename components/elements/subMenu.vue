@@ -19,7 +19,7 @@
           >
             <nuxt-link
               v-if="!item.emit"
-              :to="{ path: item.route, params: item.params }"
+              :to="{ path: item.route, params: item.params, query: item.query }"
               exact
             >
               {{ item.name }}

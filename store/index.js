@@ -1,3 +1,5 @@
+import { debounce } from 'lodash'
+
 export const state = () => {
   return {
     accessToken: null,
@@ -6,9 +8,13 @@ export const state = () => {
     online: true,
     isLoginPending: false,
     isRootLoading: false,
+    rootTitle: null,
   }
 }
 export const mutations = {
+  setTitle(state, title) {
+    state.rootTitle = title
+  },
   setToken(state, token) {
     state.accessToken = token
   },
@@ -116,10 +122,14 @@ export const actions = {
       await dispatch('logout')
     }
   },
+  setTitleAction: debounce(({ commit }, title) => {
+    commit('setTitle', title)
+  }, 100),
 }
 
 export const getters = {
   user: (state) => state.user,
   alerts: (state) => state.alerts,
   isRootLoading: (state) => state.isRootLoading,
+  title: (state) => state.rootTitle,
 }

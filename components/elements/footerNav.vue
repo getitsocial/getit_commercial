@@ -33,7 +33,7 @@
             Deine Meinung und deine Vorschläge sind uns wichtig um unser Service
             stätig zu verbessern.
           </p>
-          <button class="primary link w-auto mt-3 p-0">
+          <button class="primary link w-auto mx-auto md:ml-0 mt-3 p-0">
             Feedback
           </button>
         </div>

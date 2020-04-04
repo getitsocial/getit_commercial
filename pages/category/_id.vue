@@ -1,14 +1,14 @@
 <template>
   <div class="container mx-auto">
     <div class="mb-3">
-      <h2 class="text-info">{{ category.name }}</h2>
+      <h2 class="text-info">aa</h2>
       <article-oveview :articles="findDataInStore" :loading="isDataLoading" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
 import articleOveview from '~/components/elements/article/overview'
 export default {
   components: {
@@ -25,8 +25,7 @@ export default {
     rightNavigationContent: [
       {
         name: 'Neuer Artikel',
-        route: '/article/new',
-        params: { aaa: 'bbb' },
+        emit: 'newArticle',
       },
     ],
   },
@@ -36,6 +35,23 @@ export default {
     noContentFound() {
       return this.findDataInStore.count === 0
     },
+  },
+  mounted() {
+    this.$root.$on('newArticle', (obj) => {
+      this.setOne(this.category)
+      this.$router.push('/article/new')
+    })
+    this.setTitle(this.category.name)
+    this.getData({ id: this.category.id })
+  },
+  methods: {
+    ...mapActions({
+      getData: 'articles/getAll',
+      setTitle: 'setTitleAction',
+    }),
+    ...mapMutations({
+      setOne: 'categories/setOne',
+    }),
   },
 }
 </script>

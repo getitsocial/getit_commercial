@@ -70,6 +70,9 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Profile',
   middleware: ['authenticated'],
+  fetch({ store }) {
+    store.commit('setTitle', null)
+  },
   data: () => ({}),
   methods: {
     ...mapActions(['logout']),

@@ -10,17 +10,13 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import categoryOverview from '~/components/elements/category/overview'
 export default {
   components: {
     categoryOverview,
   },
-  fetch({ params, store }) {
-    return store.dispatch('categories/getAll')
-  },
   data: () => ({}),
-  pageTitle: 'Kategorien',
   middleware: ['authenticated'],
   subNavigation: {
     rightNavigationContent: [
@@ -36,6 +32,20 @@ export default {
     noContentFound() {
       return this.findDataInStore.count === 0
     },
+  },
+  mounted() {
+    try {
+      this.setTitle('Kategorien')
+      this.getData()
+    } catch (error) {
+      console.log(error)
+    }
+  },
+  methods: {
+    ...mapActions({
+      getData: 'categories/getAll',
+      setTitle: 'setTitleAction',
+    }),
   },
 }
 </script>

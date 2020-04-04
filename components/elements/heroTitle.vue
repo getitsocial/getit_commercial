@@ -33,12 +33,11 @@ export default {
     // Name of the icon
     topTitle: {
       type: String,
-      default: undefined,
+      default: null,
     },
   },
   data: () => ({
     show: true,
-    isLoading: false,
     transitionName: 'slide-left',
   }),
   computed: {
@@ -50,12 +49,6 @@ export default {
       await this.promiseTimeout(300)
       this.show = true
     },
-  },
-  created() {
-    this.show = true
-    this.$root.$on('dataLoading', (loading) => {
-      this.isLoading = loading
-    })
   },
 }
 </script>

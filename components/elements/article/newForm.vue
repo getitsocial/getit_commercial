@@ -123,6 +123,7 @@ export default {
     }),
     async submit() {
       try {
+        this.article.category = this.category.id
         await this.create(this.article)
       } catch (error) {
         console.log(error)

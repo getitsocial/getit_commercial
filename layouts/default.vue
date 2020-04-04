@@ -20,7 +20,6 @@
             />
           </div>
         </transition>
-
         <!-- Main Content -->
         <nuxt />
       </div>
@@ -30,6 +29,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import mobileNav from '@/components/elements/mobileNav'
 import desktopNav from '@/components/elements/desktopNav'
 import footerNav from '@/components/elements/footerNav'
@@ -46,15 +47,11 @@ export default {
     subMenu,
     heroTitle,
   },
-  data: () => ({}),
+  data: () => ({
+    topTitle: null,
+  }),
   computed: {
-    title() {
-      return this.$route.matched.map((r) => {
-        return r.components.default.options
-          ? r.components.default.options.pageTitle
-          : r.components.default.pageTitle
-      })[0]
-    },
+    ...mapGetters(['title', 'user']),
     subNavigation(navigationItems) {
       return this.$route.matched.map((r) => {
         return r.components.default.options
@@ -62,9 +59,12 @@ export default {
           : r.components.default.subNavigation
       })[0]
     },
-    getUser() {
-      return this.$store.getters.user
-    },
+  },
+  created() {
+    this.show = true
+    this.$root.$on('topTitle', (title) => {
+      this.topTitle = title
+    })
   },
   destroyed() {
     // window.removeEventListener('scroll')
