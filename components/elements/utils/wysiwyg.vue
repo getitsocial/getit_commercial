@@ -86,14 +86,7 @@ export default {
         new Italic(),
         new Underline(),
       ],
-      content: `
-          <h3>
-           Artikelbeschreibung
-          </h3>
-          <p>
-            Beschreibe dein Artikel...
-          </p>
-        `,
+      content: `<p></p><p></p>`,
       onUpdate: ({ getHTML }) => {
         this.$emit('content', getHTML())
       },
@@ -122,7 +115,10 @@ export default {
 
 .editor {
   &-content {
-    @apply mt-3 text-base;
+    @apply mt-3 text-base bg-grey p-3 rounded-lg;
+    &:focus {
+      @apply shadow-outline;
+    }
   }
 }
 </style>

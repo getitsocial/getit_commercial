@@ -42,8 +42,8 @@ app.post(
         folder: params.folder,
         use_filename: false,
         crop: 'lfill',
-        width: 800,
-        height: 400,
+        width: 1000,
+        height: 1000,
       })
       res.status(201).json({ public_id, etag, format, secure_url })
     } catch (error) {

@@ -80,6 +80,7 @@
         >
       </form>
     </ValidationObserver>
+    <pre>{{ article }}</pre>
   </div>
 </template>
 
@@ -109,14 +110,14 @@ export default {
   },
   data: () => ({
     article: {
-      image: null,
+      picture: null,
       description: null,
     },
   }),
   computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
     setImage(img) {
-      this.article.image = img
+      this.article.picture = img
     },
     ...mapActions({
       create: 'articles/create', // map `this.add()` to `this.$store.dispatch('increment')`
