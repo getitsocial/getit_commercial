@@ -1,19 +1,18 @@
 <template>
-  <div class="bg-info text-white w-full z-50 shadow-sm">
+  <div class="text-info w-full z-50">
     <div class="container mx-auto px-3">
       <div class="flex flex-wrap">
         <transition name="slide-fade">
           <div v-if="show">
             <h1
-              class="tracking-wider leading-none py-5 md:py-7 select-none"
-              :class="[$store.state.isMobile ? 'text-xl' : 'text-3xl']"
+              class="tracking-wider leading-none py-3 md:py-4 select-none text-2xl"
             >
               <span>{{ topTitle }}</span>
             </h1>
           </div>
         </transition>
         <div v-show="isRootLoading" class="ml-auto my-auto">
-          <i class="spinner-light"></i>
+          <i class="spinner-dark"></i>
         </div>
       </div>
     </div>

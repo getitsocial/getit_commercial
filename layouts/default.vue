@@ -8,16 +8,14 @@
     <desktop-nav v-else class="fixed top-0 w-full" />
     <!-- Content -->
     <div class="flex-1">
-      <div :class="[$store.state.isMobile ? 'mb-20' : 'mt-20']">
+      <div :class="[$store.state.isMobile ? 'mb-20' : 'top-nav']">
         <!-- Hero -->
         <transition name="fade-faster">
-          <div class="sticky top-0" style="">
-            <hero-title v-if="title" :top-title="title" />
-            <sub-menu
-              v-if="subNavigation"
-              :items="subNavigation"
-              :class="{ 'pt-2': !title }"
-            />
+          <div
+            class="sticky top-0"
+            :class="{ 'top-subnavigation': !$store.state.isMobile }"
+          >
+            <sub-menu v-if="subNavigation" :items="subNavigation" />
           </div>
         </transition>
         <!-- Main Content -->
@@ -36,7 +34,6 @@ import desktopNav from '@/components/elements/desktopNav'
 import footerNav from '@/components/elements/footerNav'
 import onlineStatus from '@/components/elements/onlineStatus'
 import subMenu from '@/components/elements/subMenu'
-import heroTitle from '@/components/elements/heroTitle'
 
 export default {
   components: {
@@ -45,13 +42,10 @@ export default {
     footerNav,
     onlineStatus,
     subMenu,
-    heroTitle,
   },
-  data: () => ({
-    topTitle: null,
-  }),
+  data: () => ({}),
   computed: {
-    ...mapGetters(['title', 'user']),
+    ...mapGetters(['user']),
     subNavigation(navigationItems) {
       return this.$route.matched.map((r) => {
         return r.components.default.options
@@ -60,19 +54,14 @@ export default {
       })[0]
     },
   },
-  created() {
-    this.show = true
-    this.$root.$on('topTitle', (title) => {
-      this.topTitle = title
-    })
-  },
-  destroyed() {
-    // window.removeEventListener('scroll')
-  },
-  methods: {
-    hideWelcomePopup() {
-      this.showWelcomePopup = false
-    },
-  },
 }
 </script>
+<style lang="scss" scoped>
+.top-nav {
+  margin-top: 4.75rem;
+}
+
+.top-subnavigation {
+  top: 4.75rem;
+}
+</style>

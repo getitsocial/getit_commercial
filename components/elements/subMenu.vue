@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="bg-primary z-50 px-3 sm:px-0 z-50"
-    :class="{ alternate: alternate }"
-  >
+  <div class="bg-grey z-50 px-3 sm:px-0 z-50" :class="{ alternate: alternate }">
     <div class="container mx-auto">
       <div class="flex flex-shrink-0 mx-auto">
         <ul class="navigation flex select-none">
@@ -75,13 +72,13 @@ export default {
 <style lang="scss" scoped>
 .navlink {
   @apply inline-block align-middle transition-all duration-100 ease-in-out no-underline;
-  @apply text-white p-2;
+  @apply text-info p-2;
   &:hover {
-    @apply bg-info;
+    @apply bg-dark;
   }
   &.link-active,
   .link-active-exact {
-    @apply bg-secondary;
+    @apply bg-dark;
   }
 }
 
@@ -91,18 +88,6 @@ export default {
   }
   li a {
     @extend .navlink;
-  }
-}
-
-.alternate {
-  @apply bg-white;
-  .navigation {
-    li a {
-      @apply text-primary;
-      &:hover {
-        @apply bg-info text-white;
-      }
-    }
   }
 }
 </style>

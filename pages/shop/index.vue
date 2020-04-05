@@ -102,9 +102,6 @@
 export default {
   name: 'Ompany',
   middleware: ['authenticated'],
-  fetch({ store }) {
-    store.commit('setTitle', null)
-  },
   data: () => ({}),
 }
 </script>

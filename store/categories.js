@@ -4,7 +4,6 @@ const endPoint = `categories`
 
 export const state = () => ({
   list: [],
-  one: {},
   loading: {
     create: false,
     update: false,
@@ -15,9 +14,6 @@ export const state = () => ({
 export const mutations = {
   setData: (state, data) => {
     state.list = data
-  },
-  setOne: (state, data) => {
-    state.one = data
   },
   setLoading: (state, data) => {
     state.loading = assign(state.loading, data)

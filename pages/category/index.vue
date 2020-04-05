@@ -1,19 +1,24 @@
 <template>
-  <div class="container mx-auto">
-    <div class="my-3">
-      <category-overview
-        :categories="findDataInStore"
-        :loading="isDataLoading"
-      />
+  <div>
+    <hero-title top-title="Kategorien" />
+    <div class="container mx-auto">
+      <div class="my-3">
+        <category-overview
+          :categories="findDataInStore"
+          :loading="isDataLoading"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapState } from 'vuex'
+import heroTitle from '~/components/elements/heroTitle'
 import categoryOverview from '~/components/elements/category/overview'
 export default {
   components: {
+    heroTitle,
     categoryOverview,
   },
   data: () => ({}),
@@ -35,7 +40,6 @@ export default {
   },
   mounted() {
     try {
-      this.setTitle('Kategorien')
       this.getData()
     } catch (error) {
       console.log(error)
@@ -44,7 +48,6 @@ export default {
   methods: {
     ...mapActions({
       getData: 'categories/getAll',
-      setTitle: 'setTitleAction',
     }),
   },
 }

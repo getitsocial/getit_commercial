@@ -1,17 +1,22 @@
 <template>
-  <div class="container mx-auto">
-    <div class="my-3">
-      <order-overview :orders="findDataInStore" />
+  <div>
+    <hero-title top-title="Vorgänge" />
+    <div class="container mx-auto">
+      <div class="my-3">
+        <order-overview :orders="findDataInStore" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import heroTitle from '~/components/elements/heroTitle'
 import orderOverview from '~/components/elements/order/overview'
 
 export default {
   components: {
+    heroTitle,
     orderOverview,
   },
   fetch({ store }) {

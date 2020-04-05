@@ -1,23 +1,22 @@
 <template>
-  <div class="container mx-auto">
-    <div class="mb-3">
-      <h2 class="text-info">aa</h2>
-      <article-oveview :articles="findDataInStore" :loading="isDataLoading" />
+  <div>
+    <hero-title :top-title="title" />
+    <div class="container mx-auto">
+      <div class="mb-3">
+        <article-oveview :articles="findDataInStore" :loading="isDataLoading" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
+import heroTitle from '~/components/elements/heroTitle'
 import articleOveview from '~/components/elements/article/overview'
 export default {
   components: {
+    heroTitle,
     articleOveview,
-  },
-  async asyncData({ params, store }) {
-    const category = await store.dispatch('categories/getOne', params.id)
-    await store.dispatch('articles/getAll', params)
-    return { category }
   },
   middleware: ['authenticated'],
   pageTitle: 'Artikel',
@@ -29,6 +28,11 @@ export default {
       },
     ],
   },
+  async asyncData({ store, params }) {
+    const { name } = await store.dispatch('categories/getOne', params.id)
+    return { title: name }
+  },
+  data: () => ({}),
   computed: {
     ...mapState({ isDataLoading: (state) => state.articles.isGetPending }),
     ...mapGetters({ findDataInStore: 'articles/list' }),
@@ -38,19 +42,13 @@ export default {
   },
   mounted() {
     this.$root.$on('newArticle', (obj) => {
-      this.setOne(this.category)
       this.$router.push('/article/new')
     })
-    this.setTitle(this.category.name)
-    this.getData({ id: this.category.id })
+    this.getArticleData(this.$route.params)
   },
   methods: {
     ...mapActions({
-      getData: 'articles/getAll',
-      setTitle: 'setTitleAction',
-    }),
-    ...mapMutations({
-      setOne: 'categories/setOne',
+      getArticleData: 'articles/getAll',
     }),
   },
 }
