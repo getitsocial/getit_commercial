@@ -1,9 +1,8 @@
 <template>
-  <div><new-form :category="category" /></div>
+  <div><new-form :category="$route.params" /></div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import newForm from '~/components/elements/article/newForm'
 export default {
   name: 'NewCategory',
@@ -13,9 +12,6 @@ export default {
   layout: 'fullview',
   middleware: ['authenticated'],
   data: () => ({}),
-  computed: {
-    ...mapState({ category: (state) => state.categories.one }),
-  },
 }
 </script>
 

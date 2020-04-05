@@ -5,7 +5,7 @@
         <transition name="slide-fade">
           <div v-if="show">
             <h1
-              class="tracking-wider leading-none py-3 md:py-4 select-none text-2xl"
+              class="tracking-wider leading-none py-3 md:py-4 select-none text-2xl font-bold"
             >
               <span>{{ topTitle }}</span>
             </h1>

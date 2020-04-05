@@ -28,9 +28,16 @@ export default {
       },
     ],
   },
-  async asyncData({ store, params }) {
-    const { name } = await store.dispatch('categories/getOne', params.id)
-    return { title: name }
+  async asyncData({ store, params, error }) {
+    try {
+      const { name } = await store.dispatch(
+        'categories/getOne',
+        params.categoryId
+      )
+      return { title: name }
+    } catch (e) {
+      error({ statusCode: 404 })
+    }
   },
   data: () => ({}),
   computed: {
@@ -42,7 +49,7 @@ export default {
   },
   mounted() {
     this.$root.$on('newArticle', (obj) => {
-      this.$router.push('/article/new')
+      this.$router.push(`/article/new/${this.$route.params?.categoryId}`)
     })
     this.getArticleData(this.$route.params)
   },

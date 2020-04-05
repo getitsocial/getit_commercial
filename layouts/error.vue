@@ -14,22 +14,22 @@
       </div>
       <div v-if="error.statusCode === 404">
         <h1 class="text-4xl text-primary my-5">
-          Content not found
+          Inhalt wurde nicht gefunden
         </h1>
       </div>
       <div v-if="error.statusCode === 401">
         <h1 class="text-4xl text-primary my-5">
-          Oh oh... you dont have rights.
+          Oh oh... du scheinst keine Berechtigung zu haben.
         </h1>
       </div>
       <div v-else>
         <h1 class="text-4xl text-primary my-5">
-          {{ error.message }}
+          {{ error.statusCode }}
         </h1>
       </div>
-      <a class="button-primary" href="/">
-        back to home
-      </a>
+      <button class="button-primary" @click="$router.go(-1)">
+        Zurück
+      </button>
     </div>
   </div>
 </template>
