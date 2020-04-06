@@ -81,10 +81,22 @@
           </div>
         </ValidationProvider>
         <bottom-area>
-          <button class="primary" type="submit">
-            Artikel bearbeiten
-          </button></bottom-area
-        >
+          <div class="flex">
+            <div>
+              <button
+                class="w-auto hover:text-danger mr-auto"
+                @click.prevent="deleteArticle"
+              >
+                Artikel löschen
+              </button>
+            </div>
+            <div>
+              <button class="primary" type="submit">
+                Artikel bearbeiten
+              </button>
+            </div>
+          </div>
+        </bottom-area>
       </form>
     </ValidationObserver>
   </div>
@@ -120,7 +132,8 @@ export default {
       this.article.picture = img
     },
     ...mapActions({
-      update: 'articles/update', // map `this.add()` to `this.$store.dispatch('increment')`
+      update: 'articles/update',
+      deleteAction: 'articles/delete',
     }),
     async submit() {
       try {
@@ -130,6 +143,14 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    async deleteArticle() {
+      await this.deleteAction(this.article)
+      this.$addToast({
+        message: 'Artikel gelöscht!',
+        toastType: 'primary',
+      })
+      this.$router.push(`/category/${this.article.category.id}`)
     },
   },
 }
