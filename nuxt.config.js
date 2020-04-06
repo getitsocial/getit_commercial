@@ -13,7 +13,10 @@ export default {
     title: 'get it!',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0',
+      },
       {
         hid: 'description',
         name: 'description',
@@ -52,6 +55,9 @@ export default {
   pwa: {
     meta: {
       theme_color: '#01374c',
+      name: 'get it!',
+      author: 'tayfun guelcan',
+      lang: 'de',
     },
   },
   /**

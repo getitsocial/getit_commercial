@@ -53,17 +53,23 @@ export default {
       default: null,
       required: true,
     },
-    image: {
+    initialImage: {
       type: Object,
       default: () => ({}),
     },
   },
-  data: () => ({}),
+  data: () => ({
+    image: {},
+  }),
   computed: {
     ...mapState({ isUploading: (state) => state.filehandler.isUploadPending }),
     havePicture() {
       return !isEmpty(this.image)
     },
+  },
+  mounted() {
+    if (isEmpty(this.initialImage)) return
+    this.image = this.initialImage
   },
   methods: {
     ...mapActions({
@@ -80,16 +86,16 @@ export default {
           formData,
           folder: this.folder,
         })
-        this.$emit('update:target', this.image)
+        this.$emit('target', this.image)
       } catch (e) {
         console.log(e)
       }
     },
     async removeImageAction() {
-      if (!this.image) return
+      if (isEmpty(this.image)) return
       await this.removeImage(this.image)
-      this.image = null
-      this.$emit('update:target', {})
+      this.image = {}
+      this.$emit('target', this.image)
     },
   },
 }

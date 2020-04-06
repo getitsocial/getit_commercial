@@ -2,7 +2,7 @@
   <div>
     <image-upload
       folder="article"
-      :image.sync="article.picture"
+      :initial-image="article.picture"
       @target="setImage"
     />
     <ValidationObserver v-slot="{ handleSubmit }" slim>
