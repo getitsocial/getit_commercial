@@ -7,7 +7,7 @@
             <li>
               <button
                 :class="{ active: isActive.bold() }"
-                @click="commands.bold"
+                @click.prevent="commands.bold"
               >
                 <b>B</b>
               </button>
@@ -16,7 +16,7 @@
             <li>
               <button
                 :class="{ active: isActive.italic() }"
-                @click="commands.italic"
+                @click.prevent="commands.italic"
               >
                 <i>I</i>
               </button>
@@ -25,7 +25,7 @@
             <li>
               <button
                 :class="{ active: isActive.underline() }"
-                @click="commands.underline"
+                @click.prevent="commands.underline"
               >
                 <u>U</u>
               </button>
@@ -34,7 +34,7 @@
             <li>
               <button
                 :class="{ active: isActive.heading({ level: 1 }) }"
-                @click="commands.heading({ level: 1 })"
+                @click.prevent="commands.heading({ level: 1 })"
               >
                 H1
               </button>
@@ -43,7 +43,7 @@
             <li>
               <button
                 :class="{ active: isActive.heading({ level: 2 }) }"
-                @click="commands.heading({ level: 2 })"
+                @click.prevent="commands.heading({ level: 2 })"
               >
                 H2
               </button>
@@ -52,7 +52,7 @@
             <li>
               <button
                 :class="{ active: isActive.heading({ level: 3 }) }"
-                @click="commands.heading({ level: 3 })"
+                @click.prevent="commands.heading({ level: 3 })"
               >
                 H3
               </button>
@@ -74,6 +74,12 @@ export default {
     EditorContent,
     EditorMenuBar,
   },
+  props: {
+    initialContent: {
+      type: String,
+      default: `<p></p><p></p>`,
+    },
+  },
   data: () => ({
     editor: null,
   }),
@@ -86,7 +92,7 @@ export default {
         new Italic(),
         new Underline(),
       ],
-      content: `<p></p><p></p>`,
+      content: this.initialContent,
       onUpdate: ({ getHTML }) => {
         this.$emit('content', getHTML())
       },

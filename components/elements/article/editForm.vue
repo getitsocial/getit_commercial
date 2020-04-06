@@ -1,6 +1,10 @@
 <template>
   <div>
-    <image-upload folder="article" @target="setImage" />
+    <image-upload
+      folder="article"
+      :image.sync="article.picture"
+      @target="setImage"
+    />
     <ValidationObserver v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(submit)">
         <ValidationProvider
@@ -67,7 +71,10 @@
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="articleDescription">
               <client-only>
-                <wysiwyg @content="(data) => (article.description = data)" />
+                <wysiwyg
+                  :initial-content="article.description"
+                  @content="(data) => (article.description = data)"
+                />
               </client-only>
               <span class="error-message">{{ errors[0] }}</span>
             </label>
@@ -75,7 +82,7 @@
         </ValidationProvider>
         <bottom-area>
           <button class="primary" type="submit">
-            Artikel anlegen
+            Artikel bearbeiten
           </button></bottom-area
         >
       </form>
@@ -101,31 +108,24 @@ export default {
     wysiwyg,
   },
   props: {
-    category: {
+    article: {
       type: Object,
       default: () => ({}),
       required: true,
     },
   },
-  data: () => ({
-    article: {
-      picture: null,
-      description: null,
-    },
-  }),
   computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
     setImage(img) {
       this.article.picture = img
     },
     ...mapActions({
-      create: 'articles/create', // map `this.add()` to `this.$store.dispatch('increment')`
+      update: 'articles/update', // map `this.add()` to `this.$store.dispatch('increment')`
     }),
     async submit() {
       try {
-        this.article.category = this.category.categoryId
-        await this.create(this.article)
-        this.$addToast({ message: 'Artikel angelegt!', toastType: 'primary' })
+        await this.update(this.article)
+        this.$addToast({ message: 'Artikel bearbeitet!', toastType: 'primary' })
         this.$router.go(-1)
       } catch (error) {
         console.log(error)

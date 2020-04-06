@@ -71,7 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .navlink {
-  @apply inline-block align-middle transition-all duration-100 ease-in-out no-underline;
+  @apply inline-block align-middle transition-all duration-100 ease-in-out no-underline text-base tracking-normal;
   @apply text-info p-2;
   &:hover {
     @apply bg-dark;

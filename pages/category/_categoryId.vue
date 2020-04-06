@@ -2,7 +2,7 @@
   <div>
     <hero-title :top-title="title" />
     <div class="container mx-auto">
-      <div class="mb-3">
+      <div class="my-3">
         <article-oveview :articles="findDataInStore" :loading="isDataLoading" />
       </div>
     </div>
@@ -22,6 +22,10 @@ export default {
   pageTitle: 'Artikel',
   subNavigation: {
     rightNavigationContent: [
+      {
+        name: 'Kategorie bearbeiten',
+        emit: 'editCategory',
+      },
       {
         name: 'Neuer Artikel',
         emit: 'newArticle',
@@ -50,6 +54,9 @@ export default {
   mounted() {
     this.$root.$on('newArticle', (obj) => {
       this.$router.push(`/article/new/${this.$route.params?.categoryId}`)
+    })
+    this.$root.$on('editCategory', (obj) => {
+      this.$router.push(`/category/edit/${this.$route.params?.categoryId}`)
     })
     this.getArticleData(this.$route.params)
   },

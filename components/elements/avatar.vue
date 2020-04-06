@@ -20,7 +20,7 @@ export default {
   props: {
     imgSrc: {
       type: String,
-      default: '../img/defaultUserpic.gif',
+      default: '/img/defaultUserpic.gif',
     },
     imgLink: {
       type: String,

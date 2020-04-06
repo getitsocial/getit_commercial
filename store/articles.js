@@ -47,7 +47,7 @@ export const actions = {
   // Put
   async update({ dispatch, commit, state }, data) {
     commit('setRootLoading', true, { root: true })
-    await this.$axios.put(`/api/${endPoint}/${data.id}`, data)
+    await this.$axios.patch(`/api/${endPoint}/${data.id}`, data)
     commit('setRootLoading', false, { root: true })
   },
 

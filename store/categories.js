@@ -57,16 +57,17 @@ export const actions = {
 
   // Put
   async update({ dispatch, commit, state }, data) {
-    commit('setRootLoading', true, { root: true })
-    await this.$axios.put(`/api/${endPoint}/${data.id}`, data)
-    commit('setRootLoading', false, { root: true })
+    commit('setLoading', { update: true })
+    await this.$axios.patch(`/api/${endPoint}/${data.id}`, data)
+    commit('setLoading', { update: false })
   },
 
   // Delete
-  async delete({ dispatch, commit }, data) {
-    commit('setRootLoading', true, { root: true })
-    await this.$axios.delete(`/api/${endPoint}/${data.id}`)
-    commit('setRootLoading', false, { root: true })
+  async delete({ dispatch, commit }, { id }) {
+    console.log('delete')
+    commit('setLoading', { delete: true })
+    await this.$axios.delete(`/api/${endPoint}/${id}`)
+    commit('setLoading', { delete: false })
   },
 }
 

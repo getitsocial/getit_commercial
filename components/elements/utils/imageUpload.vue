@@ -6,7 +6,7 @@
     rules="ext:jpg,png,jpeg"
   >
     <!-- articlePicture FILE -->
-    <div v-if="image">
+    <div v-if="havePicture">
       <img :src="image.secure_url" alt="" class="rounded-lg" />
       <button class="w-auto ml-auto" @click="removeImageAction">
         Entfernen
@@ -41,7 +41,7 @@
 <script>
 import { ValidationProvider } from 'vee-validate'
 import { mapActions, mapState } from 'vuex'
-
+import { isEmpty } from 'lodash'
 export default {
   name: 'ImageUpload',
   components: {
@@ -53,13 +53,17 @@ export default {
       default: null,
       required: true,
     },
+    image: {
+      type: Object,
+      default: () => ({}),
+    },
   },
-  data: () => ({
-    file: null,
-    image: null,
-  }),
+  data: () => ({}),
   computed: {
     ...mapState({ isUploading: (state) => state.filehandler.isUploadPending }),
+    havePicture() {
+      return !isEmpty(this.image)
+    },
   },
   methods: {
     ...mapActions({
@@ -76,7 +80,7 @@ export default {
           formData,
           folder: this.folder,
         })
-        this.$emit('target', this.image)
+        this.$emit('update:target', this.image)
       } catch (e) {
         console.log(e)
       }
@@ -85,6 +89,7 @@ export default {
       if (!this.image) return
       await this.removeImage(this.image)
       this.image = null
+      this.$emit('update:target', {})
     },
   },
 }

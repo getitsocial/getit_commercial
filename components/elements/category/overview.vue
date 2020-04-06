@@ -1,9 +1,6 @@
 <template>
   <card>
     <ul>
-      <li v-if="loading" class="p-4 text-center">
-        <i class="spinner-dark"></i>
-      </li>
       <li
         v-for="category in categories"
         :key="category.id"
@@ -11,9 +8,9 @@
         @click="goToArticleList(category.id)"
       >
         <div class="p-3 md:p-6 grid grid-cols-2 gap-2 text-primary">
-          <div class="flex item-center">
+          <div class="flex items-center">
             <div class="ml-3">
-              <p class="font-bold">
+              <p class="text-sm leading-5 font-bold">
                 {{ category.name }}
               </p>
             </div>

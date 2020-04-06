@@ -38,6 +38,25 @@ button, .button {
     }
 }
 
+.tag {
+  @apply inline-flex items-center px-2 py-0.5 rounded-lg text-sm font-bold leading-5 bg-dark text-info;
+  &-primary {
+    @apply bg-primary text-white;
+  }
+
+  &-warning {
+    @apply bg-warning text-white;
+  }
+
+  &-danger {
+    @apply bg-danger text-white;
+  }
+
+  &-success {
+    @apply bg-success text-white;
+  }
+}
+
 a {
     @apply font-medium text-tertiary transition ease-in-out duration-150;
 

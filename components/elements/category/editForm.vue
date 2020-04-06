@@ -20,14 +20,26 @@
           </div>
         </ValidationProvider>
         <bottom-area>
-          <button
-            class="primary"
-            :class="{ 'spinner-light': loadState.create }"
-            type="submit"
-          >
-            Kategorie anlegen
-          </button></bottom-area
-        >
+          <div class="flex">
+            <div>
+              <button
+                class="w-auto hover:text-danger mr-auto"
+                @click.prevent="deleteItem()"
+              >
+                Kategorie löschen
+              </button>
+            </div>
+            <div>
+              <button
+                class="primary"
+                :class="{ 'spinner-light': loadState.update }"
+                type="submit"
+              >
+                Kategorie Bearbeiten
+              </button>
+            </div>
+          </div>
+        </bottom-area>
       </form>
     </ValidationObserver>
   </div>
@@ -45,22 +57,38 @@ export default {
     ValidationProvider,
     bottomArea,
   },
-  data: () => ({
-    category: {},
-  }),
+  props: {
+    category: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
     ...mapActions({
-      create: 'categories/create',
+      update: 'categories/update',
+      deleteAction: 'categories/delete',
     }),
     async submit() {
       try {
-        await this.create(this.category)
-        this.$addToast({ message: 'Kategorie angelegt!', toastType: 'primary' })
+        await this.update(this.category)
+        this.$addToast({
+          message: 'Kategorie bearbeitet!',
+          toastType: 'primary',
+        })
         this.$router.go(-1)
       } catch (error) {
         console.log(error)
       }
+    },
+    async deleteItem() {
+      console.log('delete')
+      await this.deleteAction(this.category)
+      this.$addToast({
+        message: 'Kategorie gelöscht!',
+        toastType: 'primary',
+      })
+      this.$router.push('/category')
     },
   },
 }
