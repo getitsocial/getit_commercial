@@ -1,12 +1,23 @@
 const endPoint = `articles`
 
 export const state = () => ({
-  list: [],
+  list: {
+    count: null,
+    rows: [],
+  },
+  loading: {
+    create: false,
+    update: false,
+    delete: false,
+  },
 })
 
 export const mutations = {
-  setData: (state, data) => {
-    state.list = data
+  setData: (state, { data, headers }) => {
+    state.list = {
+      rows: data,
+      count: parseInt(headers['x-total-count']),
+    }
   },
   setMyData: (state, data) => {
     state.listMy = data
@@ -18,11 +29,11 @@ export const actions = {
   async getAll({ commit, state }, params) {
     try {
       commit('setRootLoading', true, { root: true })
-      const data = await this.$axios.$get(
+      const response = await this.$axios.get(
         `/api/${endPoint}`,
         params ? { params } : null
       )
-      commit('setData', data)
+      commit('setData', response)
       commit('setRootLoading', false, { root: true })
     } catch (error) {
       commit('setRootLoading', false, { root: true })
@@ -39,23 +50,23 @@ export const actions = {
 
   // Post
   async create({ dispatch, commit, state }, data) {
-    commit('setRootLoading', true, { root: true })
+    commit('setLoading', { create: true })
     await this.$axios.post(`/api/${endPoint}`, data)
-    commit('setRootLoading', false, { root: true })
+    commit('setLoading', { create: false })
   },
 
   // Put
   async update({ dispatch, commit, state }, data) {
-    commit('setRootLoading', true, { root: true })
+    commit('setLoading', { update: true })
     await this.$axios.patch(`/api/${endPoint}/${data.id}`, data)
-    commit('setRootLoading', false, { root: true })
+    commit('setLoading', { update: false })
   },
 
   // Delete
   async delete({ dispatch, commit }, data) {
-    commit('setRootLoading', true, { root: true })
+    commit('setLoading', { delete: true })
     await this.$axios.delete(`/api/${endPoint}/${data.id}`)
-    commit('setRootLoading', false, { root: true })
+    commit('setLoading', { delete: false })
   },
 }
 

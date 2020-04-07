@@ -2,7 +2,7 @@
   <card>
     <ul>
       <li
-        v-for="category in categories"
+        v-for="category in categories.rows"
         :key="category.id"
         class="list-element hovered"
         @click="goToArticleList(category.id)"
@@ -10,9 +10,9 @@
         <div class="p-3 md:p-6 grid grid-cols-2 gap-2 text-primary">
           <div class="flex items-center">
             <div class="ml-3">
-              <p class="text-sm leading-5 font-bold">
+              <div class="text-sm leading-5 font-bold">
                 {{ category.name }}
-              </p>
+              </div>
             </div>
           </div>
           <div class="flex item-center justify-end">
@@ -30,13 +30,9 @@
 export default {
   name: 'CategoryOverview',
   props: {
-    loading: {
-      type: Boolean,
-      default: false,
-    },
     categories: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {},
     },
   },
   data: () => ({}),

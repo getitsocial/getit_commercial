@@ -1,12 +1,18 @@
 <template>
   <div>
-    <hero-title top-title="Kategorien" />
+    <hero-title v-show="!noContentFound" top-title="Kategorien" />
     <div class="container mx-auto">
       <div class="my-3">
-        <category-overview
-          :categories="findDataInStore"
-          :loading="isDataLoading"
-        />
+        <category-overview :categories="findDataInStore" />
+        <transition name="fade">
+          <div v-show="noContentFound">
+            <empty-state empty-text="Du hast noch keine Kategorien angelegt."
+              ><nuxt-link to="/category/new" class="button w-auto"
+                >Kategorie anlegen</nuxt-link
+              ></empty-state
+            >
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -16,10 +22,12 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 import heroTitle from '~/components/elements/heroTitle'
 import categoryOverview from '~/components/elements/category/overview'
+import emptyState from '~/components/elements/utils/emptyState'
 export default {
   components: {
     heroTitle,
     categoryOverview,
+    emptyState,
   },
   data: () => ({}),
   middleware: ['authenticated'],
@@ -32,10 +40,11 @@ export default {
     ],
   },
   computed: {
-    ...mapState({ isDataLoading: (state) => state.categories.isGetPending }),
+    ...mapState({ isDataLoading: (state) => state.isRootLoading }),
     ...mapGetters({ findDataInStore: 'categories/list' }),
     noContentFound() {
-      return this.findDataInStore.count === 0
+      if (this.isDataLoading) return
+      return this.findDataInStore?.count === 0
     },
   },
   beforeMount() {

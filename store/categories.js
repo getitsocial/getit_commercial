@@ -3,7 +3,10 @@ import { assign } from 'lodash'
 const endPoint = `categories`
 
 export const state = () => ({
-  list: [],
+  list: {
+    count: null,
+    rows: [],
+  },
   loading: {
     create: false,
     update: false,
@@ -12,8 +15,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setData: (state, data) => {
-    state.list = data
+  setData: (state, { data, headers }) => {
+    state.list = {
+      rows: data,
+      count: parseInt(headers['x-total-count']),
+    }
   },
   setLoading: (state, data) => {
     state.loading = assign(state.loading, data)
@@ -25,11 +31,11 @@ export const actions = {
   async getAll({ commit, state }, params) {
     try {
       commit('setRootLoading', true, { root: true })
-      const data = await this.$axios.$get(
+      const response = await this.$axios.get(
         `/api/${endPoint}`,
         params ? { params } : null
       )
-      commit('setData', data)
+      commit('setData', response)
       commit('setRootLoading', false, { root: true })
     } catch (error) {
       commit('setRootLoading', false, { root: true })
@@ -64,7 +70,6 @@ export const actions = {
 
   // Delete
   async delete({ dispatch, commit }, { id }) {
-    console.log('delete')
     commit('setLoading', { delete: true })
     await this.$axios.delete(`/api/${endPoint}/${id}`)
     commit('setLoading', { delete: false })

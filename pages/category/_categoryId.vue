@@ -4,6 +4,17 @@
     <div class="container mx-auto">
       <div class="my-3">
         <article-oveview :articles="findDataInStore" :loading="isDataLoading" />
+        <transition name="fade">
+          <div v-show="noContentFound">
+            <empty-state
+              :empty-text="`Es gibt noch keine ${title}`"
+              image="articles"
+              ><nuxt-link to="/category/new" class="button w-auto"
+                >{{ title }} anlegen</nuxt-link
+              ></empty-state
+            >
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -13,10 +24,13 @@
 import { mapActions, mapGetters, mapState } from 'vuex'
 import heroTitle from '~/components/elements/heroTitle'
 import articleOveview from '~/components/elements/article/overview'
+import emptyState from '~/components/elements/utils/emptyState'
+
 export default {
   components: {
     heroTitle,
     articleOveview,
+    emptyState,
   },
   middleware: ['authenticated'],
   pageTitle: 'Artikel',
@@ -48,7 +62,8 @@ export default {
     ...mapState({ isDataLoading: (state) => state.articles.isGetPending }),
     ...mapGetters({ findDataInStore: 'articles/list' }),
     noContentFound() {
-      return this.findDataInStore.count === 0
+      if (this.isDataLoading) return
+      return this.findDataInStore?.count === 0
     },
   },
   beforeMount() {
