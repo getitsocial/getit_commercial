@@ -1,6 +1,7 @@
 <template>
   <div class="editor">
     <client-only>
+      <span v-if="label" class="text-info">{{ label }}</span>
       <editor-menu-bar v-slot="{ commands, isActive }" :editor="editor">
         <div class="menubar-wrapper">
           <ul class="menubar">
@@ -79,6 +80,10 @@ export default {
       type: String,
       default: `<p></p><p></p>`,
     },
+    label: {
+      type: String,
+      default: null,
+    },
   },
   data: () => ({
     editor: null,
@@ -121,7 +126,7 @@ export default {
 
 .editor {
   &-content {
-    @apply mt-3 text-base bg-grey p-3 rounded-lg;
+    @apply mt-3 text-base border p-3 rounded-lg;
     &:focus {
       @apply shadow-outline;
     }

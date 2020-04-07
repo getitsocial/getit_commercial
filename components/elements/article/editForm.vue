@@ -81,6 +81,7 @@
             <label class="form-label w-full" for="articleDescription">
               <client-only>
                 <wysiwyg
+                  label="Artikelbeschreibung"
                   :initial-content="article.description"
                   @content="(data) => (article.description = data)"
                 />

@@ -4,7 +4,8 @@
       <!-- Brand Area Content -->
       <div class="hidden sm:inline-block -my-1">
         <nuxt-link to="/" class="no-underline focus:no-underline">
-          <span class="align-middle text-secondary font-bold text-2xl"
+          <span
+            class="align-middle text-secondary font-bold text-2xl select-none"
             >get it!</span
           >
         </nuxt-link>
@@ -14,7 +15,7 @@
         <li
           v-for="(nav, index) in mainNavigationContent"
           :key="index"
-          class="mr-6"
+          class="mr-6 select-none"
         >
           <nuxt-link
             class="desktopNav-button"

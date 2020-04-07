@@ -88,6 +88,7 @@ export default {
   }
   li a {
     @extend .navlink;
+    @apply select-none;
   }
 }
 </style>

@@ -12,6 +12,14 @@ a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 button, .button {
     @apply w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-primary transition duration-150 ease-in-out tracking-widest;
     
@@ -87,6 +95,10 @@ a {
     @apply border-danger;
   }
 
+}
+
+h1, h2, h3 {
+    @apply select-none;
 }
 
 h1 {
