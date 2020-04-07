@@ -1,5 +1,19 @@
 <template>
   <div>
+    <modal
+      :show="showConfirm"
+      confirm-text="Löschen"
+      centered
+      @confirm="deleteItem"
+      @dismiss="showConfirm = false"
+      >Bist du sicher, dass du die Kategorie <b>{{ category.name }}</b> Löschen
+      möchtest?
+      <br />
+      <b
+        >Die darin enthaltenen Produkte werden ebenfalls gelöscht und sind nicht
+        mehr wiederherstellbar!</b
+      ></modal
+    >
     <ValidationObserver v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(submit)">
         <ValidationProvider v-slot="{ errors }" rules="required">
@@ -24,7 +38,7 @@
             <div>
               <button
                 class="w-auto hover:text-danger mr-auto"
-                @click.prevent="deleteItem()"
+                @click.prevent="showConfirm = true"
               >
                 Kategorie löschen
               </button>
@@ -63,6 +77,7 @@ export default {
       default: () => ({}),
     },
   },
+  data: () => ({ showConfirm: false }),
   computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
     ...mapActions({
@@ -82,7 +97,6 @@ export default {
       }
     },
     async deleteItem() {
-      console.log('delete')
       await this.deleteAction(this.category)
       this.$addToast({
         message: 'Kategorie gelöscht!',

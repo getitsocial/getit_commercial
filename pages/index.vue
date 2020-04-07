@@ -39,5 +39,6 @@ export default {
       return this.findDataInStore.count === 0
     },
   },
+  mounted() {},
 }
 </script>

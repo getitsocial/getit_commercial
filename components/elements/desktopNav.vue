@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white py-6 border-b border-gray z-50">
+  <nav class="bg-white py-6 border-b border-gray z-30">
     <div class="flex items-center flex-shrink-0 container mx-auto px-3">
       <!-- Brand Area Content -->
       <div class="hidden sm:inline-block -my-1">

@@ -38,7 +38,7 @@ export default {
       return this.findDataInStore.count === 0
     },
   },
-  mounted() {
+  beforeMount() {
     try {
       this.getData()
     } catch (error) {

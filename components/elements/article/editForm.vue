@@ -1,5 +1,19 @@
 <template>
   <div>
+    <modal
+      :show="showConfirm"
+      confirm-text="Löschen"
+      centered
+      @confirm="deleteArticle"
+      @dismiss="showConfirm = false"
+      >Bist du sicher, dass du den Artikel <b>{{ article.name }}</b> Löschen
+      möchtest?
+      <br />
+      <b
+        >Die darin enthaltenen Produkte werden ebenfalls gelöscht und sind nicht
+        mehr wiederherstellbar!</b
+      ></modal
+    >
     <image-upload
       folder="article"
       :initial-image="article.picture"
@@ -85,7 +99,7 @@
             <div>
               <button
                 class="w-auto hover:text-danger mr-auto"
-                @click.prevent="deleteArticle"
+                @click.prevent="showConfirm = true"
               >
                 Artikel löschen
               </button>
@@ -126,6 +140,7 @@ export default {
       required: true,
     },
   },
+  data: () => ({ showConfirm: false }),
   computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
     setImage(img) {

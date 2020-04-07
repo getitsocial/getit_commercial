@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import { debounce } from 'lodash'
 export default {
   name: 'Toast',
@@ -41,7 +40,6 @@ export default {
     )
   },
   methods: {
-    ...mapActions(['removeAlert']),
     toastColor(color) {
       return color ? `toast-${color}` : 'toast-primary'
     },
@@ -49,12 +47,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-// Toast
+/* purgecss start ignore */
 .toast {
   @apply p-2 rounded inline-flex;
 
   &-wrapper {
-    @apply w-full fixed text-right;
+    @apply w-full fixed text-right z-50;
     z-index: 9999;
   }
 
@@ -89,4 +87,5 @@ export default {
     }
   }
 }
+/* purgecss end ignore */
 </style>

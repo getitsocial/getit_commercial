@@ -51,7 +51,7 @@ export default {
       return this.findDataInStore.count === 0
     },
   },
-  mounted() {
+  beforeMount() {
     this.$root.$on('newArticle', (obj) => {
       this.$router.push(`/article/new/${this.$route.params?.categoryId}`)
     })
