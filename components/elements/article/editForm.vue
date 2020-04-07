@@ -8,12 +8,7 @@
       @dismiss="showConfirm = false"
       >Bist du sicher, dass du den Artikel <b>{{ article.name }}</b> Löschen
       möchtest?
-      <br />
-      <b
-        >Die darin enthaltenen Produkte werden ebenfalls gelöscht und sind nicht
-        mehr wiederherstellbar!</b
-      ></modal
-    >
+    </modal>
     <image-upload
       folder="article"
       :initial-image="article.picture"
