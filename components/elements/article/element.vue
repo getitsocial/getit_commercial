@@ -6,7 +6,13 @@
       <div class="flex flex-col content-between w-full p-3">
         <div class="flex flex-wrap">
           <h3>{{ article.name }}</h3>
-          <div class="tag tag-primary ml-auto">{{ article.stock }}</div>
+          <div class="ml-auto">
+            <span
+              class="tag"
+              :class="[article.published ? 'tag-success' : 'tag-warning']"
+            ></span>
+            <span class="tag tag-primary">{{ article.stock }}</span>
+          </div>
         </div>
         <div class="mt-auto">{{ article.price }} €</div>
       </div>

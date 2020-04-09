@@ -92,6 +92,16 @@
             </label>
           </div>
         </ValidationProvider>
+
+        <div class="form-content my-3">
+          <label class="form-label w-full" for="articleDescription">
+            <span class="text-info">Veröffentlicht?</span>
+            <toggle
+              :boolean-value="article.published"
+              @change="(val) => (article.published = val)"
+            />
+          </label>
+        </div>
         <bottom-area>
           <div class="flex">
             <div>
@@ -121,6 +131,7 @@ import { mapActions, mapState } from 'vuex'
 import bottomArea from '~/components/layout/bottomarea'
 import imageUpload from '~/components/elements/utils/imageUpload'
 import wysiwyg from '~/components/elements/utils/wysiwyg'
+import toggle from '~/components/elements/utils/toggle'
 
 export default {
   name: 'NewArticleForm',
@@ -130,6 +141,7 @@ export default {
     bottomArea,
     imageUpload,
     wysiwyg,
+    toggle,
   },
   props: {
     article: {
