@@ -2,7 +2,7 @@
   <div class="h-16">
     <div class="container max-w-md px-3">
       <ValidationObserver v-slot="{ handleSubmit }" slim>
-        <form @submit.prevent="handleSubmit(submit)">
+        <form autocomplete="off" @submit.prevent="handleSubmit(submit)">
           <ValidationProvider v-slot="{ errors }" name="Suche" rules="max:100">
             <!-- articleName INPUT -->
             <div class="form-content" :class="{ error: errors[0] }">
@@ -14,6 +14,7 @@
                     type="text"
                     class="form-input block w-full"
                     :placeholder="placeholder"
+                    autocomplete="off"
                   />
                   <div class="input-icon">
                     <eva-icons
