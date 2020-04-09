@@ -126,6 +126,7 @@ export default {
   axios: {
     proxy: true,
   },
+
   proxy: {
     '/api': { target: process.env.API_URL },
   },

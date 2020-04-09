@@ -43,7 +43,6 @@ export default {
   methods: {
     goToTarget() {
       if (this.imgLink) {
-        console.log(this.imgLink)
         this.$router.push(this.imgLink)
       }
     },

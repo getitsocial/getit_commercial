@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 app.post(
   '/image/upload/:folder',
   multipartMiddleware,
-  async ({ files: { file }, params }, res, next) => {
+  async ({ files: { file }, params: { folder, user } }, res, next) => {
     if (!file) {
       return next()
     }
@@ -39,9 +39,10 @@ app.post(
         secure_url,
       } = await cloudinary.v2.uploader.upload(file.path, {
         tags: ['bucket', 'temporary'],
-        folder: params.folder,
+        folder,
         use_filename: false,
-        crop: 'lfill',
+        crop: 'imagga_scale',
+        secure: true,
         width: 1000,
         height: 1000,
       })

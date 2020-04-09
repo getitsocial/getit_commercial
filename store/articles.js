@@ -1,3 +1,4 @@
+import { assign } from 'lodash'
 const endPoint = `articles`
 
 export const state = () => ({
@@ -13,14 +14,15 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setData: (state, { data, headers }) => {
+  setData: (state, { data, headers, config }) => {
     state.list = {
       rows: data,
       count: parseInt(headers['x-total-count']),
+      params: config?.params,
     }
   },
-  setMyData: (state, data) => {
-    state.listMy = data
+  setLoading: (state, data) => {
+    state.loading = assign(state.loading, data)
   },
 }
 

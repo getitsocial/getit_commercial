@@ -15,6 +15,9 @@
             class="modal-body max-w-md p-3 sm:p-8"
             :class="[{ 'text-center': centered }]"
           >
+            <div v-if="icon">
+              <eva-icons :name="icon" fill="currentColor" width="100" />
+            </div>
             <div>
               <slot name="header"></slot>
             </div>
@@ -75,6 +78,10 @@ export default {
     dismissText: {
       type: String,
       default: 'Abbruch',
+    },
+    icon: {
+      type: String,
+      default: null,
     },
   },
   data: () => ({}),

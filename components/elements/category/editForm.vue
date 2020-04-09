@@ -3,6 +3,7 @@
     <modal
       :show="showConfirm"
       confirm-text="Löschen"
+      icon="alert-triangle-outline"
       centered
       @confirm="deleteItem"
       @dismiss="showConfirm = false"

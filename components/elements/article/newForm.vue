@@ -1,6 +1,7 @@
 <template>
   <div>
-    <image-upload folder="article" @target="setImage" />
+    <!-- Todo: Change folder to articles/:shopId -->
+    <image-upload folder="articles" @target="setImage" />
     <ValidationObserver v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(submit)">
         <ValidationProvider

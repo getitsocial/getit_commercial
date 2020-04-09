@@ -1,25 +1,38 @@
 <template>
-  <transition-group name="toasts" class="toast-wrapper">
-    <div
-      v-for="(t, index) in toasts"
-      :key="t.toastId"
-      class="p-2 toasts-item"
-      :tabindex="index"
+  <div
+    class="fixed inset-0 flex items-start justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-50"
+  >
+    <transition-group
+      name="toast"
+      class="max-w-sm w-full rounded-lg pointer-events-auto"
     >
-      <div :class="toastColor(t.toastType)" class="toast shadow-lg">
-        <span v-if="t.pill" class="toast-pill">{{ t.pill }}</span>
-        <span class="font-semibold mx-2 text-left flex-auto">{{
-          t.message
-        }}</span>
-        <eva-icons
-          name="close-outline"
-          fill="#f0f0f0"
-          class="cursor-pointer"
-          @click="$store.commit('toasts/removeToast', index)"
-        />
+      <div
+        v-for="(t, index) in toasts"
+        :key="t.toastId"
+        class="animated rounded-lg shadow-lg overflow-hidden my-3 bg-primary"
+      >
+        <div class="p-4">
+          <div class="flex items-center">
+            <div class="w-0 flex-1 flex justify-between">
+              <p class="w-0 flex-1 text-sm leading-5 font-medium text-white">
+                {{ t.message }}
+              </p>
+            </div>
+            <div class="ml-4 flex-shrink-0 flex">
+              <button class="p-0">
+                <eva-icons
+                  name="close-outline"
+                  fill="#ffffff"
+                  class="cursor-pointer"
+                  @click="$store.commit('toasts/removeToast', index)"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </transition-group>
+    </transition-group>
+  </div>
 </template>
 
 <script>
@@ -46,46 +59,3 @@ export default {
   },
 }
 </script>
-<style lang="scss" scoped>
-/* purgecss start ignore */
-.toast {
-  @apply p-2 rounded inline-flex;
-
-  &-wrapper {
-    @apply w-full fixed text-right z-50;
-    z-index: 9999;
-  }
-
-  &-pill {
-    @apply flex rounded uppercase px-2 py-1 text-xs font-bold;
-  }
-
-  &-primary {
-    background-color: theme('colors.primary');
-    color: theme('colors.white');
-
-    .toast-pill {
-      background-color: theme('colors.light');
-    }
-  }
-
-  &-warning {
-    background-color: theme('colors.warning');
-    color: theme('colors.grey');
-
-    .toast-pill {
-      background-color: theme('colors.warning');
-    }
-  }
-
-  &-danger {
-    background-color: theme('colors.danger');
-    color: theme('colors.grey');
-
-    .toast-pill {
-      background-color: theme('colors.danger');
-    }
-  }
-}
-/* purgecss end ignore */
-</style>

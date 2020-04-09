@@ -3,12 +3,14 @@
     <modal
       :show="showConfirm"
       confirm-text="Löschen"
+      icon="alert-triangle-outline"
       centered
       @confirm="deleteArticle"
       @dismiss="showConfirm = false"
       >Bist du sicher, dass du den Artikel <b>{{ article.name }}</b> Löschen
       möchtest?
     </modal>
+    <!-- Todo: Change folder to articles/:shopId -->
     <image-upload
       folder="article"
       :initial-image="article.picture"

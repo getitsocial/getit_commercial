@@ -12,6 +12,13 @@ a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
 img {
     -khtml-user-select: none;
     -o-user-select: none;
@@ -169,7 +176,7 @@ h3 {
 
 .form {
   &-content {
-    @apply py-1 text-left;
+    @apply text-left;
   }
 
   &-icon {
@@ -180,32 +187,44 @@ h3 {
       @apply flex;
 
       input {
-        @apply rounded-r-none;
+        @apply rounded-r-none border-r-0;
       }
 
       .input {
         &-icon {
           @apply pointer-events-none inset-y-0 right-0 flex items-center px-2 border border-l-0 rounded-r;
         }
-
       }
 
+      input {
+        &:focus {
+          +.input-icon {
+            @apply border-tertiary;
+          }
+        }
+      }
     }
 
     &-l {
       @apply flex;
 
       input {
-        @apply rounded-l-none;
+        @apply rounded-l-none border-l-0;
       }
 
       .input {
         &-icon {
           @apply pointer-events-none inset-y-0 right-0 flex items-center px-2 border border-r-0 rounded-l;
         }
-
       }
 
+      input {
+        &:focus {
+          +.input-icon {
+            @apply border-tertiary;
+          }
+        }
+      }
     }
 
   }

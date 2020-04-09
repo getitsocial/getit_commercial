@@ -1,0 +1,21 @@
+    <transition-group name="toasts" class="toast-wrapper">
+      <div
+        v-for="(t, index) in toasts"
+        :key="t.toastId"
+        class="p-2 toasts-item"
+        :tabindex="index"
+      >
+        <div :class="toastColor(t.toastType)" class="toast shadow-lg">
+          <span v-if="t.pill" class="toast-pill">{{ t.pill }}</span>
+          <span class="font-semibold mx-2 text-left flex-auto">{{
+            t.message
+          }}</span>
+          <eva-icons
+            name="close-outline"
+            fill="#f0f0f0"
+            class="cursor-pointer"
+            @click="$store.commit('toasts/removeToast', index)"
+          />
+        </div>
+      </div>
+    </transition-group>

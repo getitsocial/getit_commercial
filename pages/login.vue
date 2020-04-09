@@ -185,10 +185,10 @@ export default {
           provider,
         })
         await this.$router.push('/')
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        console.log(error)
         this.isLoading = false
-        this.haveError = e?.error
+        this.haveError = error?.error
       }
     },
   },

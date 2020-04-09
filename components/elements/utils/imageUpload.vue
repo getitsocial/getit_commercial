@@ -85,10 +85,11 @@ export default {
         this.image = await this.uploadImage({
           formData,
           folder: this.folder,
+          user: this.user,
         })
         this.$emit('target', this.image)
-      } catch (e) {
-        console.log(e)
+      } catch (error) {
+        console.log(error)
       }
     },
     async removeImageAction() {

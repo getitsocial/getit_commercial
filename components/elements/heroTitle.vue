@@ -1,5 +1,5 @@
 <template>
-  <div class="text-info w-full z-50">
+  <div class="text-info bg-grey w-full z-50">
     <div class="container mx-auto px-3">
       <div class="flex flex-wrap">
         <transition name="slide-fade">

@@ -15,10 +15,11 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setData: (state, { data, headers }) => {
+  setData: (state, { data, headers, config }) => {
     state.list = {
       rows: data,
       count: parseInt(headers['x-total-count']),
+      params: config?.params,
     }
   },
   setLoading: (state, data) => {
