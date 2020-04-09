@@ -1,11 +1,16 @@
 <template>
   <card>
     <div class="flex">
-      <img :src="imageUrl(article)" alt="" width="120" />
+      <img :src="imageUrl(article)" alt="" class="w-20 md:w-32" />
 
       <div class="flex flex-col content-between w-full p-3">
-        <div class="flex flex-wrap">
-          <h3>{{ article.name }}</h3>
+        <div class="flex">
+          <div>
+            <h3 class="text-primary font-bold text-xl md:text-2xl">
+              {{ article.name }}
+            </h3>
+            <p class="leading-none text-info">{{ article.price }} €</p>
+          </div>
           <div class="ml-auto">
             <span
               class="tag"
@@ -14,7 +19,12 @@
             <span class="tag tag-primary">{{ article.stock }}</span>
           </div>
         </div>
-        <div class="mt-auto">{{ article.price }} €</div>
+        <div class="mt-auto flex">
+          <div class="ml-auto">
+            <!-- TODO: Implement quickactions -->
+            <!-- BUTTONS MINUS PLUS -->
+          </div>
+        </div>
       </div>
     </div>
   </card>
