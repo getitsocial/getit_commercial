@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed inset-0 flex items-start justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end z-50"
+    class="fixed inset-0 flex items-start justify-center px-4 py-0 pointer-events-none sm:p-3 sm:items-start sm:justify-end z-50"
   >
     <transition-group
       name="toast"
@@ -9,12 +9,12 @@
       <div
         v-for="(t, index) in toasts"
         :key="t.toastId"
-        class="animated rounded-lg shadow-lg overflow-hidden my-3 bg-primary"
+        class="animated rounded-lg shadow-xl overflow-hidden my-3 bg-white"
       >
         <div class="p-4">
-          <div class="flex items-center">
+          <div class="flex items-center text-info">
             <div class="w-0 flex-1 flex justify-between">
-              <p class="w-0 flex-1 text-sm leading-5 font-medium text-white">
+              <p class="w-0 flex-1 text-sm leading-5 font-medium">
                 {{ t.message }}
               </p>
             </div>
@@ -22,7 +22,7 @@
               <button class="p-0">
                 <eva-icons
                   name="close-outline"
-                  fill="#ffffff"
+                  fill="currentColor"
                   class="cursor-pointer"
                   @click="$store.commit('toasts/removeToast', index)"
                 />

@@ -7,6 +7,7 @@
           <article-element :article="article" />
           <h3 class="my-3 text-light">Quick Actions</h3>
           <stock-action :article="article" />
+          <publish-action :article="article" />
         </div>
         <div class="w-full md:w-1/2">
           <div class="p-3">
@@ -24,7 +25,8 @@
 
 <script>
 import articleElement from '~/components/elements/article/element'
-import stockAction from '~/components/elements/article/stockAction'
+import stockAction from '~/components/elements/article/quickactions/stock'
+import publishAction from '~/components/elements/article/quickactions/publish'
 import avatar from '~/components/elements/avatar'
 import heroTitle from '~/components/elements/heroTitle'
 
@@ -36,6 +38,7 @@ export default {
     stockAction,
     avatar,
     heroTitle,
+    publishAction,
   },
   subNavigation: {
     rightNavigationContent: [

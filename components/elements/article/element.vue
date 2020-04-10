@@ -13,7 +13,11 @@
         class="h-1"
         :class="[article.published ? 'bg-success' : 'bg-warning']"
       />
-      <img class="h-56 w-full object-cover" :src="imageUrl(article)" alt="" />
+      <img
+        class="h-56 md:h-auto w-full object-cover"
+        :src="imageUrl(article)"
+        alt=""
+      />
     </div>
     <div class="flex-1 bg-white p-3 flex flex-col justify-between">
       <div class="flex-1">

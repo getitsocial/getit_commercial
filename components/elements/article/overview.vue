@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 p-3"
+    class="px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 p-3"
   >
     <article-element
       v-for="article in articles.rows"

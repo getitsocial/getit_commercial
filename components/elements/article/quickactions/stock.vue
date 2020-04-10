@@ -10,7 +10,7 @@
       <!-- articleStock INPUT -->
       <div class="form-content" :class="{ error: errors[0] }">
         <label class="form-label w-full" for="articleStock">
-          <span class="text-info">Lagerbestand</span>
+          <span class="text-info">Lagerbestand bearbeiten</span>
           <input
             id="articleStock"
             v-model.number="article.stock"
