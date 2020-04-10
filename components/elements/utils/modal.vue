@@ -12,7 +12,7 @@
       <card v-show="show" class="modal-wrapper">
         <div class="modal">
           <div
-            class="modal-body max-w-md p-3 sm:p-8"
+            class="modal-body max-w-md p-6 sm:p-8"
             :class="[{ 'text-center': centered }]"
           >
             <div v-if="icon">

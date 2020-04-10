@@ -7,8 +7,8 @@
   >
     <!-- articlePicture FILE -->
     <div v-if="havePicture">
-      <img :src="image.secure_url" alt="" class="rounded-lg" />
-      <button class="w-auto ml-auto" @click="removeImageAction">
+      <img :src="image.secure_url" alt="" class="rounded-lg mx-auto" />
+      <button class="w-auto mx-auto" @click="removeImageAction">
         Entfernen
       </button>
     </div>

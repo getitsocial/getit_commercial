@@ -50,8 +50,14 @@
                       warm, intimate feel with a solid groove structure. An
                       artist of considerable range.
                     </p>
-                    <div class="pb-2">
-                      <button @click="logoutUser">Logout</button>
+                    <div class="pb-2 flex justify-end">
+                      <button
+                        class="w-auto mr-2"
+                        @click="$router.push('/profile/settings')"
+                      >
+                        Einstellungen
+                      </button>
+                      <button class="w-auto" @click="logoutUser">Logout</button>
                     </div>
                   </div>
                 </div>

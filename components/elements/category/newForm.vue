@@ -46,7 +46,7 @@ export default {
     async submit() {
       try {
         await this.create(this.category)
-        this.$addToast({ message: 'Kategorie angelegt!', toastType: 'primary' })
+        this.$addToast({ message: 'Kategorie angelegt!' })
         this.$router.go(-1)
       } catch (error) {
         console.log(error)

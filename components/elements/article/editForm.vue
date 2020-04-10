@@ -125,14 +125,15 @@
             <div>
               <button
                 class="w-auto hover:text-danger mr-auto"
+                type="button"
                 @click.prevent="showConfirm = true"
               >
-                Artikel löschen
+                löschen
               </button>
             </div>
             <div>
               <button class="primary" type="submit">
-                Artikel bearbeiten
+                speichern
               </button>
             </div>
           </div>
@@ -160,7 +161,7 @@ export default {
     async submit() {
       try {
         await this.update(this.article)
-        this.$addToast({ message: 'Artikel bearbeitet!', toastType: 'primary' })
+        this.$addToast({ message: 'Artikel bearbeitet!' })
         this.$router.go(-1)
       } catch (error) {
         console.log(error)
@@ -170,7 +171,6 @@ export default {
       await this.deleteAction(this.article)
       this.$addToast({
         message: 'Artikel gelöscht!',
-        toastType: 'primary',
       })
       this.$router.push(`/category/${this.article.category.id}`)
     },

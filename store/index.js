@@ -88,9 +88,9 @@ export const actions = {
       token: accessToken,
     })
   },
-  async updateUserRole({ commit, state, dispatch }, role) {
-    await this.$axios.patch(`/api/users/${state.user.id}`, {
-      role,
+  async updateUser({ commit, state, dispatch }, { name }) {
+    await this.$axios.patch(`/api/users/${state.user._id}`, {
+      name,
       token: state.accessToken,
     })
     await dispatch('getMe')
