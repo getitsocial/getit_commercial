@@ -31,7 +31,7 @@
                 id="articleName"
                 v-model="article.name"
                 type="text"
-                class="form-input mt-1 block w-full"
+                class="form-input block w-full"
                 placeholder="z.B. Paprika"
               />
               <span class="error-message">{{ errors[0] }}</span>
@@ -39,25 +39,43 @@
           </div>
         </ValidationProvider>
         <ValidationProvider
+          v-if="haveStock"
           v-slot="{ errors }"
+          tag="div"
           name="Lagerbestand"
-          rules="numeric|required"
+          rules="numeric"
         >
           <!-- articleStock INPUT -->
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="articleStock">
               <span class="text-info">Lagerbestand</span>
-              <input
-                id="articleStock"
-                v-model.number="article.stock"
-                type="number"
-                class="form-input mt-1 block w-full"
-                placeholder="z.B. 250"
-              />
+              <div class="flex">
+                <input
+                  id="articleStock"
+                  v-model.number="article.stock"
+                  type="number"
+                  class="form-input block w-full"
+                  placeholder="z.B. 250"
+                />
+                <button class="w-auto" @click="removeStock">
+                  <eva-icons
+                    name="close-outline"
+                    fill="currentColor"
+                    width="20"
+                  />
+                </button>
+              </div>
+
               <span class="error-message">{{ errors[0] }}</span>
             </label>
           </div>
         </ValidationProvider>
+        <div v-else>
+          <span class="text-info text-sm">Lagerbestand</span>
+          <button class="primary w-auto" @click="addStock">
+            Lagerbestand anlegen
+          </button>
+        </div>
         <ValidationProvider
           v-slot="{ errors }"
           name="Preis"
@@ -69,7 +87,7 @@
               <span class="text-info">Stückpreis</span>
               <currency-input
                 v-model="article.price"
-                class="form-input mt-1 block w-full"
+                class="form-input block w-full"
                 locale="de"
                 placeholder="z.B. 12,00"
               />
@@ -151,7 +169,12 @@ export default {
     },
   },
   data: () => ({ showConfirm: false }),
-  computed: mapState({ loadState: (state) => state.categories.loading }),
+  computed: {
+    haveStock() {
+      return this.article.stock !== -1
+    },
+    ...mapState({ loadState: (state) => state.categories.loading }),
+  },
   methods: {
     setImage(img) {
       this.article.picture = img
@@ -176,6 +199,12 @@ export default {
         toastType: 'primary',
       })
       this.$router.push(`/category/${this.article.category.id}`)
+    },
+    addStock() {
+      this.article.stock = 0
+    },
+    removeStock() {
+      this.article.stock = -1
     },
   },
 }

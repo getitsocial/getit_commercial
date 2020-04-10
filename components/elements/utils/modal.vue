@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { debounce } from 'lodash'
 export default {
   name: 'Modal',
   props: {
@@ -92,13 +91,9 @@ export default {
       else rootBody.classList.remove('overflow-hidden')
     },
   },
-  mounted() {
-    this.$root.$on(
-      'keyDownEscape',
-      debounce(() => {
-        this.$emit('dismiss')
-      }, 10)
-    )
+  beforeDestroy() {
+    const rootBody = document.getElementsByTagName('body')[0]
+    rootBody.classList.remove('overflow-hidden')
   },
 }
 </script>

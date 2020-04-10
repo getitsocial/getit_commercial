@@ -26,11 +26,17 @@
             {{ article.name }}
           </h4>
         </div>
-        <div class="flex text-sm justify-end leading-5 font-medium">
-          <div class="mr-auto my-auto">{{ article.price }} €</div>
-          <div class="text-light">
+        <div class="flex text-sm justify-end content-center font-medium h-6">
+          <div class="mr-auto my-auto">
+            <span class="inline-block align-middle">
+              {{ article.price }} €
+            </span>
+          </div>
+          <div class="text-light my-auto">
             <eva-icons name="archive-outline" fill="currentColor" width="20" />
-            <span class="inline-block align-middle">{{ article.stock }}</span>
+            <span v-if="article.haveStock" class="inline-block align-middle">{{
+              article.stock
+            }}</span>
           </div>
         </div>
       </div>

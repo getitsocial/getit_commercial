@@ -6,7 +6,7 @@
         <div class="w-full md:w-1/2 p-3">
           <article-element :article="article" />
           <h3 class="my-3 text-light">Quick Actions</h3>
-          <stock-action :article="article" />
+          <stock-action v-if="article.haveStock" :article="article" />
           <publish-action :article="article" />
         </div>
         <div class="w-full md:w-1/2">

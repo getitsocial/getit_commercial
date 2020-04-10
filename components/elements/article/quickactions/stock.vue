@@ -55,6 +55,7 @@ export default {
       updateAction: 'articles/update', // map `this.add()` to `this.$store.dispatch('increment')`
     }),
     async pullOne() {
+      if (!this.article.stock) return
       this.article.stock--
       await this.updateAction(this.article)
     },
