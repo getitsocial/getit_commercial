@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hero-title :top-title="title" />
+    <hero-title :top-title="title" back-button />
     <div class="container mx-auto">
       <div class="my-3">
         <search-input v-if="!noContentFound" @search="applySearch" />

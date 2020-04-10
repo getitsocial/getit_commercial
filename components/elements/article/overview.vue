@@ -1,11 +1,12 @@
 <template>
-  <div class="px-3 grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
+  <div
+    class="px-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 p-3"
+  >
     <article-element
       v-for="article in articles.rows"
       :key="article.id"
       :article="article"
-      class="animated hover:shadow-lg cursor-pointer"
-      @click.native="$router.push(`/article/${article.id}`)"
+      :link="`/article/${article.id}`"
     />
   </div>
 </template>

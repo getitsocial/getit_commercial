@@ -1,10 +1,12 @@
 <template>
   <div>
-    <hero-title top-title="Artikeldetails" />
+    <hero-title top-title="Artikeldetails" back-button />
     <div class="container mx-auto">
       <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 p-3">
           <article-element :article="article" />
+          <h3 class="my-3 text-light">Quick Actions</h3>
+          <stock-action :article="article" />
         </div>
         <div class="w-full md:w-1/2">
           <div class="p-3">
@@ -22,6 +24,7 @@
 
 <script>
 import articleElement from '~/components/elements/article/element'
+import stockAction from '~/components/elements/article/stockAction'
 import avatar from '~/components/elements/avatar'
 import heroTitle from '~/components/elements/heroTitle'
 
@@ -30,6 +33,7 @@ export default {
   middleware: ['authenticated'],
   components: {
     articleElement,
+    stockAction,
     avatar,
     heroTitle,
   },

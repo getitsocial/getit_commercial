@@ -1,9 +1,15 @@
 <template>
-  <div class="text-info bg-grey w-full z-50">
+  <div
+    class="text-info bg-grey w-full z-30"
+    :class="{ 'sticky top-0': $store.state.isMobile }"
+  >
     <div class="container mx-auto px-3">
       <div class="flex flex-wrap">
         <transition name="slide-fade">
-          <div v-if="show">
+          <div v-if="show" class="flex">
+            <button v-if="backButton" @click="$router.go(-1)">
+              <eva-icons name="arrow-back-outline" fill="currentColor" />
+            </button>
             <h1
               class="tracking-wider leading-none py-3 md:py-4 select-none text-2xl font-bold"
             >
@@ -33,6 +39,10 @@ export default {
     topTitle: {
       type: String,
       default: null,
+    },
+    backButton: {
+      type: Boolean,
+      default: false,
     },
   },
   data: () => ({
