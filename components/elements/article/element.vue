@@ -11,7 +11,7 @@
     >
       <div
         class="h-1"
-        :class="[article.published ? 'bg-success' : 'bg-warning']"
+        :class="[article.published ? 'bg-success' : 'bg-light']"
       />
       <img
         class="h-56 md:h-auto w-full object-cover"

@@ -34,25 +34,15 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapActions, mapState } from 'vuex'
-import bottomArea from '~/components/layout/bottomarea'
+import coreMixin from '~/components/elements/category/mixins'
 
 export default {
   name: 'NewCategoryForm',
-  components: {
-    ValidationObserver,
-    ValidationProvider,
-    bottomArea,
-  },
+  mixins: [coreMixin],
   data: () => ({
     category: {},
   }),
-  computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
-    ...mapActions({
-      create: 'categories/create',
-    }),
     async submit() {
       try {
         await this.create(this.category)

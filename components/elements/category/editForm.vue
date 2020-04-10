@@ -61,17 +61,11 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapActions, mapState } from 'vuex'
-import bottomArea from '~/components/layout/bottomarea'
+import coreMixin from '~/components/elements/category/mixins'
 
 export default {
-  name: 'NewCategoryForm',
-  components: {
-    ValidationObserver,
-    ValidationProvider,
-    bottomArea,
-  },
+  name: 'EditCategoryForm',
+  mixins: [coreMixin],
   props: {
     category: {
       type: Object,
@@ -79,12 +73,7 @@ export default {
     },
   },
   data: () => ({ showConfirm: false }),
-  computed: mapState({ loadState: (state) => state.categories.loading }),
   methods: {
-    ...mapActions({
-      update: 'categories/update',
-      deleteAction: 'categories/delete',
-    }),
     async submit() {
       try {
         await this.update(this.category)
@@ -108,5 +97,3 @@ export default {
   },
 }
 </script>
-
-<style lang="css" scoped></style>

@@ -116,24 +116,11 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapActions, mapState } from 'vuex'
-
-import bottomArea from '~/components/layout/bottomarea'
-import imageUpload from '~/components/elements/utils/imageUpload'
-import wysiwyg from '~/components/elements/utils/wysiwyg'
-import toggle from '~/components/elements/utils/toggle'
+import coreMixin from '~/components/elements/article/mixins'
 
 export default {
   name: 'NewArticleForm',
-  components: {
-    ValidationProvider,
-    ValidationObserver,
-    bottomArea,
-    imageUpload,
-    wysiwyg,
-    toggle,
-  },
+  mixins: [coreMixin],
   props: {
     category: {
       type: Object,
@@ -149,19 +136,7 @@ export default {
       stock: -1,
     },
   }),
-  computed: {
-    haveStock() {
-      return this.article.stock !== -1
-    },
-    ...mapState({ loadState: (state) => state.categories.loading }),
-  },
   methods: {
-    setImage(img) {
-      this.article.picture = img
-    },
-    ...mapActions({
-      create: 'articles/create', // map `this.add()` to `this.$store.dispatch('increment')`
-    }),
     async submit() {
       try {
         this.article.category = this.category.categoryId
@@ -171,12 +146,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    },
-    addStock() {
-      this.article.stock = 0
-    },
-    removeStock() {
-      this.article.stock = -1
     },
   },
 }
