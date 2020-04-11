@@ -141,6 +141,10 @@ export default {
     ],
   },
 
+  tailwindcss: {
+    purgeCSSInDev: true,
+  },
+
   /**
    ** Server Middleware configuration
    */

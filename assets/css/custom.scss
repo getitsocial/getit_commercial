@@ -273,11 +273,11 @@ h3 {
   padding: 0;
 }
 
-.vue-simple-suggest.designed {
+.vue-simple-suggest {
   position: relative;
 }
 
-.vue-simple-suggest .suggestions {
+.suggestions {
   @apply bg-white shadow rounded absolute;
   position: absolute;
   left: 0;
@@ -288,20 +288,20 @@ h3 {
   z-index: 1000;
 }
 
-.vue-simple-suggest .suggestions .suggest-item {
+.suggest-item {
   @apply select-none cursor-pointer;
 }
 
-.vue-simple-suggest .suggestions .suggest-item,
-.vue-simple-suggest .suggestions .misc-item {
+.suggestions .suggest-item,
+.suggestions .misc-item {
   @apply p-2;
 }
 
-.vue-simple-suggest .suggestions .suggest-item.hover {
+.suggestions .suggest-item.hover {
   @apply bg-grey text-info;
 }
 
-.vue-simple-suggest .suggestions .suggest-item.selected {
+.suggestions .suggest-item.selected {
   @apply bg-primary text-white;
 }
 /* purgecss end ignore */
