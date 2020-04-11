@@ -18,10 +18,10 @@
     </modal>
 
     <div class="mt-3 flex justify-center">
-      <div class="w-1/2 p-3">
+      <div class="max-w-sm p-3">
         <image-upload
           folder="profilepictures"
-          placeholder="Profilbild auswählen"
+          placeholder="Profilbild"
           @target="setImage"
         />
       </div>
