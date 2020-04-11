@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 *{
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   &:focus {
@@ -266,8 +267,6 @@ h3 {
   opacity: 0;
 }
 
-
-
 .vue-simple-suggest > ul {
   list-style: none;
   margin: 0;
@@ -278,15 +277,7 @@ h3 {
   position: relative;
 }
 
-.vue-simple-suggest.designed, .vue-simple-suggest.designed * {
-  box-sizing: border-box;
-}
-
-.vue-simple-suggest.designed.focus .input-wrapper input {
-  border: 1px solid #aaa;
-}
-
-.vue-simple-suggest.designed .suggestions {
+.vue-simple-suggest .suggestions {
   @apply bg-white shadow rounded absolute;
   position: absolute;
   left: 0;
@@ -297,19 +288,20 @@ h3 {
   z-index: 1000;
 }
 
-.vue-simple-suggest.designed .suggestions .suggest-item {
+.vue-simple-suggest .suggestions .suggest-item {
   @apply select-none cursor-pointer;
 }
 
-.vue-simple-suggest.designed .suggestions .suggest-item,
-.vue-simple-suggest.designed .suggestions .misc-item {
+.vue-simple-suggest .suggestions .suggest-item,
+.vue-simple-suggest .suggestions .misc-item {
   @apply p-2;
 }
 
-.vue-simple-suggest.designed .suggestions .suggest-item.hover {
+.vue-simple-suggest .suggestions .suggest-item.hover {
   @apply bg-grey text-info;
 }
 
-.vue-simple-suggest.designed .suggestions .suggest-item.selected {
+.vue-simple-suggest .suggestions .suggest-item.selected {
   @apply bg-primary text-white;
 }
+/* purgecss end ignore */
