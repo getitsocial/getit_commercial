@@ -96,7 +96,7 @@
           </div>
         </ValidationProvider>
         <ValidationProvider v-slot="{ errors }" name="Artikelbeschreibung">
-          <!-- articleName INPUT -->
+          <!-- articleDescription INPUT -->
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="articleDescription">
               <client-only>

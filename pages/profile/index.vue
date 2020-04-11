@@ -43,13 +43,25 @@
               <div class="text-center">
                 <div class="flex flex-wrap justify-center">
                   <div class="w-full max-w-3xl px-2 md:px-4">
-                    <p class="mb-4 text-lg">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
-                    </p>
+                    <!-- eslint-disable-next-line -->
+                    <div
+                      v-if="user.description"
+                      class="mb-4 text-lg"
+                      
+                    >
+                      <!-- eslint-disable-next-line vue/no-v-html -->
+                      <div v-html="user.description" />
+                    </div>
+                    <div
+                      v-else
+                      class="flex content-center flex-wrap justify-center h-15 w-full border-2 rounded-lg border-dashed text-light cursor-pointer hover:bg-grey mb-4"
+                      @click="$router.push('/profile/settings')"
+                    >
+                      <div class="">
+                        Du hast noch keine Profilbeschreibung angelegt. Lege
+                        jetzt eine an!
+                      </div>
+                    </div>
                     <div class="pb-2 flex justify-end">
                       <button
                         class="w-auto mr-2"

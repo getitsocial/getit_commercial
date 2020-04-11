@@ -21,7 +21,7 @@
             fill="currentColor"
           />
           <p :class="{ 'spinner-dark': isUploading }">
-            Bild auswählen
+            {{ placeholder }}
           </p>
         </div>
         <span class="error-message">{{ errors[0] }}</span>
@@ -56,6 +56,10 @@ export default {
     initialImage: {
       type: Object,
       default: () => ({}),
+    },
+    placeholder: {
+      type: String,
+      default: 'Bild auswählen',
     },
   },
   data: () => ({

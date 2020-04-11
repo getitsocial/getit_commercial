@@ -78,7 +78,7 @@ export default {
   props: {
     initialContent: {
       type: String,
-      default: `<p></p><p></p>`,
+      default: null,
     },
     label: {
       type: String,

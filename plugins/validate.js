@@ -15,6 +15,7 @@ import {
   min_value,
   max_value,
   ext,
+  alpha_spaces,
 } from 'vee-validate/dist/rules'
 
 // Install and Activate the German locale.
@@ -69,6 +70,7 @@ extend('numeric', numeric)
 extend('min_value', min_value)
 extend('max_value', max_value)
 extend('ext', ext)
+extend('alpha_spaces', alpha_spaces)
 
 extend('password', {
   params: ['target'],

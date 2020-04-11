@@ -2,13 +2,9 @@
   <card
     class="flex flex-col overflow-hidden select-none"
     :class="{ 'animated hover:shadow-lg cursor-pointer': link }"
-    @click="goToDetail"
+    @click.native="goToDetail"
   >
-    <div
-      class="flex-shrink-0"
-      :class="{ 'cursor-pointer': link }"
-      @click="goToDetail"
-    >
+    <div class="flex-shrink-0" :class="{ 'cursor-pointer': link }">
       <div
         class="h-1"
         :class="[article.published ? 'bg-success' : 'bg-light']"
