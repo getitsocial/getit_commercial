@@ -51,6 +51,26 @@
           </div>
         </ValidationProvider>
 
+        <!-- userLocation INPUT -->
+        <div class="form-content">
+          <label class="form-label w-full" for="userLocation">
+            <span class="text-info">Wohnort</span>
+            <vue-simple-suggest
+              v-model="myUser.location"
+              :list="getSuggestionList"
+              display-attribute="label"
+              value-attribute="locationId"
+              :debounce="1000"
+            >
+              <input
+                v-model="myUser.location"
+                class="form-input mt-1 block w-full"
+                type="text"
+              />
+            </vue-simple-suggest>
+          </label>
+        </div>
+
         <ValidationProvider v-slot="{ errors }" name="Benutzertext">
           <!-- userDescription INPUT -->
           <div class="form-content my-5" :class="{ error: errors[0] }">
@@ -85,9 +105,7 @@
         </bottom-area>
       </form>
     </ValidationObserver>
-    <!--
-    <pre>{{ myUser }}</pre>
-  --></div>
+  </div>
 </template>
 
 <script>

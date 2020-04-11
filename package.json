@@ -46,6 +46,7 @@
     "tiptap-extensions": "^1.28.8",
     "vee-validate": "^3.2.5",
     "vue-currency-input": "^1.17.3",
+    "vue-simple-suggest": "^1.10.1",
     "vue-timeago": "^5.1.2",
     "vue2-google-maps": "^0.10.7",
     "vuex-map-fields": "^1.4.0",

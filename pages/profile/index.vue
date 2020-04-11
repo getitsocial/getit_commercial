@@ -30,10 +30,13 @@
                 <h3 class="text-4xl leading-normal">
                   {{ user.name }}
                 </h3>
-                <div class="text-sm leading-normal uppercase">
-                  Braunschweig, Deutschland
+                <div
+                  v-if="user.location"
+                  class="text-sm leading-normal uppercase"
+                >
+                  {{ user.location }}
                 </div>
-                <div class="mt-5 font-bold text-light">
+                <div v-if="user.job" class="mt-5 font-bold text-light">
                   Shop Manager - Tim & Struppi
                 </div>
               </div>
