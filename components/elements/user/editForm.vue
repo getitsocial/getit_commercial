@@ -60,6 +60,7 @@
               :list="getSuggestionList"
               display-attribute="label"
               value-attribute="locationId"
+              :styles="autoCompleteStyle"
               :debounce="1000"
             >
               <input
@@ -120,7 +121,16 @@ export default {
       default: () => ({}),
     },
   },
-  data: () => ({ showConfirm: false }),
+  data: () => ({
+    showConfirm: false,
+    autoCompleteStyle: {
+      vueSimpleSuggest: 'relative',
+      inputWrapper: '',
+      defaultInput: 'form-control',
+      suggestions: 'position-absolute suggestions',
+      suggestItem: 'suggest-item',
+    },
+  }),
   methods: {
     async submit() {
       try {
