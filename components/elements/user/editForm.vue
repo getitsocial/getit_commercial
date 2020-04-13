@@ -57,16 +57,13 @@
             <span class="text-info">Wohnort</span>
             <!-- v-model="myUser.location"
               :list="getSuggestionList" -->
-            <client-only>
-              <autocomplete
-                input-class="form-input"
-                source="/api/maps/geocode?query="
-                results-property="items"
-                results-display="label"
-                :clear-button-icon="true"
-              >
-              </autocomplete>
-            </client-only>
+            <autocomplete
+              endpoint="maps/geocode"
+              queryname="query"
+              display-name="label"
+              :placeholder="userLocation"
+              @selection="selectLocation"
+            />
           </label>
         </div>
 
@@ -121,7 +118,15 @@ export default {
   },
   data: () => ({
     showConfirm: false,
+    value: {},
   }),
+  computed: {
+    userLocation() {
+      if (!this.myUser.location) return
+      console.log(this.myUser.location)
+      return this.myUser.location?.label
+    },
+  },
   methods: {
     async submit() {
       try {
@@ -141,6 +146,10 @@ export default {
         toastType: 'primary',
       })
       await this.logout()
+    },
+    selectLocation(data) {
+      if (!data.locationId) return
+      this.myUser.location = data
     },
   },
 }

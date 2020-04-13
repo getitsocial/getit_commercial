@@ -5,6 +5,7 @@ import bottomArea from '~/components/layout/bottomarea'
 import imageUpload from '~/components/elements/utils/imageUpload'
 import wysiwyg from '~/components/elements/utils/wysiwyg'
 import toggle from '~/components/elements/utils/toggle'
+import autocomplete from '~/components/elements/utils/autocomplete'
 
 const coreMixin = {
   components: {
@@ -14,6 +15,7 @@ const coreMixin = {
     imageUpload,
     wysiwyg,
     toggle,
+    autocomplete,
   },
   computed: {
     haveStock() {

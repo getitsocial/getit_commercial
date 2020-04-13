@@ -34,7 +34,7 @@
                   v-if="user.location"
                   class="text-sm leading-normal uppercase"
                 >
-                  {{ user.location }}
+                  {{ user.location.label }}
                 </div>
                 <div v-if="user.job" class="mt-5 font-bold text-light">
                   Shop Manager - Tim & Struppi

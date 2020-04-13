@@ -1,6 +1,5 @@
 <template>
   <div>
-    <pre>{{ article }}</pre>
     <modal
       :show="showConfirm"
       confirm-text="Löschen"
@@ -14,8 +13,10 @@
       v-if="showChangeCategory"
       icon="shuffle-outline"
       :dismiss="false"
+      confirm-text="Übernehmen"
       @confirm="showChangeCategory = false"
       >Kategorie wählen
+      <autocomplete endpoint="categories" @selection="selectCategory" />
     </modal>
 
     <!-- Todo: Change folder to articles/:shopId -->
@@ -211,6 +212,11 @@ export default {
         message: 'Artikel gelöscht!',
       })
       this.$router.push(`/category/${this.article.category.id}`)
+    },
+    selectCategory({ id, name }) {
+      if (!id) return
+      this.article.category._id = id
+      this.article.category.name = name
     },
   },
 }
