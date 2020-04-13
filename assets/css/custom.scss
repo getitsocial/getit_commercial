@@ -96,7 +96,7 @@ a {
     @apply text-danger text-xs;
   }
 
-  input, .input-icon {
+  input, .input-icon, select {
     @apply border-danger;
   }
 
@@ -175,6 +175,10 @@ h3 {
 .form {
   &-content {
     @apply text-left;
+  }
+
+  &-select {
+    @apply text-light;
   }
 
   &-icon {

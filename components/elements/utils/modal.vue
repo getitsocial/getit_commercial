@@ -12,10 +12,10 @@
       <card v-show="show" class="modal-wrapper">
         <div class="modal">
           <div
-            class="modal-body max-w-md p-6 sm:p-8"
+            class="modal-body p-6 sm:p-8 w-full max-w-xl"
             :class="[{ 'text-center': centered }]"
           >
-            <div v-if="icon">
+            <div v-if="icon" class="text-center">
               <eva-icons :name="icon" fill="currentColor" width="100" />
             </div>
             <div>

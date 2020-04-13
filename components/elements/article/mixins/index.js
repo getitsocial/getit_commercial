@@ -1,6 +1,6 @@
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapActions, mapState } from 'vuex'
-
+import { mapActions, mapState, mapGetters } from 'vuex'
+import { clone } from 'lodash'
 import bottomArea from '~/components/layout/bottomarea'
 import imageUpload from '~/components/elements/utils/imageUpload'
 import wysiwyg from '~/components/elements/utils/wysiwyg'
@@ -20,11 +20,13 @@ const coreMixin = {
       return this.article.stock !== -1
     },
     ...mapState({ loadState: (state) => state.articles.loading }),
+    ...mapGetters({ findDataInStore: 'categories/list' }),
   },
   methods: {
     ...mapActions({
       create: 'articles/create', // map `this.add()` to `this.$store.dispatch('increment')`
       update: 'articles/update',
+      getCategories: 'categories/getAll',
       deleteAction: 'articles/delete',
     }),
     setImage(img) {
@@ -35,6 +37,10 @@ const coreMixin = {
     },
     removeStock() {
       this.article.stock = -1
+    },
+    async getSuggestionList() {
+      await this.getCategories()
+      return clone(this.findDataInStore.rows)
     },
   },
 }

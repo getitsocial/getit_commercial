@@ -55,20 +55,18 @@
         <div class="form-content">
           <label class="form-label w-full" for="userLocation">
             <span class="text-info">Wohnort</span>
-            <vue-simple-suggest
-              v-model="myUser.location"
-              :list="getSuggestionList"
-              display-attribute="label"
-              value-attribute="locationId"
-              :styles="autoCompleteStyle"
-              :debounce="1000"
-            >
-              <input
-                v-model="myUser.location"
-                class="form-input mt-1 block w-full"
-                type="text"
-              />
-            </vue-simple-suggest>
+            <!-- v-model="myUser.location"
+              :list="getSuggestionList" -->
+            <client-only>
+              <autocomplete
+                input-class="form-input"
+                source="/api/maps/geocode?query="
+                results-property="items"
+                results-display="label"
+                :clear-button-icon="true"
+              >
+              </autocomplete>
+            </client-only>
           </label>
         </div>
 
@@ -113,7 +111,7 @@
 import coreMixin from '~/components/elements/user/mixins'
 
 export default {
-  name: 'EditCategoryForm',
+  name: 'EditUserForm',
   mixins: [coreMixin],
   props: {
     myUser: {
@@ -123,13 +121,6 @@ export default {
   },
   data: () => ({
     showConfirm: false,
-    autoCompleteStyle: {
-      vueSimpleSuggest: 'relative',
-      inputWrapper: '',
-      defaultInput: 'form-control',
-      suggestions: 'position-absolute suggestions',
-      suggestItem: 'suggest-item',
-    },
   }),
   methods: {
     async submit() {

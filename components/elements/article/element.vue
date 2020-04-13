@@ -28,11 +28,9 @@
               {{ article.price }} €
             </span>
           </div>
-          <div class="text-light my-auto">
+          <div v-if="article.haveStock" class="text-light my-auto">
             <eva-icons name="archive-outline" fill="currentColor" width="20" />
-            <span v-if="article.haveStock" class="inline-block align-middle">{{
-              article.stock
-            }}</span>
+            <span class="inline-block align-middle">{{ article.stock }}</span>
           </div>
         </div>
       </div>

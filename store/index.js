@@ -37,6 +37,7 @@ export const actions = {
       // Set SSR Token
       const accessToken = await this.$cookies.get('getit')
       app.$axios.setToken(accessToken, 'Bearer')
+
       commit('setToken', accessToken)
       // Get User Informations
       if (accessToken) {
@@ -115,10 +116,18 @@ export const actions = {
     const { data } = await this.$axios.get(`/api/password-resets/${token}`)
     return data
   },
-  async logout({ commit }) {
-    await this.$axios.setToken(false)
-    await this.$cookies.remove('getit')
-    commit('setToken', null)
+  async logout({ commit }, clientLogout) {
+    try {
+      if (!clientLogout) {
+        await this.$axios.post(`/api/auth/logout`)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      await this.$axios.setToken(false)
+      await this.$cookies.remove('getit')
+      commit('setToken', null)
+    }
   },
   async getMe({ commit, dispatch }) {
     try {

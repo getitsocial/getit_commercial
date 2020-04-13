@@ -29,7 +29,7 @@ export const mutations = {
 
 export const actions = {
   // Get All
-  async getAll({ commit, state }, params) {
+  async getAll({ commit, dispatch, state }, params) {
     try {
       commit('setRootLoading', true, { root: true })
       const response = await this.$axios.get(

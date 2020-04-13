@@ -70,7 +70,7 @@ export default {
   plugins: [
     '@/plugins/utils.js',
     '@/plugins/mixins/components.js',
-    { src: '@/plugins/axios', ssr: true },
+    '@/plugins/axios',
     { src: '@/plugins/vue-timeago.js', ssr: false },
     { src: '@/plugins/socialAuth', ssr: false },
     { src: '@/plugins/map', ssr: false },

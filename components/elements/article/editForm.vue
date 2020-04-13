@@ -1,15 +1,23 @@
 <template>
   <div>
+    <pre>{{ article }}</pre>
     <modal
       :show="showConfirm"
       confirm-text="Löschen"
       icon="alert-triangle-outline"
       centered
-      @confirm="deleteArticle"
       @dismiss="showConfirm = false"
       >Bist du sicher, dass du den Artikel <b>{{ article.name }}</b> Löschen
       möchtest?
     </modal>
+    <modal
+      v-if="showChangeCategory"
+      icon="shuffle-outline"
+      :dismiss="false"
+      @confirm="showChangeCategory = false"
+      >Kategorie wählen
+    </modal>
+
     <!-- Todo: Change folder to articles/:shopId -->
     <image-upload
       folder="article"
@@ -95,6 +103,31 @@
             </label>
           </div>
         </ValidationProvider>
+        <!-- TAX INPUT -->
+        <ValidationProvider
+          v-slot="{ errors }"
+          mode="lazy"
+          slim
+          rules="required"
+        >
+          <div class="form-content my-3" :class="{ error: errors[0] }">
+            <label class="form-label w-full" for="articleTax"
+              ><span class="text-info text-sm">Steuersatz</span></label
+            >
+            <select v-model="article.tax" class="form-select w-full">
+              <option :value="19">
+                19 %
+              </option>
+              <option :value="7">
+                7 %
+              </option>
+              <option :value="0">
+                Steuerfrei
+              </option>
+            </select>
+            <span class="error-message">{{ errors[0] }}</span>
+          </div>
+        </ValidationProvider>
         <ValidationProvider v-slot="{ errors }" name="Artikelbeschreibung">
           <!-- articleDescription INPUT -->
           <div class="form-content my-3" :class="{ error: errors[0] }">
@@ -121,18 +154,23 @@
           </label>
         </div>
         <bottom-area>
-          <div class="flex">
-            <div>
+          <div class="flex justify-end">
+            <div class="mr-3">
               <button
-                class="w-auto hover:text-danger mr-auto"
+                class="w-auto hover:text-danger"
                 type="button"
                 @click.prevent="showConfirm = true"
               >
-                löschen
+                <eva-icons name="trash-2-outline" fill="currentColor" />
+              </button>
+            </div>
+            <div class="mr-auto">
+              <button type="button" @click.prevent="showChangeCategory = true">
+                <eva-icons name="shuffle-outline" fill="currentColor" />
               </button>
             </div>
             <div>
-              <button class="primary" type="submit">
+              <button class="w-auto" type="submit">
                 speichern
               </button>
             </div>
@@ -156,7 +194,7 @@ export default {
       required: true,
     },
   },
-  data: () => ({ showConfirm: false }),
+  data: () => ({ showConfirm: false, showChangeCategory: false }),
   methods: {
     async submit() {
       try {

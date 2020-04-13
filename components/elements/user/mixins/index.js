@@ -2,11 +2,11 @@
 
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { mapActions } from 'vuex'
-import VueSimpleSuggest from 'vue-simple-suggest'
 
 import bottomArea from '~/components/layout/bottomarea'
 import imageUpload from '~/components/elements/utils/imageUpload'
 import wysiwyg from '~/components/elements/utils/wysiwyg'
+import autocomplete from '~/components/elements/utils/autocomplete'
 
 const coreMixin = {
   components: {
@@ -15,8 +15,9 @@ const coreMixin = {
     bottomArea,
     imageUpload,
     wysiwyg,
-    VueSimpleSuggest,
+    autocomplete,
   },
+  data: () => ({}),
   methods: {
     ...mapActions({
       update: 'updateUser',
@@ -26,9 +27,9 @@ const coreMixin = {
       // eslint-disable-next-line camelcase
       this.myUser.picture = secure_url
     },
-    async getSuggestionList(data) {
+    async getSuggestionList() {
       const response = await this.$axios.$get('/api/maps/geocode', {
-        params: { query: data },
+        params: { query: this.query },
       })
       return response
     },

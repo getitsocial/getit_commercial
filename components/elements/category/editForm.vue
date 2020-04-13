@@ -35,22 +35,19 @@
           </div>
         </ValidationProvider>
         <bottom-area>
-          <div class="flex">
-            <div>
+          <div class="flex justify-end">
+            <div class="mr-auto">
               <button
-                class="w-auto hover:text-danger mr-auto"
+                class="w-auto hover:text-danger"
                 type="button"
                 @click.prevent="showConfirm = true"
               >
-                löschen
+                <eva-icons name="trash-2-outline" fill="currentColor" />
               </button>
             </div>
+
             <div>
-              <button
-                class="primary"
-                :class="{ 'spinner-light': loadState.update }"
-                type="submit"
-              >
+              <button class="w-auto" type="submit">
                 speichern
               </button>
             </div>
