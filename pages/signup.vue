@@ -109,7 +109,11 @@
 
             <div class="mt-6">
               <span class="block w-full">
-                <button class="primary" type="submit">
+                <button
+                  class="primary"
+                  type="submit"
+                  :class="{ 'spinner-light': isLoading }"
+                >
                   Registrieren
                 </button>
               </span>
@@ -172,15 +176,19 @@ export default {
     }),
     async submit(e) {
       try {
+        this.isLoading = true
         await this.register(this.guest)
         this.submitted = true
         this.$refs.form.reset()
         this.guest = {}
+        this.isLoading = false
+
         this.$nextTick(() => {
           this.$refs.form.reset()
         })
         this.showSuccess = true
       } catch ({ response: { data } }) {
+        this.isLoading = false
         this.showSuccess = false
         this.$refs.form.setErrors({
           email: [data.message],

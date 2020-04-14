@@ -70,7 +70,11 @@
 
             <div class="mt-3">
               <span class="block w-full">
-                <button class="primary" type="submit">
+                <button
+                  class="primary"
+                  :class="{ 'spinner-dark': isLoading === 'local' }"
+                  type="submit"
+                >
                   Anmelden
                 </button>
               </span>
@@ -169,11 +173,13 @@ export default {
     ...mapActions(['loginWithSocial', 'loginWithEmail']),
     async submit(e) {
       try {
+        this.isLoading = 'local'
         this.haveError = {}
         await this.loginWithEmail(this.guest)
+        this.isLoading = false
         await this.$router.push('/')
       } catch ({ response: { data } }) {
-        this.$store.commit('setLoginPending', false)
+        this.isLoading = false
         this.$refs.form.setErrors({
           email: [data.message],
           password: [data.message],
