@@ -34,6 +34,7 @@ export default {
     VUE_APP_GOOGLE_ID: process.env.VUE_APP_GOOGLE_ID,
     VUE_APP_FACEBOOK_ID: process.env.VUE_APP_FACEBOOK_ID,
     VUE_APP_MASTER_KEY: process.env.VUE_APP_MASTER_KEY,
+    VUE_APP_URL: process.env.VUE_APP_URL,
   },
   /**
    * Vue configuration

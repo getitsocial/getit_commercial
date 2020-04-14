@@ -22,16 +22,6 @@ export default {
     },
   },
   data: () => ({}),
-  watch: {
-    'article.published': {
-      deep: true,
-
-      handler(newVal, oldVal) {
-        console.log(newVal)
-        console.log(oldVal)
-      },
-    },
-  },
   methods: {
     ...mapActions({
       updateAction: 'articles/update', // map `this.add()` to `this.$store.dispatch('increment')`

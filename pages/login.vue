@@ -62,9 +62,9 @@
 
             <div class="mt-3 flex items-center justify-end">
               <div class="leading-5">
-                <a href="#">
+                <nuxt-link to="/forgot">
                   Hilfe bei der Anmeldung?
-                </a>
+                </nuxt-link>
               </div>
             </div>
 

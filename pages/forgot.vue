@@ -16,9 +16,9 @@
         :width="300"
       />
 
-      Vielen Dank für deine Registrierung!
+      Informationen zum zurücksetzen deines Passworts wurde dir per Mail versand
       <br />
-      <b>Du kannst dich nun einloggen.</b><br />
+      <b>Bitte schaue in dein Mail Postfach.</b><br />
     </modal>
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <div class="mx-auto w-auto mb-1 flex">
@@ -34,23 +34,6 @@
       <card class="transition-shadow duration-700 ease-in-out shadow-xl" padded>
         <ValidationObserver ref="form" v-slot="{ handleSubmit }" slim>
           <form @submit.prevent="handleSubmit(submit)">
-            <label class="block mt-3">
-              <span class="text-info">Name</span>
-              <validation-provider
-                v-slot="{ errors }"
-                mode="lazy"
-                name="Name"
-                rules="min:2|required"
-              >
-                <input
-                  v-model="guest.name"
-                  class="form-input mt-1 block w-full"
-                  placeholder="Lothar Muster"
-                />
-                <span class="error-message">{{ errors[0] }}</span>
-              </validation-provider>
-            </label>
-
             <label class="block mt-3">
               <span class="text-info">E-Mail</span>
               <validation-provider
@@ -69,48 +52,10 @@
               </validation-provider>
             </label>
 
-            <label class="block mt-3">
-              <span class="text-info">Passwort</span>
-              <validation-provider
-                id="password"
-                v-slot="{ errors }"
-                name="Passwort"
-                mode="lazy"
-                rules="required|verify_password"
-              >
-                <input
-                  v-model="guest.password"
-                  class="form-input mt-1 block w-full"
-                  type="password"
-                  placeholder="******************"
-                />
-                <span class="error-message">{{ errors[0] }}</span>
-              </validation-provider>
-            </label>
-
-            <label class="block mt-3">
-              <span class="text-info">Passwort wiederholen</span>
-              <validation-provider
-                v-slot="{ errors }"
-                name="Password wiederholen"
-                mode="lazy"
-                rules="required|password:@Passwort"
-              >
-                <input
-                  id="confirmPassword"
-                  v-model="guest.confirmPassword"
-                  class="form-input mt-1 block w-full"
-                  type="password"
-                  placeholder="******************"
-                />
-                <span class="error-message">{{ errors[0] }}</span>
-              </validation-provider>
-            </label>
-
             <div class="mt-6">
               <span class="block w-full">
                 <button class="primary" type="submit">
-                  Registrieren
+                  Informationen zuschicken
                 </button>
               </span>
             </div>
@@ -139,51 +84,50 @@ import * as animationData from '@/assets/img/success.json'
 
 export default {
   name: 'Signin',
-  layout: 'blank',
+  layout: 'blanc',
   middleware: 'notAuthenticated',
   components: {
     ValidationObserver,
     ValidationProvider,
   },
-  data() {
-    return {
-      isLoading: false,
-      submitted: false,
-      showSuccess: false,
-      defaultOptions: {
-        animationData: animationData.default,
-        loop: false,
-        autoplay: false,
-      },
-      haveError: {},
-      statusText: '',
-      guest: {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        accessToken: process.env.VUE_APP_MASTER_KEY,
-      },
-    }
-  },
+  data: () => ({
+    submitted: false,
+    showSuccess: false,
+    defaultOptions: {
+      animationData: animationData.default,
+      loop: false,
+      autoplay: false,
+    },
+    guest: {
+      email: '',
+      password: '',
+      link: `${process.env.appUrl}/reset`,
+      accessToken: process.env.VUE_APP_MASTER_KEY,
+    },
+  }),
   methods: {
     ...mapActions({
-      register: 'createUser',
+      forgot: 'forgotPassword',
+      sendNewPassword: 'passwordReset',
     }),
     async submit(e) {
       try {
-        await this.register(this.guest)
-        this.submitted = true
+        await this.forgot(this.guest)
         this.$refs.form.reset()
-        this.guest = {}
+        this.guest = {
+          email: '',
+          password: '',
+          link: process.env.VUE_APP_URL,
+        }
         this.$nextTick(() => {
           this.$refs.form.reset()
         })
+        this.submitted = true
         this.showSuccess = true
-      } catch ({ response: { data } }) {
+      } catch ({ response }) {
         this.showSuccess = false
         this.$refs.form.setErrors({
-          email: [data.message],
+          email: [response.data.message],
         })
       }
     },
