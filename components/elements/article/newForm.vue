@@ -167,7 +167,7 @@ export default {
       try {
         this.article.category = this.category.categoryId
         await this.create(this.article)
-        this.$addToast({ message: 'Artikel angelegt!', toastType: 'primary' })
+        this.$addToast({ message: 'Artikel angelegt!' })
         this.$router.go(-1)
       } catch (error) {
         console.log(error)

@@ -6,6 +6,7 @@
       icon="alert-triangle-outline"
       centered
       @dismiss="showConfirm = false"
+      @confirm="deleteArticle"
       >Bist du sicher, dass du den Artikel <b>{{ article.name }}</b> Löschen
       möchtest?
     </modal>
@@ -17,6 +18,16 @@
       @dismiss="showChangeCategory = false"
       >Neue Kategorie wählen
       <autocomplete endpoint="categories" @selection="selectCategory" />
+    </modal>
+
+    <modal
+      v-if="showCopyCategory"
+      icon="copy-outline"
+      :confirm="false"
+      dismiss-text="Abbrechen"
+      @dismiss="showCopyCategory = false"
+      >In welche Kategorie soll der Artikel kopiert werden?
+      <autocomplete endpoint="categories" @selection="selectToCopyArticle" />
     </modal>
 
     <!-- Todo: Change folder to articles/:shopId -->
@@ -167,13 +178,22 @@
         </div>
         <bottom-area>
           <div class="flex justify-end">
-            <div class="mr-auto">
+            <div class="mr-3">
               <button
                 class="w-auto hover:text-danger"
                 type="button"
                 @click.prevent="showConfirm = true"
               >
                 <eva-icons name="trash-2-outline" fill="currentColor" />
+              </button>
+            </div>
+            <div class="mr-auto">
+              <button
+                class="w-auto"
+                type="button"
+                @click.prevent="showCopyCategory = true"
+              >
+                <eva-icons name="copy-outline" fill="currentColor" />
               </button>
             </div>
             <div>
@@ -189,8 +209,8 @@
 </template>
 
 <script>
+import { clone } from 'lodash'
 import coreMixin from '~/components/elements/article/mixins'
-
 export default {
   name: 'NewArticleForm',
   mixins: [coreMixin],
@@ -201,7 +221,11 @@ export default {
       required: true,
     },
   },
-  data: () => ({ showConfirm: false, showChangeCategory: false }),
+  data: () => ({
+    showConfirm: false,
+    showChangeCategory: false,
+    showCopyCategory: false,
+  }),
   methods: {
     async submit() {
       try {
@@ -224,6 +248,21 @@ export default {
       this.article.category._id = id
       this.article.category.name = name
       this.showChangeCategory = false
+    },
+    async selectToCopyArticle({ id }) {
+      if (!id) return
+      const newArticle = clone(this.article)
+      delete newArticle._id
+      newArticle.category._id = id
+      try {
+        await this.create(newArticle)
+        this.showCopyCategory = false
+        this.$router.push(`/category/${id}`)
+        this.$addToast({ message: 'Artikel kopiert!' })
+      } catch (error) {
+        this.showCopyCategory = false
+        console.log(error)
+      }
     },
   },
 }
