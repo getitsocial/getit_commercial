@@ -3,6 +3,7 @@
     <input
       ref="inputValue"
       v-model="selection[displayName]"
+      :placeholder="placeholder"
       class="form-input mt-1 block w-full"
       type="text"
       @input="change"
@@ -39,6 +40,10 @@ export default {
       default: 'search',
     },
     value: {
+      type: String,
+      default: '',
+    },
+    placeholder: {
       type: String,
       default: '',
     },

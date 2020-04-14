@@ -142,7 +142,7 @@ import { mapActions } from 'vuex'
 import * as animationData from '@/assets/img/success.json'
 
 export default {
-  name: 'Signin',
+  name: 'Signup',
   layout: 'blank',
   middleware: 'notAuthenticated',
   components: {

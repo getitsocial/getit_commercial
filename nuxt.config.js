@@ -76,6 +76,7 @@ export default {
     { src: '@/plugins/socialAuth', ssr: false },
     { src: '@/plugins/map', ssr: false },
     { src: '@/plugins/validate.js', ssr: false },
+    { src: '@/plugins/localStorage.js', ssr: false },
   ],
   /**
    * Nuxt.js dev-modules

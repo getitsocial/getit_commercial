@@ -5,7 +5,7 @@
       <div class="hidden sm:inline-block -my-1">
         <nuxt-link to="/" class="no-underline focus:no-underline">
           <span
-            class="align-middle text-secondary font-bold text-2xl select-none"
+            class="align-middle text-secondary font-bold text-2xl select-none subpixel-antialiased"
             >get it!</span
           >
         </nuxt-link>
@@ -18,7 +18,7 @@
           class="mr-6 select-none"
         >
           <nuxt-link
-            class="desktopNav-button"
+            class="desktopNav-button subpixel-antialiased"
             :to="nav.route"
             :exact="nav.exact"
           >

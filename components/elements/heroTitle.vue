@@ -11,7 +11,7 @@
               <eva-icons name="arrow-back-outline" fill="currentColor" />
             </button>
             <h1
-              class="tracking-wider leading-none py-3 md:py-4 select-none text-2xl font-bold"
+              class="tracking-wider leading-none py-3 md:py-4 select-none text-2xl font-bold subpixel-antialiased"
             >
               <span>{{ topTitle }}</span>
             </h1>

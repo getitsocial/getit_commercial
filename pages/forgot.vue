@@ -83,8 +83,8 @@ import { mapActions } from 'vuex'
 import * as animationData from '@/assets/img/success.json'
 
 export default {
-  name: 'Signin',
-  layout: 'blanc',
+  name: 'Forgot',
+  layout: 'blank',
   middleware: 'notAuthenticated',
   components: {
     ValidationObserver,
