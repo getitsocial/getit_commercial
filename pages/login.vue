@@ -23,7 +23,7 @@
         :class="shadow"
         padded
       >
-        <ValidationObserver v-slot="{ handleSubmit }" slim>
+        <ValidationObserver ref="form" v-slot="{ handleSubmit }" slim>
           <form @submit.prevent="handleSubmit(submit)">
             <label class="block">
               <span class="text-info">E-Mail</span>
@@ -36,7 +36,7 @@
                 <input
                   v-model="guest.email"
                   class="form-input mt-1 block w-full"
-                  placeholder="john@bar.com"
+                  placeholder="lothar@mustermail.com"
                 />
                 <span class="error-message">{{ errors[0] }}</span>
               </validation-provider>
@@ -77,8 +77,12 @@
             </div>
             <div class="mt-3">
               <span class="block w-full">
-                <button type="submit" class="border">
-                  Laden registrieren
+                <button
+                  type="button"
+                  class="border"
+                  @click.prevent="$router.push('/signup')"
+                >
+                  Neu registrieren
                 </button>
               </span>
             </div>
@@ -168,11 +172,12 @@ export default {
         this.haveError = {}
         await this.loginWithEmail(this.guest)
         await this.$router.push('/')
-      } catch (e) {
+      } catch ({ response: { data } }) {
         this.$store.commit('setLoginPending', false)
-        this.haveError = {
-          message: `E-Mail or Password wrong!`,
-        }
+        this.$refs.form.setErrors({
+          email: [data.message],
+          password: [data.message],
+        })
       }
     },
     async socialLogin(provider) {

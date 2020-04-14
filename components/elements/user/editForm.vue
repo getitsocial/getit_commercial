@@ -58,10 +58,10 @@
             <!-- v-model="myUser.location"
               :list="getSuggestionList" -->
             <autocomplete
+              :value="userLocation"
               endpoint="maps/geocode"
               queryname="query"
               display-name="label"
-              :placeholder="userLocation"
               @selection="selectLocation"
             />
           </label>
@@ -106,24 +106,25 @@
 
 <script>
 import coreMixin from '~/components/elements/user/mixins'
-
 export default {
   name: 'EditUserForm',
   mixins: [coreMixin],
   props: {
     myUser: {
       type: Object,
-      default: () => ({}),
+      default: () => ({
+        location: {
+          label: '',
+        },
+      }),
     },
   },
   data: () => ({
     showConfirm: false,
-    value: {},
   }),
   computed: {
     userLocation() {
       if (!this.myUser.location) return
-      console.log(this.myUser.location)
       return this.myUser.location?.label
     },
   },
@@ -148,6 +149,7 @@ export default {
       await this.logout()
     },
     selectLocation(data) {
+      console.log(data)
       if (!data.locationId) return
       this.myUser.location = data
     },

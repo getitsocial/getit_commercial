@@ -12,10 +12,10 @@
     <modal
       v-if="showChangeCategory"
       icon="shuffle-outline"
-      :dismiss="false"
-      confirm-text="Übernehmen"
-      @confirm="showChangeCategory = false"
-      >Kategorie wählen
+      :confirm="false"
+      dismiss-text="Abbrechen"
+      @dismiss="showChangeCategory = false"
+      >Neue Kategorie wählen
       <autocomplete endpoint="categories" @selection="selectCategory" />
     </modal>
 
@@ -47,6 +47,17 @@
             </label>
           </div>
         </ValidationProvider>
+
+        <!-- articleName INPUT -->
+        <div class="form-content my-3">
+          <span class="text-info">Kategorie</span>
+          <button
+            class="w-auto border"
+            @click.prevent="showChangeCategory = true"
+          >
+            {{ article.category.name }}
+          </button>
+        </div>
         <ValidationProvider
           v-if="haveStock"
           v-slot="{ errors }"
@@ -156,18 +167,13 @@
         </div>
         <bottom-area>
           <div class="flex justify-end">
-            <div class="mr-3">
+            <div class="mr-auto">
               <button
                 class="w-auto hover:text-danger"
                 type="button"
                 @click.prevent="showConfirm = true"
               >
                 <eva-icons name="trash-2-outline" fill="currentColor" />
-              </button>
-            </div>
-            <div class="mr-auto">
-              <button type="button" @click.prevent="showChangeCategory = true">
-                <eva-icons name="shuffle-outline" fill="currentColor" />
               </button>
             </div>
             <div>
@@ -217,6 +223,7 @@ export default {
       if (!id) return
       this.article.category._id = id
       this.article.category.name = name
+      this.showChangeCategory = false
     },
   },
 }

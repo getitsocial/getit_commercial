@@ -7,7 +7,7 @@
       <div class="flex flex-wrap">
         <transition name="slide-fade">
           <div v-if="show" class="flex">
-            <button v-if="backButton" @click="$router.go(-1)">
+            <button v-if="backButton" class="w-auto" @click="$router.go(-1)">
               <eva-icons name="arrow-back-outline" fill="currentColor" />
             </button>
             <h1

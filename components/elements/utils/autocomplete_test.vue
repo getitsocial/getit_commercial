@@ -1,7 +1,12 @@
+<autocomplete
+  endpoint="maps/geocode"
+  queryname="query"
+  display-name="label"
+  @selection="selectLocation"
+/>
 <template>
   <div class="relative">
     <input
-      ref="inputValue"
       v-model="selection[displayName]"
       class="form-input mt-1 block w-full"
       type="text"
@@ -38,10 +43,6 @@ export default {
       type: String,
       default: 'search',
     },
-    value: {
-      type: String,
-      default: '',
-    },
   },
   data: () => ({
     open: false,
@@ -56,9 +57,7 @@ export default {
       return this.open === true
     },
   },
-  beforeMount() {
-    this.selection[this.displayName] = this.value
-  },
+
   methods: {
     // When the user changes input
     //
