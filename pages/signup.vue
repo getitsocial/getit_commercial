@@ -9,7 +9,12 @@
       confirm-text="Zum Login"
       @confirm="$router.push('/login')"
     >
-      <lottie :options="defaultOptions" :height="300" :width="300" />
+      <lottie
+        :options="defaultOptions"
+        :play="showSuccess"
+        :height="300"
+        :width="300"
+      />
 
       Vielen Dank für deine Registrierung!
       <br />
@@ -156,6 +161,7 @@ export default {
       defaultOptions: {
         animationData: animationData.default,
         loop: false,
+        autoplay: false,
       },
       haveError: {},
       statusText: '',

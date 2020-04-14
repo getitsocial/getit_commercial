@@ -22,6 +22,10 @@ export default {
       type: Number,
       default: null,
     },
+    play: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -32,6 +36,11 @@ export default {
         margin: '0 auto',
       },
     }
+  },
+  watch: {
+    play() {
+      if (this.play) this.anim.play()
+    },
   },
   mounted() {
     this.anim = lottie.loadAnimation({
