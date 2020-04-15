@@ -8,7 +8,7 @@
         <transition name="fade">
           <div v-show="noContentFound">
             <empty-state
-              :empty-text="`Es gibt noch keine ${title}`"
+              :empty-text="`Es gibt noch keine Artikel in der Kategorie ${title}`"
               image="articles"
               ><nuxt-link
                 :to="`/article/new/${categoryId}`"
