@@ -22,6 +22,8 @@
         <image-upload
           folder="profilepictures"
           placeholder="Profilbild"
+          :initial-image="myUser.picture"
+          :initial-id="myUser.pictureId"
           @target="setImage"
         />
       </div>
@@ -54,10 +56,8 @@
         <!-- userLocation INPUT -->
         <div class="form-content">
           <label class="form-label w-full" for="userLocation">
-            <span class="text-info">Wohnort</span>
-            <!-- v-model="myUser.location"
-              :list="getSuggestionList" -->
             <autocomplete
+              label="Wohnort"
               :value="userLocation"
               endpoint="maps/geocode"
               queryname="query"
@@ -106,8 +106,13 @@
 
 <script>
 import coreMixin from '~/components/elements/user/mixins'
+import imageUpload from '~/components/elements/utils/imageUpload'
+
 export default {
   name: 'EditUserForm',
+  components: {
+    imageUpload,
+  },
   mixins: [coreMixin],
   props: {
     myUser: {
@@ -149,7 +154,6 @@ export default {
       await this.logout()
     },
     selectLocation(data) {
-      console.log(data)
       if (!data.locationId) return
       this.myUser.location = data
     },

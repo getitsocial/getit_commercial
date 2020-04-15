@@ -12,7 +12,7 @@
       <img
         class="h-56 md:h-auto w-full object-cover"
         :src="imageUrl(article)"
-        alt=""
+        :alt="article.name"
       />
     </div>
     <div class="flex-1 bg-white p-3 flex flex-col justify-between">

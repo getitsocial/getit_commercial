@@ -2,12 +2,7 @@
   <div class="flex h-screen bg-white">
     <div class="m-auto text-center">
       <div class="w-64 mx-auto">
-        <lottie
-          :options="defaultOptions"
-          :play="showSuccess"
-          :height="300"
-          :width="300"
-        />
+        <lottie :options="defaultOptions" :height="300" :width="300" />
       </div>
       <div>
         <h1 class="text-primary">

@@ -33,7 +33,8 @@
     <!-- Todo: Change folder to articles/:shopId -->
     <image-upload
       folder="article"
-      :initial-image="article.picture"
+      :initial-image="article.picture.secure_url"
+      :initial-id="article.picture.publicId"
       @target="setImage"
     />
     <ValidationObserver v-slot="{ handleSubmit }" slim>

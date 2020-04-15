@@ -53,9 +53,9 @@ app.post(
   }
 )
 
-app.delete('/image/delete', async ({ body: { public_id } }, res, next) => {
+app.delete('/image/delete', async ({ body: { imageId } }, res, next) => {
   try {
-    await cloudinary.v2.uploader.destroy(public_id)
+    await cloudinary.v2.uploader.destroy(imageId)
     res.sendStatus(200)
   } catch (error) {
     next(error)

@@ -6,8 +6,8 @@
     rules="ext:jpg,png,jpeg"
   >
     <!-- articlePicture FILE -->
-    <div v-if="havePicture">
-      <img :src="image.secure_url" alt="" class="rounded-lg mx-auto" />
+    <div v-if="initialImage">
+      <img :src="initialImage" alt="" class="rounded-lg mx-auto" />
       <button class="w-auto mx-auto" @click="removeImageAction">
         Entfernen
       </button>
@@ -40,7 +40,7 @@
 
 <script>
 import { ValidationProvider } from 'vee-validate'
-import { mapActions, mapState } from 'vuex'
+import { mapActions } from 'vuex'
 import { isEmpty } from 'lodash'
 export default {
   name: 'ImageUpload',
@@ -54,8 +54,12 @@ export default {
       required: true,
     },
     initialImage: {
-      type: Object,
-      default: () => ({}),
+      type: String,
+      default: null,
+    },
+    initialId: {
+      type: String,
+      default: null,
     },
     placeholder: {
       type: String,
@@ -64,15 +68,10 @@ export default {
   },
   data: () => ({
     image: {},
+    isUploading: false,
   }),
-  computed: {
-    ...mapState({ isUploading: (state) => state.filehandler.isUploadPending }),
-    havePicture() {
-      return !isEmpty(this.image)
-    },
-  },
   mounted() {
-    if (isEmpty(this.initialImage)) return
+    if (isEmpty(this.image, true)) return
     this.image = this.initialImage
   },
   methods: {
@@ -85,22 +84,23 @@ export default {
       const formData = new FormData()
       formData.append('file', this.file)
       try {
+        this.isUploading = true
         await this.$refs.provider.validate(e)
         this.image = await this.uploadImage({
           formData,
           folder: this.folder,
           user: this.user,
         })
+        this.isUploading = false
         this.$emit('target', this.image)
       } catch (error) {
+        this.isUploading = false
         console.log(error)
       }
     },
     async removeImageAction() {
-      if (isEmpty(this.image)) return
-      await this.removeImage(this.image)
-      this.image = {}
-      this.$emit('target', this.image)
+      if (this.initialId) await this.removeImage(this.initialId)
+      this.$emit('target', { secure_url: null, public_id: null })
     },
   },
 }

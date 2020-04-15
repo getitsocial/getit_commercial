@@ -18,7 +18,7 @@
                 <div class="w-full flex justify-center">
                   <div class="relative">
                     <img
-                      alt="Maren"
+                      :alt="user.name"
                       :src="user.picture"
                       class="rounded-full h-auto align-middle border-white border-2 -mt-12"
                       width="110"

@@ -40,6 +40,8 @@ export const actions = {
 
   // Delete
   async imageRemove({ dispatch, commit, state }, image) {
-    await this.$axios.delete(`/clientapi/image/delete`, { data: image })
+    await this.$axios.delete(`/clientapi/image/delete`, {
+      data: { imageId: image },
+    })
   },
 }

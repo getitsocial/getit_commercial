@@ -23,9 +23,12 @@ const coreMixin = {
       update: 'updateUser',
       logout: 'logout',
     }),
-    setImage({ secure_url }) {
+    setImage({ secure_url, public_Id }) {
+      console.log(secure_url)
       // eslint-disable-next-line camelcase
       this.myUser.picture = secure_url
+      // eslint-disable-next-line camelcase
+      this.myUser.pictureId = public_Id
     },
     async getSuggestionList() {
       const response = await this.$axios.$get('/api/maps/geocode', {

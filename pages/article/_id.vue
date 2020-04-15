@@ -13,7 +13,11 @@
           <div class="p-3">
             <!-- eslint-disable-next-line vue/no-v-html -->
             <div v-html="article.description"></div>
-            <avatar :img-src="article.author.picture" class="mt-3">
+            <avatar
+              v-if="article.author"
+              :img-src="article.author.picture"
+              class="mt-3"
+            >
               <div class="ml-2 font-bold">{{ article.author.name }}</div>
             </avatar>
           </div>
@@ -61,10 +65,6 @@ export default {
     this.$root.$on('editArticle', (obj) => {
       this.$router.push(`/article/edit/${this.$route.params?.id}`)
     })
-  },
-  methods: {
-    // eslint-disable-next-line
-    imageUrl: ({ picture }) => picture?.secure_url || '/img/placeholder.svg'
   },
 }
 </script>

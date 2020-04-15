@@ -1,32 +1,58 @@
 <template>
   <div class="relative">
-    <input
-      ref="inputValue"
-      v-model="selection[displayName]"
-      :placeholder="placeholder"
-      class="form-input mt-1 block w-full"
-      type="text"
-      @input="change"
-      @blur="handleBlur"
-    />
-    <ul v-if="openSuggestion" class="dropdown w-full">
-      <li
-        v-for="(suggestion, index) in list"
-        :key="index"
-        class="dropdown-item"
-        @click="suggestionClick(suggestion)"
-      >
-        {{ suggestion[displayName] }}
-      </li>
-    </ul>
+    <ValidationProvider
+      v-slot="{ errors }"
+      :name="name"
+      :rules="rules"
+      autocomplete="off"
+    >
+      <!-- Name INPUT -->
+
+      <div class="form-content my-3" :class="{ error: errors[0] }">
+        <label class="form-label w-full" for="autocomplete">
+          <span v-if="label" class="text-info">{{ label }}</span>
+          <input
+            ref="inputValue"
+            v-model="selection[displayName]"
+            :placeholder="placeholder"
+            class="form-input mt-1 block w-full"
+            type="text"
+            autocomplete="__away"
+            @input="change"
+            @blur="handleBlur"
+          />
+          <ul v-if="openSuggestion" class="dropdown w-full">
+            <li
+              v-for="(suggestion, index) in list"
+              :key="index"
+              class="dropdown-item"
+              @click="suggestionClick(suggestion)"
+            >
+              {{ suggestion[displayName] }}
+            </li>
+          </ul>
+          <span class="error-message">{{ errors[0] }}</span>
+        </label>
+      </div>
+    </ValidationProvider>
   </div>
 </template>
 
 <script>
+import { ValidationProvider } from 'vee-validate'
+
 import { debounce, clone } from 'lodash'
 export default {
   name: 'Autocomplete',
+  components: {
+    ValidationProvider,
+  },
   props: {
+    name: {
+      type: String,
+      required: false,
+      default: 'autocomplete',
+    },
     endpoint: {
       type: String,
       required: true,
@@ -44,6 +70,14 @@ export default {
       default: '',
     },
     placeholder: {
+      type: String,
+      default: '',
+    },
+    label: {
+      type: String,
+      default: '',
+    },
+    rules: {
       type: String,
       default: '',
     },

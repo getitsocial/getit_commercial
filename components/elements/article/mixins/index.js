@@ -1,3 +1,5 @@
+/* eslint camelcase: ["error", {"properties": "never", ignoreDestructuring:
+true}] */
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { mapActions, mapState, mapGetters } from 'vuex'
 import { clone } from 'lodash'
@@ -31,8 +33,8 @@ const coreMixin = {
       getCategories: 'categories/getAll',
       deleteAction: 'articles/delete',
     }),
-    setImage(img) {
-      this.article.picture = img
+    setImage(data) {
+      this.article.picture = data
     },
     addStock() {
       this.article.stock = 0
