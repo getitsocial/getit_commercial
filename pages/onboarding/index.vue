@@ -6,14 +6,13 @@
       Vielen Dank für deine Anmeldung! Mit ein paar wenigen Schritten helfen wir
       dir, dein Shop anzulegen. Los gehts!
     </p>
-    <ValidationObserver ref="start" v-slot="{ handleSubmit }">
+    <ValidationObserver ref="start" v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(goNext)">
         <ValidationProvider
           v-slot="{ errors }"
           rules="required|max:200"
           name="Name"
         >
-          <!-- Name INPUT -->
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="companyName">
               <span class="text-info">Name deines Shops</span>
@@ -31,10 +30,9 @@
 
         <ValidationProvider
           v-slot="{ errors }"
-          rules="required|oneOf:SS,EU,PG,GN,GP,AG"
+          rules="required"
           name="Rechtsform"
         >
-          <!-- Size INPUT -->
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="companyType">
               <span class="text-info">Rechtsform</span>
@@ -43,7 +41,7 @@
                 v-model="companyType"
                 class="form-select mt-1 block w-full"
               >
-                <option value="SS" selected>Selbstständig</option>
+                <option value="SS">Selbstständig</option>
                 <option value="EU">Einzelunternehmer</option>
                 <option value="PG"
                   >Personengesellschaft (z. B. GdbR, OHG, KG)</option
@@ -61,10 +59,9 @@
 
         <ValidationProvider
           v-slot="{ errors }"
-          rules="required|oneOf:1,5,20,200"
+          rules="required"
           name="Mitarbeiterzahl"
         >
-          <!-- Size INPUT -->
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="companySize">
               <span class="text-info">Mitarbeiterzahl</span>
@@ -73,7 +70,7 @@
                 v-model="size"
                 class="form-select mt-1 block w-full"
               >
-                <option value="1" selected>1-5</option>
+                <option value="1">1-5</option>
                 <option value="5">5-20</option>
                 <option value="20">20-200</option>
                 <option value="200">200-1000</option>
@@ -100,8 +97,13 @@ export default {
   layout: 'onboarding',
   mixins: [coreMixin],
   methods: {
-    goNext() {
-      this.$router.push('/onboarding/shop')
+    async goNext() {
+      try {
+        await this.$refs.start.validate()
+        this.$router.push('/onboarding/shop')
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }

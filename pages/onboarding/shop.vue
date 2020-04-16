@@ -6,7 +6,7 @@
       Gib die Addresse deines Shops an damit andere wissen, wo sie dich finden
       können.
     </p>
-    <ValidationObserver ref="start" v-slot="{ handleSubmit }">
+    <ValidationObserver ref="picture" v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(goNext)">
         <!-- userLocation INPUT -->
         <div class="form-content">
@@ -100,8 +100,13 @@ export default {
       if (!address || !locationId) return
       this.address = { ...address, label, locationId }
     },
-    goNext() {
-      this.$router.push('/onboarding/picture')
+    async goNext() {
+      try {
+        await this.$refs.picture.validate()
+        this.$router.push('/onboarding/picture')
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }
