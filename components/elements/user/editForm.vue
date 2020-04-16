@@ -21,9 +21,8 @@
       <div class="max-w-sm p-3">
         <image-upload
           folder="profilepictures"
-          placeholder="Profilbild"
-          :initial-image="myUser.picture"
-          :initial-id="myUser.pictureId"
+          placeholder="Profilbild Hochladen"
+          :image="myUser.picture"
           @target="setImage"
         />
       </div>
@@ -37,7 +36,7 @@
         >
           <!-- userName INPUT -->
           <h3 class="text-light">Persönliches</h3>
-          <div class="form-content my-3" :class="{ error: errors[0] }">
+          <div class="form-content mb-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="userName">
               <span class="text-info">Dein Name</span>
               <input
@@ -106,7 +105,7 @@
 
 <script>
 import coreMixin from '~/components/elements/user/mixins'
-import imageUpload from '~/components/elements/utils/imageUpload'
+import imageUpload from '~/components/elements/utils/imageUploadStatic'
 
 export default {
   name: 'EditUserForm',

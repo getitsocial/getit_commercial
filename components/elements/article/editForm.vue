@@ -33,10 +33,10 @@
     <!-- Todo: Change folder to articles/:shopId -->
     <image-upload
       folder="article"
-      :initial-image="article.picture.secure_url"
-      :initial-id="article.picture.publicId"
+      :image="article.picture"
       @target="setImage"
     />
+
     <ValidationObserver v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(submit)">
         <ValidationProvider
@@ -215,6 +215,10 @@ import coreMixin from '~/components/elements/article/mixins'
 export default {
   name: 'NewArticleForm',
   mixins: [coreMixin],
+  model: {
+    prop: 'article',
+    event: 'change',
+  },
   props: {
     article: {
       type: Object,
@@ -244,12 +248,16 @@ export default {
       })
       this.$router.push(`/category/${this.article.category.id}`)
     },
+    addArticlePicture() {
+      this.article.picture = {}
+    },
     selectCategory({ id, name }) {
       if (!id) return
       this.article.category._id = id
       this.article.category.name = name
       this.showChangeCategory = false
     },
+
     async selectToCopyArticle({ id }) {
       if (!id) return
       const newArticle = clone(this.article)

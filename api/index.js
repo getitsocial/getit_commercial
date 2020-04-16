@@ -41,13 +41,14 @@ app.post(
         tags: ['bucket', 'temporary'],
         folder,
         use_filename: false,
-        crop: 'imagga_scale',
+        // crop: 'imagga_scale',
         secure: true,
         width: 1000,
         height: 1000,
       })
       res.status(201).json({ public_id, etag, format, secure_url })
     } catch (error) {
+      console.log(error)
       next(error)
     }
   }

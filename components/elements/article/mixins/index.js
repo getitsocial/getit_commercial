@@ -1,5 +1,5 @@
-/* eslint camelcase: ["error", {"properties": "never", ignoreDestructuring:
-true}] */
+/* eslint-disable camelcase */
+
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { mapActions, mapState, mapGetters } from 'vuex'
 import { clone } from 'lodash'

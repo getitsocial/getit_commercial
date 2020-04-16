@@ -6,7 +6,7 @@
       Vielen Dank für deine Anmeldung! Mit ein paar wenigen Schritten helfen wir
       dir, dein Shop anzulegen. Los gehts!
     </p>
-    <ValidationObserver ref="start" v-slot="{ handleSubmit }" tag="form">
+    <ValidationObserver ref="start" v-slot="{ handleSubmit }">
       <form @submit.prevent="handleSubmit(goNext)">
         <ValidationProvider
           v-slot="{ errors }"

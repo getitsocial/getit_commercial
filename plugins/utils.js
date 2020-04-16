@@ -1,9 +1,11 @@
 import Vue from 'vue'
-
+import { isEmpty } from 'lodash'
 // Mixins
 
 Vue.mixin({
-  data: () => ({}),
+  data: () => ({
+    isEmpty,
+  }),
   computed: {
     currentPage() {
       return this.$route.path

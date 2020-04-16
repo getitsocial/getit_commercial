@@ -13,10 +13,8 @@ export const state = () => ({
     website: '',
   },
   companyType: '',
-  picture: null,
-  pictureId: null,
-  logo: null,
-  logoId: null,
+  picture: {},
+  logo: {},
   loading: {
     create: false,
     update: false,

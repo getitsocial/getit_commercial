@@ -6,27 +6,13 @@
     rules="ext:jpg,png,jpeg"
   >
     <!-- articlePicture FILE -->
-    <div v-if="!isEmpty(imgLocal)">
-      <img :src="imgLocal.secure_url" alt="" class="rounded-lg mx-auto" />
-      <button
-        v-if="imgLocal.public_id"
-        class="w-auto mx-auto"
-        @click="removeImageAction"
-      >
-        Entfernen
-      </button>
+    <div v-if="imgLocal">
+      <img :src="imgLocal" alt="" class="rounded-lg mx-auto" />
     </div>
-    <div v-else class="animated dropbox">
+    <div class="animated dropbox">
       <div class="dropbox-content">
-        <div>
-          <eva-icons
-            v-if="!isUploading"
-            name="image-outline"
-            fill="currentColor"
-          />
-          <p :class="{ 'spinner-dark': isUploading }">
-            {{ placeholder }}
-          </p>
+        <div class="my-auto" :class="{ 'spinner-dark': isUploading }">
+          {{ placeholder }}
         </div>
         <span class="error-message">{{ errors[0] }}</span>
       </div>
@@ -43,11 +29,12 @@
 </template>
 
 <script>
+/* eslint-disable camelcase */
 import { ValidationProvider } from 'vee-validate'
 import { mapActions } from 'vuex'
 import { isObject } from 'lodash'
 export default {
-  name: 'ImageUpload',
+  name: 'ImageUploadStatic',
   components: {
     ValidationProvider,
   },
@@ -58,7 +45,7 @@ export default {
       required: true,
     },
     image: {
-      type: Object,
+      type: String,
       default: null,
     },
     placeholder: {
@@ -75,11 +62,11 @@ export default {
     imgLocal: {
       get() {
         if (isObject(this.image)) return this.image
-        return { secure_url: this.image }
+        return this.image
       },
-      set(value) {
-        this.$emit('target', value)
-        return value
+      set({ secure_url }) {
+        this.$emit('target', secure_url)
+        return secure_url
       },
     },
   },
@@ -106,9 +93,7 @@ export default {
         console.log(error)
       }
     },
-    async removeImageAction() {
-      if (this.imgLocal.public_id)
-        await this.removeImage(this.imgLocal.public_id)
+    removeImageAction() {
       this.$emit('target', {})
     },
   },
@@ -119,14 +104,14 @@ export default {
 // File Input
 //
 .dropbox {
-  @apply transition-all duration-100 ease-in-out;
+  @apply transition-all duration-100 ease-in-out mt-2;
   @apply flex content-center justify-center flex-wrap;
-  @apply bg-white text-primary border-2 border-dashed border-2 rounded text-center h-40 cursor-pointer;
+  @apply bg-white text-primary text-center cursor-pointer;
   &:hover {
-    @apply bg-grey;
+    @apply text-light;
   }
   &-content {
-    @apply absolute mt-16;
+    @apply absolute my-auto;
   }
 }
 .input-file {

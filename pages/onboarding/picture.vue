@@ -12,8 +12,7 @@
         <image-upload
           folder="logos"
           placeholder="Dein Logo"
-          :initial-image="logo"
-          :initial-id="logoId"
+          :image="logo"
           @target="selectLogo"
         />
       </div>
@@ -23,8 +22,7 @@
         <image-upload
           folder="shops"
           placeholder="Dein Shop"
-          :initial-image="picture"
-          :initial-id="pictureId"
+          :image="picture"
           @target="selectPicture"
         />
       </div>
@@ -42,8 +40,7 @@
 </template>
 
 <script>
-/* eslint camelcase: ["error", {"properties": "never", ignoreDestructuring:
-true}] */
+/* eslint-disable camelcase */
 import coreMixin from '~/components/elements/onboarding/mixins'
 import imageUpload from '~/components/elements/utils/imageUpload'
 
@@ -55,17 +52,11 @@ export default {
   },
   mixins: [coreMixin],
   methods: {
-    selectPicture({ secure_url, public_id }) {
-      // eslint-disable-next-line camelcase
-      this.picture = secure_url
-      // eslint-disable-next-line camelcase
-      this.pictureId = public_id
+    selectPicture(data) {
+      this.picture = data
     },
-    selectLogo({ secure_url, public_id }) {
-      // eslint-disable-next-line camelcase
-      this.logo = secure_url
-      // eslint-disable-next-line camelcase
-      this.logoId = public_id
+    selectLogo(data) {
+      this.logo = data
     },
   },
 }

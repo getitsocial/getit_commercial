@@ -17,6 +17,7 @@ export default {
   async asyncData({ store, params, error }) {
     try {
       const article = await store.dispatch('articles/getOne', params.id)
+      if (!article.picture) article.picture = {}
       return { article }
     } catch (e) {
       error({ statusCode: 404 })

@@ -6,7 +6,7 @@
       Gib die Addresse deines Shops an damit andere wissen, wo sie dich finden
       können.
     </p>
-    <ValidationObserver ref="start" v-slot="{ handleSubmit }" tag="form">
+    <ValidationObserver ref="start" v-slot="{ handleSubmit }">
       <form @submit.prevent="handleSubmit(goNext)">
         <!-- userLocation INPUT -->
         <div class="form-content">
