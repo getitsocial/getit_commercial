@@ -3,4 +3,8 @@ export default function ({ store, redirect, app: { $axios, $cookies } }) {
   if (!store.state.accessToken) {
     return redirect('/login')
   }
+  // If the user have no shop
+  if (!store.state.user?.shop) {
+    return redirect('/onboarding')
+  }
 }

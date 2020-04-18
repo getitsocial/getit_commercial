@@ -13,7 +13,6 @@
         <label class="form-label w-full" for="shopDescription">
           <client-only>
             <wysiwyg
-              label="Das sind wir"
               :initial-content="description"
               @content="(data) => (description = data)"
             />
@@ -27,7 +26,7 @@
       <nuxt-link to="/onboarding/picture" class="button border my-10"
         >Zurück</nuxt-link
       >
-      <button class="button border my-10" @click="createShop">
+      <button class="button border my-10" @click="goNext">
         Los gehts!
       </button>
     </div>
@@ -46,13 +45,8 @@ export default {
   },
   mixins: [coreMixin],
   methods: {
-    async createShop() {
-      try {
-        await this.create()
-        this.$router.push('/onboarding/done')
-      } catch (error) {
-        console.log(error)
-      }
+    goNext() {
+      this.$router.push('/onboarding/done')
     },
   },
 }

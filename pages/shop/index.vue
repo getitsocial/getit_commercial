@@ -14,22 +14,24 @@
               <div class="mr-0 md:mr-5">
                 <div class="relative">
                   <img
-                    alt="Nicole"
-                    src="/img/shop.jpg"
-                    class="rounded-lg border-white border-2 -mt-10 max-h-20 md:max-h-10"
+                    :src="picture"
+                    class="rounded-lg shadow -mt-10 max-h-20 md:max-h-10 w-full"
                   />
                 </div>
               </div>
-              <div class="mt-2 text-info">
+              <div class="mt-4 text-info">
                 <h3 class="text-xl leading-none font-bold">
-                  Tim & Struppi
+                  {{ shop.name }}
                 </h3>
                 <div class="text-sm">
-                  <span class="text-light">Textilwaren</span>
-                  <div class="font-medium mt-1 leading-tight">
-                    Sesamstrasse 24 <br />
-                    38100 Braunschweig <br />
-                    <a href="tel:+49 531 2015511">+49 531 2015511</a>
+                  <!-- <span class="text-light">Textilwaren</span> -->
+                  <div class="font-medium mt-2 leading-snug">
+                    {{ shop.address.street }} {{ shop.address.houseNumber
+                    }}<br />
+                    {{ shop.address.postalCode }} {{ shop.address.city }} <br />
+                    <a :href="`tel:${shop.contact.phone}`">{{
+                      shop.contact.phone
+                    }}</a>
                   </div>
                 </div>
               </div>
@@ -38,16 +40,13 @@
               <hr class="my-5" />
             </div>
             <div>
-              <h2 class="text-info">Über uns</h2>
-              <p>
-                <b>Tim & Struppi</b> is based on the idea of selling unique
-                vintage clothes by the kilo. A varied range of one-off items and
-                accessories from past decades is a key element of our store
-                concept and can be found in PICKNWEIGHT stores in Hamburg,
-                Berlin, Cologne, Munich, Ibiza and Braunschweig. What could be
-                better than owning an item of clothing that no one else is
-                wearing apart from you?
-              </p>
+              <div v-if="shop.description" v-html="shop.description" />
+              <empty-content
+                v-else
+                content="Du hast noch keine Shopbeschreibung angelegt. Lege
+                        jetzt eine an!"
+                route="/shop"
+              />
               <dl
                 class="grid grid-cols-1 col-gap-4 row-gap-8 sm:grid-cols-2 my-5"
               >
@@ -64,13 +63,13 @@
                         <div>
                           <img
                             class="inline-block h-9 w-9 rounded-full"
-                            src="https://randomuser.me/api/portraits/women/19.jpg"
+                            :src="user.picture"
                             alt=""
                           />
                         </div>
                         <div class="ml-3">
                           <p class="leading-5 font-bold text-primary">
-                            Maren Steinert
+                            {{ user.name }}
                           </p>
                           <p class="leading-4 font-medium text-light">
                             Profildetails
@@ -85,9 +84,10 @@
                     Öffnungszeiten
                   </dt>
                   <dd class="mt-1 leading-5">
+                    <!--
                     Mo - Fr 8:00 Uhr - 19:00 <br />
                     Sa - So Geschlossen
-                  </dd>
+                  --></dd>
                 </div>
               </dl>
             </div>
@@ -99,10 +99,23 @@
 </template>
 
 <script>
+/* eslint-disable camelcase */
+import { mapGetters } from 'vuex'
+import emptyContent from '~/components/elements/utils/emptyContent'
+
 export default {
-  name: 'Ompany',
+  name: 'Shop',
   middleware: ['authenticated'],
-  data: () => ({}),
+  components: {
+    emptyContent,
+  },
+  computed: {
+    ...mapGetters(['shop']),
+    picture() {
+      if (this.shop.picture) return this.shop.picture?.secure_url
+      return '/img/placeholder.svg'
+    },
+  },
 }
 </script>
 

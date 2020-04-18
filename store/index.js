@@ -37,7 +37,6 @@ export const actions = {
       // Set SSR Token
       const accessToken = await this.$cookies.get('getit')
       app.$axios.setToken(accessToken, 'Bearer')
-
       commit('setToken', accessToken)
       // Get User Informations
       if (accessToken) {
@@ -71,7 +70,7 @@ export const actions = {
     dispatch('getMe')
     commit('setLoginPending', false)
   },
-  async setLocalUser({ commit }, { token, user }) {
+  async setLocalUser({ commit }, { token }) {
     // Set CSR Token
     await this.$axios.setToken(token, 'Bearer')
     await this.$cookies.set('getit', token, {
@@ -79,7 +78,6 @@ export const actions = {
       maxAge: 60 * 60 * 24 * 7,
     })
     commit('setToken', token)
-    commit('setUser', user)
   },
   async createUser({ commit }, { name, email, password, accessToken }) {
     await this.$axios.post(`/api/users`, {
@@ -137,6 +135,15 @@ export const actions = {
       await dispatch('logout')
     }
   },
+  async refreshToken({ state, dispatch }) {
+    try {
+      const { data } = await this.$axios.patch(`/api/auth/refresh`)
+      await dispatch('setLocalUser', data)
+      await dispatch('getMe')
+    } catch (error) {
+      console.log(error)
+    }
+  },
   setTitleAction: debounce(({ commit }, title) => {
     commit('setTitle', title)
   }, 100),
@@ -144,6 +151,7 @@ export const actions = {
 
 export const getters = {
   user: (state) => state.user,
+  shop: (state) => state.user?.shop,
   alerts: (state) => state.alerts,
   isRootLoading: (state) => state.isRootLoading,
   title: (state) => state.rootTitle,

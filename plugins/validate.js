@@ -58,6 +58,16 @@ extend('decimal', {
   message: `{serverMessage}`,
 })
 
+extend('address', {
+  params: ['address'],
+  validate: (value, { address: { postalCode, locationId, street } }) => {
+    if (!postalCode || !locationId || !street) return false
+    return true
+  },
+  message:
+    'Es muss eine gültige Addresse mit Hausnummer und Postleitzahl aus dem Auswahlfeld gewählt werden.',
+})
+
 extend('min', min)
 extend('required', required)
 extend('email', email)

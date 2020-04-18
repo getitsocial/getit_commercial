@@ -7,7 +7,6 @@
       autocomplete="off"
     >
       <!-- Name INPUT -->
-
       <div class="form-content my-3" :class="{ error: errors[0] }">
         <label class="form-label w-full" for="autocomplete">
           <span v-if="label" class="text-info">{{ label }}</span>
@@ -78,8 +77,8 @@ export default {
       default: '',
     },
     rules: {
-      type: String,
-      default: '',
+      type: [String, Object],
+      default: null,
     },
   },
   data: () => ({

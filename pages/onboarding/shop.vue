@@ -6,7 +6,7 @@
       Gib die Addresse deines Shops an damit andere wissen, wo sie dich finden
       können.
     </p>
-    <ValidationObserver ref="picture" v-slot="{ handleSubmit }" slim>
+    <ValidationObserver ref="shop" v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(goNext)">
         <!-- userLocation INPUT -->
         <div class="form-content">
@@ -18,7 +18,7 @@
             queryname="query"
             display-name="label"
             placeholder="Sesamstrasse 12"
-            rules="required"
+            :rules="{ required: true, address: { address } }"
             @selection="selectLocation"
           />
           <div
@@ -97,12 +97,11 @@ export default {
   },
   methods: {
     selectLocation({ address, locationId, label }) {
-      if (!address || !locationId) return
       this.address = { ...address, label, locationId }
     },
     async goNext() {
       try {
-        await this.$refs.picture.validate()
+        await this.$refs.shop.validate()
         this.$router.push('/onboarding/picture')
       } catch (error) {
         console.log(error)

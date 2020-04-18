@@ -26,8 +26,8 @@
                   </div>
                 </div>
               </div>
-              <div class="text-center mt-2 font-bold text-info">
-                <h3 class="text-4xl leading-normal">
+              <div class="text-center mt-2 text-info">
+                <h3 class="text-4xl font-bold leading-normal">
                   {{ user.name }}
                 </h3>
                 <div
@@ -36,8 +36,8 @@
                 >
                   {{ user.location.label }}
                 </div>
-                <div v-if="user.job" class="mt-5 font-bold text-light">
-                  Shop Manager - Tim & Struppi
+                <div v-if="user.shop" class="text-light">
+                  {{ user.shop.name }}
                 </div>
               </div>
               <div class="w-full">
@@ -55,16 +55,12 @@
                       <!-- eslint-disable-next-line vue/no-v-html -->
                       <div v-html="user.description" />
                     </div>
-                    <div
+                    <empty-content
                       v-else
-                      class="flex content-center flex-wrap justify-center h-15 w-full border-2 rounded-lg border-dashed text-light cursor-pointer hover:bg-grey mb-4"
-                      @click="$router.push('/profile/settings')"
-                    >
-                      <div class="">
-                        Du hast noch keine Profilbeschreibung angelegt. Lege
-                        jetzt eine an!
-                      </div>
-                    </div>
+                      content="Du hast noch keine Profilbeschreibung angelegt. Lege
+                        jetzt eine an!"
+                      route="/profile/settings"
+                    />
                     <div class="pb-2 flex justify-end">
                       <button
                         class="w-auto mr-2"
@@ -87,11 +83,14 @@
 
 <script>
 import { mapActions } from 'vuex'
+import emptyContent from '~/components/elements/utils/emptyContent'
 
 export default {
   name: 'Profile',
   middleware: ['authenticated'],
-  data: () => ({}),
+  components: {
+    emptyContent,
+  },
   methods: {
     ...mapActions(['logout']),
     async logoutUser() {

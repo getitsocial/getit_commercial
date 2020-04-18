@@ -28,7 +28,7 @@ const coreMixin = {
   },
   methods: {
     ...mapActions({
-      create: 'articles/create', // map `this.add()` to `this.$store.dispatch('increment')`
+      create: 'articles/create',
       update: 'articles/update',
       getCategories: 'categories/getAll',
       deleteAction: 'articles/delete',
