@@ -144,7 +144,7 @@ export default {
   },
 
   tailwindcss: {
-    purgeCSSInDev: true,
+    purgeCSSInDev: false,
   },
 
   /**

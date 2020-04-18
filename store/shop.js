@@ -30,7 +30,7 @@ export const mutations = {
     state.loading = data
   },
   setShop: (state, data) => {
-    state.shop = state
+    state.shop = data
   },
   clearStore: (state, data) => {
     state.shop = {}
@@ -39,9 +39,10 @@ export const mutations = {
 
 export const actions = {
   // Get One
-  async getOne({ commit }, id) {
+  async getOne({ commit }) {
     try {
-      const data = await this.$axios.$get(`/api/${endPoint}/${id}`)
+      const data = await this.$axios.$get(`/api/${endPoint}/active`)
+      commit('setShop', data)
       return data
     } catch (error) {}
   },

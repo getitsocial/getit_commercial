@@ -41,7 +41,7 @@ app.post(
         tags: ['bucket', 'temporary'],
         folder,
         use_filename: false,
-        // crop: 'imagga_scale',
+        crop: 'imagga_scale',
         secure: true,
         width: 1000,
         height: 1000,

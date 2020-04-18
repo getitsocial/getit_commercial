@@ -30,12 +30,13 @@ module.exports = {
       borderColor: (theme) => ({
         default: theme('colors.dark', 'currentColor'),
       }),
-      maxHeight: {
+      'maxHeight, maxWidth, minHeight, minWidth': {
         '0': '0',
         '1': '1rem',
         '5': '5rem',
         '8': '8rem',
         '10': '10rem',
+        '15': '15rem',
         '20': '20rem',
       },
     },
