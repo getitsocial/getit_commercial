@@ -9,7 +9,7 @@
     <div v-if="initialImage">
       <img :src="initialImage" alt="" class="rounded-lg mx-auto" />
       <button class="w-auto mx-auto" @click="removeImageAction">
-        Entfernen
+        {{ $t('remove') }}
       </button>
     </div>
     <div v-else class="animated dropbox">

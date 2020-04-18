@@ -1,27 +1,25 @@
 <template>
   <div>
-    <hero-title v-show="!noContentFound" top-title="Kategorien" />
+    <hero-title v-show="!noContentFound" :top-title="$t('nav.stock')" />
     <div class="container mx-auto">
       <div class="my-3">
         <search-input v-if="!noContentFound" @search="applySearch" />
         <category-overview :categories="findDataInStore" />
         <transition name="fade">
           <div v-show="noContentFound">
-            <empty-state empty-text="Du hast noch keine Kategorien angelegt."
-              ><nuxt-link to="/category/new" class="button w-auto"
-                >Kategorie anlegen</nuxt-link
-              ></empty-state
+            <empty-state :empty-text="$t('no_categories_yet')"
+              ><nuxt-link to="/category/new" class="button w-auto">{{
+                $t('new_category')
+              }}</nuxt-link></empty-state
             >
           </div>
         </transition>
         <transition name="fade">
           <div v-show="noSearchContentFound">
-            <empty-state
-              empty-text="Die Suche ergab keinen Treffer"
-              image="search"
-              ><nuxt-link to="/category/new" class="button w-auto"
-                >Kategorie anlegen</nuxt-link
-              ></empty-state
+            <empty-state :empty-text="$t('no_results')" image="search"
+              ><nuxt-link to="/category/new" class="button w-auto">{{
+                $t('new_category')
+              }}</nuxt-link></empty-state
             >
           </div>
         </transition>
@@ -49,7 +47,7 @@ export default {
   subNavigation: {
     rightNavigationContent: [
       {
-        name: 'Neue Kategorie',
+        name: 'new_category',
         route: '/category/new',
       },
     ],

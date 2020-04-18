@@ -1,0 +1,31 @@
+export default {
+  nav: {
+    processes: 'Prozesse',
+    stock: 'Bestand',
+    store: 'Laden',
+  },
+  new_order: 'Neue Bestellung',
+  new_category: 'Neue Kategorie',
+  search: 'Suche',
+  imprint: 'Impressum',
+  terms: 'Nutzungsbedingungen',
+  privacy_policy: 'Datenschutzrichtlinie',
+  feedback_hint:
+    'Deine Meinung und deine Vorschläge sind uns wichtig um unser Service stätig zu verbessern.',
+  feedback: 'Feedback',
+  no_results: 'Die Suche ergab keine Treffer.',
+  no_categories_yet: 'Du hast noch keine Kategorien angelegt.',
+  no_profile_yet:
+    'Du hast noch keine Profilbeschreibung angelegt. Lege jetzt eine an!',
+  settings: 'Einstellungen',
+  logout: 'Abmelden',
+  profile_settings: 'Profileinstellungen',
+  remove: 'Entfernen',
+  personal: 'Persönliches',
+  your_name: 'Dein Name',
+  city: 'Wohnort',
+  personal_description: 'Stelle dich mit ein paar Sätzen vor',
+  account: 'Account',
+  delete_account: 'Account Löschen',
+  save: 'Speichern',
+}

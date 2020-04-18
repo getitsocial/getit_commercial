@@ -1,24 +1,24 @@
 {
   "mainNavigationContent": [
     {
-        "name": "Vorgänge",
+        "name": "nav.processes",
         "route": "/",
         "icon": "shopping-cart"
       },
       {
-        "name": "Bestand",
+        "name": "nav.stock",
         "route": "/category",
         "icon": "archive"
       },
       {
-        "name": "Laden",
+        "name": "nav.store",
         "route": "/shop",
         "icon": "home"
       }
   ],
   "rightNavigationContent": [
     {
-      "name": "Profil",
+      "name": "profile",
       "route": "/profile",
       "icon": "person"
     }

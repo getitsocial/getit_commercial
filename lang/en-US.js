@@ -1,0 +1,31 @@
+export default {
+  nav: {
+    processes: 'Processes',
+    stock: 'Stock',
+    store: 'Store',
+  },
+  new_order: 'New Order',
+  new_category: 'New Category',
+  search: 'Search',
+  imprint: 'Imprint',
+  terms: 'Terms of Use',
+  privacy_policy: 'Privacy Policy',
+  feedback_hint:
+    'Your opinion and suggestions are important to us in order to constantly improve our service.',
+  feedback: 'Feedback',
+  no_results: 'The search produced no hits.',
+  no_categories_yet: 'You have not yet created any categories.',
+  no_profile_yet:
+    'You have not yet created a profile description. Put one now!',
+  settings: 'Settings',
+  logout: 'Logout',
+  profile_settings: 'Profile Settings',
+  remove: 'Remove',
+  personal: 'Personal',
+  your_name: 'Your Name',
+  city: 'City',
+  personal_description: 'Introduce yourself with a few sentences',
+  account: 'Account',
+  delete_account: 'Delete Account',
+  save: 'Save',
+}

@@ -13,7 +13,7 @@
                     v-model.trim="searchtext"
                     type="text"
                     class="form-input block w-full"
-                    :placeholder="placeholder"
+                    :placeholder="$t(placeholder)"
                     autocomplete="off"
                   />
                   <div class="input-icon">
@@ -46,7 +46,7 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: 'Suche',
+      default: 'search',
     },
   },
   data: () => ({

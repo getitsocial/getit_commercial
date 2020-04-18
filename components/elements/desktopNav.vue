@@ -22,7 +22,7 @@
             :to="nav.route"
             :exact="nav.exact"
           >
-            {{ nav.name }}
+            {{ $t(nav.name) }}
           </nuxt-link>
         </li>
       </ul>

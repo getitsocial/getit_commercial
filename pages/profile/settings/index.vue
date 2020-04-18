@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Profileinstellungen</h2>
+    <h2>{{ $t('profile_settings') }}</h2>
     <edit-form :my-user="myUser" />
   </div>
 </template>

@@ -5,7 +5,7 @@
         <ul class="navigation flex select-none">
           <li v-for="(item, index) in items.leftNavigationContent" :key="index">
             <nuxt-link :to="item.route" :exact="item.exact">
-              {{ item.name }}
+              {{ $t(item.name) }}
             </nuxt-link>
           </li>
         </ul>
@@ -19,7 +19,7 @@
               :to="{ path: item.route, params: item.params, query: item.query }"
               exact
             >
-              {{ item.name }}
+              {{ $t(item.name) }}
               <eva-icons
                 v-if="item.icon"
                 :name="`${item.icon}-outline`"
@@ -31,7 +31,7 @@
               class="navlink rounded-none"
               @click="emitAction(item.emit)"
             >
-              {{ item.name }}
+              {{ $t(item.name) }}
               <eva-icons
                 v-if="item.icon"
                 :name="`${item.icon}-outline`"

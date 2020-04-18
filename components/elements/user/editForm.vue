@@ -36,10 +36,10 @@
           rules="required|min:2|alpha_spaces"
         >
           <!-- userName INPUT -->
-          <h3 class="text-light">Persönliches</h3>
+          <h3 class="text-light">{{ $t('personal') }}</h3>
           <div class="form-content my-3" :class="{ error: errors[0] }">
             <label class="form-label w-full" for="userName">
-              <span class="text-info">Dein Name</span>
+              <span class="text-info">{{ $t('your_name') }}</span>
               <input
                 id="userName"
                 v-model="myUser.name"
@@ -57,7 +57,7 @@
         <div class="form-content">
           <label class="form-label w-full" for="userLocation">
             <autocomplete
-              label="Wohnort"
+              :label="$t('city')"
               :value="userLocation"
               endpoint="maps/geocode"
               queryname="query"
@@ -73,7 +73,7 @@
             <label class="form-label w-full" for="userDescription">
               <client-only>
                 <wysiwyg
-                  label="Stelle dich mit ein paar Sätzen vor"
+                  :label="$t('personal_description')"
                   :initial-content="myUser.description"
                   @content="(data) => (myUser.description = data)"
                 />
@@ -82,19 +82,19 @@
             </label>
           </div>
         </ValidationProvider>
-        <h3 class="mt-3 text-light">Account</h3>
+        <h3 class="mt-3 text-light">{{ $t('account') }}</h3>
         <button
           class="w-auto px-0 hover:text-danger mr-auto"
           type="button"
           @click.prevent="showConfirm = true"
         >
-          Account löschen
+          {{ $t('delete_account') }}
         </button>
         <bottom-area>
           <div class="flex">
             <div class="ml-auto">
               <button class="primary" type="submit">
-                speichern
+                {{ $t('save') }}
               </button>
             </div>
           </div>

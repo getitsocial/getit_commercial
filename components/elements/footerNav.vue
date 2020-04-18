@@ -9,17 +9,17 @@
           <ul class="list-menu-light">
             <li>
               <nuxt-link to="/imprint">
-                Impressum
+                {{ $t('imprint') }}
               </nuxt-link>
             </li>
             <li>
               <nuxt-link to="/" exact>
-                Nutzungsbedingungen
+                {{ $t('terms') }}
               </nuxt-link>
             </li>
             <li>
               <nuxt-link to="/" exact>
-                Datenschutzrichtlinie
+                {{ $t('privacy_policy') }}
               </nuxt-link>
             </li>
           </ul>
@@ -30,11 +30,10 @@
         >
           <!-- Center Column Content -->
           <p>
-            Deine Meinung und deine Vorschläge sind uns wichtig um unser Service
-            stätig zu verbessern.
+            {{ $t('feedback_hint') }}
           </p>
           <button class="primary link w-auto mx-auto md:ml-0 mt-3 p-0">
-            Feedback
+            {{ $t('feedback') }}
           </button>
         </div>
         <div

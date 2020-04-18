@@ -61,8 +61,7 @@
                       @click="$router.push('/profile/settings')"
                     >
                       <div class="">
-                        Du hast noch keine Profilbeschreibung angelegt. Lege
-                        jetzt eine an!
+                        {{ $t('no_profile_yet') }}
                       </div>
                     </div>
                     <div class="pb-2 flex justify-end">
@@ -70,9 +69,11 @@
                         class="w-auto mr-2"
                         @click="$router.push('/profile/settings')"
                       >
-                        Einstellungen
+                        {{ $t('settings') }}
                       </button>
-                      <button class="w-auto" @click="logoutUser">Logout</button>
+                      <button class="w-auto" @click="logoutUser">
+                        {{ $t('logout') }}
+                      </button>
                     </div>
                   </div>
                 </div>
