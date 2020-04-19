@@ -42,23 +42,11 @@
 <script>
 /* eslint-disable camelcase */
 import coreMixin from '~/components/elements/onboarding/mixins'
-import imageUpload from '~/components/elements/utils/imageUpload'
 
 export default {
   name: 'Picture',
   layout: 'onboarding',
-  components: {
-    imageUpload,
-  },
   mixins: [coreMixin],
-  methods: {
-    selectPicture(data) {
-      this.picture = data
-    },
-    selectLogo(data) {
-      this.logo = data
-    },
-  },
 }
 </script>
 

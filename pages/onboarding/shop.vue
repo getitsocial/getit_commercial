@@ -89,25 +89,6 @@ export default {
   name: 'Personal',
   layout: 'onboarding',
   mixins: [coreMixin],
-  computed: {
-    companyLocation(e) {
-      // if (!this.myUser.location) return
-      return this.address?.label
-    },
-  },
-  methods: {
-    selectLocation({ address, locationId, label }) {
-      this.address = { ...address, label, locationId }
-    },
-    async goNext() {
-      try {
-        await this.$refs.shop.validate()
-        this.$router.push('/onboarding/picture')
-      } catch (error) {
-        console.log(error)
-      }
-    },
-  },
 }
 </script>
 

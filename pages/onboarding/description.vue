@@ -35,14 +35,9 @@
 
 <script>
 import coreMixin from '~/components/elements/onboarding/mixins'
-import wysiwyg from '~/components/elements/utils/wysiwyg'
-
 export default {
   name: 'Personal',
   layout: 'onboarding',
-  components: {
-    wysiwyg,
-  },
   mixins: [coreMixin],
   methods: {
     goNext() {

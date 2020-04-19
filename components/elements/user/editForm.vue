@@ -148,7 +148,6 @@ export default {
       // Todo Delete User
       this.$addToast({
         message: 'Profil gelöscht!',
-        toastType: 'primary',
       })
       await this.logout()
     },

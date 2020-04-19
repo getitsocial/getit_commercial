@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Shop bearbeiten</h2>
     <edit-form />
   </div>
 </template>

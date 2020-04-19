@@ -80,6 +80,10 @@ export default {
       type: [String, Object],
       default: null,
     },
+    initial: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data: () => ({
     open: false,
@@ -97,6 +101,11 @@ export default {
   beforeMount() {
     this.selection[this.displayName] = this.value
   },
+  mounted() {
+    if (this.isEmpty(this.initial)) return
+    this.$emit('selection', this.initial)
+    this.selection = clone(this.initial)
+  },
   methods: {
     // When the user changes input
     //
@@ -113,6 +122,7 @@ export default {
 
     // When one of the suggestion is clicked
     suggestionClick(selection) {
+      if (this.isEmpty(selection)) return
       this.$emit('selection', selection)
       this.selection = clone(selection)
       this.open = false

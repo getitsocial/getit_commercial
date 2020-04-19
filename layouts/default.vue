@@ -12,7 +12,7 @@
         <!-- Hero -->
         <transition name="fade-faster">
           <div
-            class="sticky top-0"
+            class="sticky top-0 z-30"
             :class="{ 'top-subnavigation': !$store.state.isMobile }"
           >
             <sub-menu v-if="subNavigation" :items="subNavigation" />

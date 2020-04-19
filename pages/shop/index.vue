@@ -2,11 +2,11 @@
   <div>
     <div class="container max-w-3xl mx-auto">
       <div
-        class="shop-picture min-h-full relative"
+        class="shop-picture min-h-full relative z-10"
         :style="{ backgroundImage: `url('${picture}')` }"
       ></div>
 
-      <div class="relative block -mt-48 px-3">
+      <div class="relative block -mt-48 px-3 z-20">
         <img
           :src="logo"
           :alt="shop.name"

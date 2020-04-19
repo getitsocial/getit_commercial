@@ -57,8 +57,9 @@ export const actions = {
     commit('setLoading', { create: false })
   },
 
-  // Put
+  // Update
   async update({ dispatch, commit, state }, data) {
+    console.log(data)
     commit('setLoading', { update: true })
     await this.$axios.patch(`/api/${endPoint}/${data.id}`, data)
     commit('setLoading', { update: false })

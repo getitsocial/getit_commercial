@@ -10,7 +10,7 @@
       <form @submit.prevent="handleSubmit(goNext)">
         <ValidationProvider
           v-slot="{ errors }"
-          rules="required|max:200"
+          :rules="{ required: true, max: 20, shopname: { name, check } }"
           name="Name"
         >
           <div class="form-content my-3" :class="{ error: errors[0] }">
@@ -20,8 +20,10 @@
                 id="companyName"
                 v-model="name"
                 type="text"
+                vid="name"
                 class="form-input mt-1 block w-full"
                 placeholder="Musterhaus GmbH"
+                @input="checkName"
               />
               <span class="error-message">{{ errors[0] }}</span>
             </label>

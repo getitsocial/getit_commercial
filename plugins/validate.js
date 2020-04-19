@@ -1,4 +1,5 @@
 import { extend, localize } from 'vee-validate'
+import { debounce } from 'lodash'
 import de from 'vee-validate/dist/locale/de.json'
 
 /* eslint-disable camelcase */
@@ -66,6 +67,20 @@ extend('address', {
   },
   message:
     'Es muss eine gültige Addresse mit Hausnummer und Postleitzahl aus dem Auswahlfeld gewählt werden.',
+})
+
+extend('shopname', {
+  params: ['name', 'check'],
+  validate: debounce(async function (value, { name, check }) {
+    try {
+      await check(name)
+      return true
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }, 250),
+  message: 'Shopname existiert bereits',
 })
 
 extend('min', min)

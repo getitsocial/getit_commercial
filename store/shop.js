@@ -4,10 +4,13 @@ const endPoint = `shops`
 
 export const state = () => ({
   shop: {
+    _id: null,
     name: '',
     size: '',
     description: '',
-    address: {},
+    address: {
+      locationId: null,
+    },
     contact: {
       phone: '',
       website: '',
@@ -44,7 +47,14 @@ export const actions = {
       const data = await this.$axios.$get(`/api/${endPoint}/active`)
       commit('setShop', data)
       return data
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
+  },
+
+  // CheckName
+  async checkName({ commit }, name) {
+    await this.$axios.$post(`/api/${endPoint}/checkName`, { name })
   },
 
   // Post
@@ -54,6 +64,17 @@ export const actions = {
     commit('clearStore')
     commit('setLoading', { create: false })
     await dispatch('refreshToken', null, { root: true })
+  },
+
+  // Update
+  async update({ dispatch, commit, state: { shop } }, data) {
+    commit('setLoading', { update: true })
+    console.log(shop.id)
+    console.log(shop._id)
+    console.log(shop)
+    await this.$axios.patch(`/api/${endPoint}/${shop.id}`, shop)
+    await dispatch('getMe', null, { root: true })
+    commit('setLoading', { update: false })
   },
 }
 
