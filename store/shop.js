@@ -33,6 +33,8 @@ export const mutations = {
     state.loading = data
   },
   setShop: (state, data) => {
+    if (!data.picture) data.picture = {}
+    if (!data.logo) data.logo = {}
     state.shop = data
   },
   clearStore: (state, data) => {
@@ -69,9 +71,6 @@ export const actions = {
   // Update
   async update({ dispatch, commit, state: { shop } }, data) {
     commit('setLoading', { update: true })
-    console.log(shop.id)
-    console.log(shop._id)
-    console.log(shop)
     await this.$axios.patch(`/api/${endPoint}/${shop.id}`, shop)
     await dispatch('getMe', null, { root: true })
     commit('setLoading', { update: false })

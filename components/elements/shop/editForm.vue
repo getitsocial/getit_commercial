@@ -1,5 +1,26 @@
 <template>
   <div>
+    <h3>Bilder</h3>
+    <div class="mt-3 flex justify-center">
+      <div class="max-w-sm p-3">
+        <image-upload
+          folder="logos"
+          placeholder="Dein Logo"
+          :image="logo"
+          @target="selectLogo"
+        />
+      </div>
+    </div>
+    <div class="mt-3 flex justify-center">
+      <div class="max-w-sm p-3">
+        <image-upload
+          folder="shops"
+          placeholder="Dein Shop"
+          :image="picture"
+          @target="selectPicture"
+        />
+      </div>
+    </div>
     <h3>Allgemeine Informationen</h3>
     <ValidationObserver ref="shop" v-slot="{ handleSubmit }" slim>
       <form @submit.prevent="handleSubmit(updateShop)">
@@ -134,6 +155,21 @@
                 class="form-input mt-1 block w-full"
                 placeholder="https://getit.social"
               />
+              <span class="error-message">{{ errors[0] }}</span>
+            </label>
+          </div>
+        </ValidationProvider>
+        <h3>Kurzbeschreibung</h3>
+        <ValidationProvider v-slot="{ errors }" name="Beschreibung">
+          <!-- userDescription INPUT -->
+          <div class="form-content my-5" :class="{ error: errors[0] }">
+            <label class="form-label w-full" for="shopDescription">
+              <client-only>
+                <wysiwyg
+                  :initial-content="description"
+                  @content="(data) => (description = data)"
+                />
+              </client-only>
               <span class="error-message">{{ errors[0] }}</span>
             </label>
           </div>

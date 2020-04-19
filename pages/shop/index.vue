@@ -54,9 +54,8 @@
       </div>
       <empty-content
         v-else
-        content="Du hast noch keine Shopbeschreibung angelegt. Lege
-                        jetzt eine an!"
-        route="/shop"
+        content="Du hast noch keine Shopbeschreibung angelegt. Lege jetzt eine an!"
+        route="/shop/edit"
       />
     </div>
   </div>

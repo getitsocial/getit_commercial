@@ -6,7 +6,7 @@
     rules="ext:jpg,png,jpeg"
   >
     <!-- articlePicture FILE -->
-    <div v-if="!isEmpty(imgLocal)">
+    <div v-if="imgLocal.secure_url">
       <img :src="imgLocal.secure_url" alt="" class="rounded-lg mx-auto" />
       <button
         v-if="imgLocal.public_id"
